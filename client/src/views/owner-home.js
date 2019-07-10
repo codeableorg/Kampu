@@ -4,56 +4,17 @@ import { jsx } from "@emotion/core";
 import { Title } from "../components/ui";
 import OwnerSportFieldCard from "../components/owner-sportfield-card";
 import OwnerClubCircle from "../components/owner-club-circle";
+import OwnerCreateButton from "../components/owner-create-button";
+import { useSetClubs, useSetSportFields } from "../actions/action-hooks";
+import { useClubs, useSportFields } from "../selectors/selectors";
+import { getClubs } from "../services/club";
+import { getSportFields } from "../services/sportField";
 
 function OwnerHome() {
-  const [clubs, setClubs] = React.useState([
-    { id: 1, name: "Club #1" },
-    { id: 2, name: "Club #2" },
-    { id: 3, name: "Club #3" },
-    { id: 4, name: "Club #4" },
-    { id: 5, name: "Club #5" }
-  ]);
-  const [sportFields, setSportFields] = React.useState([
-    {
-      id: 1,
-      name: "Sports Field #1",
-      sportType: "soccer",
-      description: "5vs5",
-      photo: "",
-      prices: {
-        day: "50",
-        night: "100"
-      },
-      progress: "50%",
-      clubId: 1
-    },
-    {
-      id: 2,
-      name: "Sports Field #2",
-      sportType: "soccer",
-      description: "5vs5",
-      photo: "",
-      prices: {
-        day: "50",
-        night: "100"
-      },
-      progress: "80%",
-      clubId: 2
-    },
-    {
-      id: 3,
-      name: "Sports Field #3",
-      sportType: "soccer",
-      description: "5vs5",
-      photo: "",
-      prices: {
-        day: "50",
-        night: "100"
-      },
-      progress: "10%",
-      clubId: 1
-    }
-  ]);
+  const clubs = useClubs();
+  const sportFields = useSportFields();
+  const setClubs = useSetClubs();
+  const setSportFields = useSetSportFields();
   const [activeClub, setActiveClub] = React.useState(1);
 
   const styleClubsContainer = {
@@ -77,6 +38,18 @@ function OwnerHome() {
     }
   };
 
+  React.useEffect(() => {
+    getClubs().then(clubs => {
+      setClubs(clubs);
+    });
+  }, [setClubs]);
+
+  React.useEffect(() => {
+    getSportFields().then(sportFields => {
+      setSportFields(sportFields);
+    });
+  }, [setSportFields]);
+
   const styleSportFieldsContainer = {
     display: "flex",
     flexWrap: "wrap",
@@ -90,32 +63,43 @@ function OwnerHome() {
     <div>
       <Title>Clubs</Title>
       <div css={styleClubsContainer}>
-        {clubs.map(club => {
-          return (
-            <OwnerClubCircle
-              key={club.id}
-              id={club.id}
-              name={club.name}
-              activeClub={activeClub}
-              setActiveClub={setActiveClub}
-            />
-          );
-        })}
+        {clubs ? (
+          clubs.map(club => {
+            return (
+              <OwnerClubCircle
+                key={club.id}
+                id={club.id}
+                name={club.name}
+                activeClub={activeClub}
+                setActiveClub={setActiveClub}
+              />
+            );
+          })
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
       <Title>Sport Fields</Title>
       <div css={styleSportFieldsContainer}>
-        {sportFields
-          .filter(sportField => sportField.clubId === activeClub)
-          .map(sportField => {
-            return (
-              <OwnerSportFieldCard
-                key={sportField.id}
-                name={sportField.name}
-                progressStatus={sportField.progress}
-              />
-            );
-          })}
+        {sportFields ? (
+          sportFields
+            .filter(sportField => sportField.club_id === activeClub)
+            .map(sportField => {
+              //This is a temporal progress
+              const progress = `${Math.floor(Math.random() * 100) + 1}%`;
+              return (
+                <OwnerSportFieldCard
+                  key={sportField.id}
+                  name={sportField.name}
+                  progressStatus={progress}
+                />
+              );
+            })
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
+      <OwnerCreateButton />
     </div>
   );
 }
