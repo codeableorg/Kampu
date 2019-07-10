@@ -9,6 +9,7 @@ import { Router } from "@reach/router";
 import store from "./store";
 import Home from "./views/home";
 import Login from "./views/login";
+import SignUp from "./views/signup";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
@@ -39,6 +40,7 @@ function App() {
         <Router>
           <Home path="/" />
           <Login path="/login" />
+          <SignUp path="/signup" />
         </Router>
       </main>
     </>
