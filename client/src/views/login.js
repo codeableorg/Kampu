@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import React, { useState } from "react";
 import { jsx } from "@emotion/core";
+import { Link } from "@reach/router";
+
 import { Input, Card, Button } from "../components/ui";
 
 // Custom hook that handle all inputs from form:
@@ -29,7 +31,7 @@ const useSignUpForm = (initialValues, callback) => {
   };
 };
 
-const SignUp = () => {
+const Login = () => {
   const alarm = () => {
     alert(`
     User Login successful! 
@@ -50,9 +52,11 @@ const SignUp = () => {
     >
       <Card
         css={{
+          minWidth: "400px",
           width: "50%",
-          "@media screen and (max-width: 720px)": {
-            width: "100%"
+          "@media screen and (max-width: 480px)": {
+            width: "100%",
+            minWidth: "initial"
           }
         }}
       >
@@ -62,25 +66,53 @@ const SignUp = () => {
             name="email"
             onChange={handleInputChange}
             value={inputs.email}
-            placeholder="Email*"
+            placeholder="Email"
             required
-            css={{ marginTop: "1em" }}
+            css={{
+              "@media screen and (max-width: 480px)": {
+                fontSize: ".8rem"
+              }
+            }}
           />
           <Input
             type="password"
             name="userPassword"
             onChange={handleInputChange}
             value={inputs.userPassword}
-            placeholder="Enter your password*"
-            css={{ marginTop: "1em" }}
+            placeholder="Enter your password"
+            css={{
+              marginTop: "1em",
+              "@media screen and (max-width: 480px)": {
+                fontSize: ".8rem"
+              }
+            }}
           />
-          <Button type="submit" css={{ marginTop: "2em" }}>
+          <Button
+            type="submit"
+            css={{
+              marginTop: "1.5em"
+            }}
+          >
             Login
           </Button>
         </form>
+        <br />
+
+        <Link
+          to="/signup"
+          style={{
+            color: "Black",
+            fontSize: "10px",
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "flex-end"
+          }}
+        >
+          Go to Signup
+        </Link>
       </Card>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;
