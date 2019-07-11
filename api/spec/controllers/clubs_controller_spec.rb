@@ -6,7 +6,7 @@ describe ClubsController do
     @user_params = {
       name: 'Club golden',
       address: 'Jr cayumba 440',
-      schedule: {
+      schedule: JSON.generate({
         'monday-friday': {
           start: '8',
           end: '22'
@@ -19,7 +19,7 @@ describe ClubsController do
           start: '8',
           end: '22'
         },
-      }
+      })
     }
   end
 
