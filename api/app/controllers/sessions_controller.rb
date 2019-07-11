@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
 
   def register
     user = User.new(user_params)
-    puts user
     if user.save
       render json: user
     else

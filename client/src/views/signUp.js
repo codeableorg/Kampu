@@ -77,7 +77,7 @@ function Signup() {
             name="name"
             onChange={handleChange}
             value={inputs.userName}
-            placeholder="Enter your name*"
+            placeholder="Enter your name *"
             required
             css={{
               marginTop: "2em",
@@ -92,7 +92,7 @@ function Signup() {
             name="email"
             onChange={handleChange}
             value={inputs.email}
-            placeholder="Email*"
+            placeholder="Email *"
             required
             css={{
               marginTop: "1em",
@@ -106,7 +106,7 @@ function Signup() {
             name="password"
             onChange={handleChange}
             value={inputs.password1}
-            placeholder="Enter a password*"
+            placeholder="Enter a password *"
             css={{
               marginTop: "1em",
               "@media screen and (max-width: 480px)": {
