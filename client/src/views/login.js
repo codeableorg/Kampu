@@ -44,53 +44,38 @@ const SignUp = () => {
   return (
     <div
       css={{
-        margin: "100px 200px 0px 200px",
-        minWidth: "400px"
+        display: "flex",
+        justifyContent: "center"
       }}
     >
-      <Card>
+      <Card
+        css={{
+          width: "50%",
+          "@media screen and (max-width: 720px)": {
+            width: "100%"
+          }
+        }}
+      >
         <form onSubmit={handleSubmit}>
-          <div>
-            <Input
-              type="text"
-              name="firstName"
-              onChange={handleInputChange}
-              value={inputs.firstName}
-              placeholder="First Name"
-              required
-            />
-            <Input
-              type="text"
-              name="lastName"
-              onChange={handleInputChange}
-              value={inputs.lastName}
-              placeholder="Last Name"
-              required
-              css={{ marginTop: "1em" }}
-            />
-          </div>
-          <div css={{ marginTop: "1em" }}>
-            <Input
-              type="email"
-              name="email"
-              onChange={handleInputChange}
-              value={inputs.email}
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div css={{ marginTop: "1em" }}>
-            <Input
-              type="password"
-              name="userPassword"
-              onChange={handleInputChange}
-              value={inputs.userPassword}
-              placeholder="Enter your password"
-            />
-          </div>
-
+          <Input
+            type="email"
+            name="email"
+            onChange={handleInputChange}
+            value={inputs.email}
+            placeholder="Email*"
+            required
+            css={{ marginTop: "1em" }}
+          />
+          <Input
+            type="password"
+            name="userPassword"
+            onChange={handleInputChange}
+            value={inputs.userPassword}
+            placeholder="Enter your password*"
+            css={{ marginTop: "1em" }}
+          />
           <Button type="submit" css={{ marginTop: "2em" }}>
-            Sign Up
+            Login
           </Button>
         </form>
       </Card>
