@@ -9,7 +9,7 @@ import { Router } from "@reach/router";
 import store from "./store";
 import Home from "./views/home";
 import Login from "./views/login";
-import SignUp from "./views/signup";
+import SignUp from "./views/signUp";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
