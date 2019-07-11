@@ -1,48 +1,38 @@
 /** @jsx jsx */
 import React, { useState } from "react";
 import { jsx } from "@emotion/core";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
+import { login } from "../services/user";
 
 import { Input, Card, Button } from "../components/ui";
 
-// Custom hook that handle all inputs from form:
-const useSignUpForm = (initialValues, callback) => {
-  const [inputs, setInputs] = useState(initialValues);
+function Login() {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: ""
+  });
 
-  const handleSubmit = event => {
-    if (event) {
-      event.preventDefault();
+  const [error, setError] = React.useState(null);
+
+  function handleChange(e) {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const user = await login(inputs);
+      navigate("/");
+      // userUpdater({ type: "LOGIN", payload: { name, email } });
+    } catch (error) {
+      setError(error.message);
     }
-    callback();
-  };
+  }
 
-  const handleInputChange = event => {
-    event.persist();
-    setInputs(inputs => ({
-      ...inputs,
-      [event.target.name]: event.target.value
-    }));
-  };
+  React.useEffect(() => {
+    setError(null);
+  }, [inputs]);
 
-  return {
-    handleSubmit,
-    handleInputChange,
-    inputs
-  };
-};
-
-const Login = () => {
-  const alarm = () => {
-    alert(`
-    User Login successful! 
-    Name: ${inputs.firstName} ${inputs.lastName} 
-    Email: ${inputs.email}
-    `);
-  };
-  const { inputs, handleInputChange, handleSubmit } = useSignUpForm(
-    { firstName: "", lastName: "", email: "", userPassword: "" },
-    alarm
-  );
   return (
     <div
       css={{
@@ -64,7 +54,7 @@ const Login = () => {
           <Input
             type="email"
             name="email"
-            onChange={handleInputChange}
+            onChange={handleChange}
             value={inputs.email}
             placeholder="Email"
             required
@@ -76,9 +66,9 @@ const Login = () => {
           />
           <Input
             type="password"
-            name="userPassword"
-            onChange={handleInputChange}
-            value={inputs.userPassword}
+            name="password"
+            onChange={handleChange}
+            value={inputs.password}
             placeholder="Enter your password"
             css={{
               marginTop: "1em",
@@ -95,6 +85,9 @@ const Login = () => {
           >
             Login
           </Button>
+          {error && (
+            <div css={{ color: "red", marginTop: "1rem" }}>Error: {error}</div>
+          )}
         </form>
         <br />
 
@@ -113,6 +106,6 @@ const Login = () => {
       </Card>
     </div>
   );
-};
+}
 
 export default Login;

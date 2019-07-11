@@ -1,50 +1,44 @@
 /** @jsx jsx */
 import React, { useState } from "react";
 import { jsx } from "@emotion/core";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
+import { register } from "../services/user";
 
 import { Input, Card, Button } from "../components/ui";
 import RoleButton from "../components/role-button";
 
-// Custom hook that handle all inputs from form:
-const useSignUpForm = (initialValues, callback) => {
-  const [inputs, setInputs] = useState(initialValues);
+function Signup() {
+  const [inputs, setInputs] = useState({
+    name: "",
+    role: "regular",
+    email: "",
+    password: ""
+  });
 
-  const handleSubmit = event => {
-    if (event) {
-      event.preventDefault();
+  const [error, setError] = React.useState(null);
+
+  function setUserType(role) {
+    setInputs({ ...inputs, role });
+  }
+
+  function handleChange(e) {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const user = await register(inputs);
+      navigate("/");
+      // userUpdater({ type: "LOGIN", payload: { name, email } });
+    } catch (error) {
+      setError(error.message);
     }
-    callback();
-  };
+  }
 
-  const handleInputChange = event => {
-    event.persist();
-    setInputs(inputs => ({
-      ...inputs,
-      [event.target.name]: event.target.value
-    }));
-  };
-
-  return {
-    handleSubmit,
-    handleInputChange,
-    inputs
-  };
-};
-
-const SignUp = () => {
-  const alarm = () => {
-    alert(`
-    User Created! 
-    Name: ${inputs.userName}
-    Email: ${inputs.email}
-    `);
-  };
-  const { inputs, handleInputChange, handleSubmit } = useSignUpForm(
-    { userName: "", email: "", password1: "", password2: "" },
-    alarm
-  );
-  const [userType, setUserType] = React.useState("regular");
+  React.useEffect(() => {
+    setError(null);
+  }, [inputs]);
 
   return (
     <div
@@ -68,20 +62,20 @@ const SignUp = () => {
             name="Regular"
             type="regular"
             setUserType={setUserType}
-            userType={userType}
+            userType={inputs.role}
           />
           <RoleButton
             name="Owner"
             type="owner"
             setUserType={setUserType}
-            userType={userType}
+            userType={inputs.role}
           />
         </div>
         <form onSubmit={handleSubmit}>
           <Input
             type="text"
-            name="userName"
-            onChange={handleInputChange}
+            name="name"
+            onChange={handleChange}
             value={inputs.userName}
             placeholder="Enter your name*"
             required
@@ -96,7 +90,7 @@ const SignUp = () => {
           <Input
             type="email"
             name="email"
-            onChange={handleInputChange}
+            onChange={handleChange}
             value={inputs.email}
             placeholder="Email*"
             required
@@ -109,8 +103,8 @@ const SignUp = () => {
           />
           <Input
             type="password"
-            name="password1"
-            onChange={handleInputChange}
+            name="password"
+            onChange={handleChange}
             value={inputs.password1}
             placeholder="Enter a password*"
             css={{
@@ -120,19 +114,7 @@ const SignUp = () => {
               }
             }}
           />
-          <Input
-            type="password"
-            name="password2"
-            onChange={handleInputChange}
-            value={inputs.password2}
-            placeholder="Re-enter your password*"
-            css={{
-              marginTop: "1em",
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
-          />
+
           <Button type="submit" css={{ marginTop: "2em" }}>
             Sign Up
           </Button>
@@ -153,6 +135,6 @@ const SignUp = () => {
       </Card>
     </div>
   );
-};
+}
 
-export default SignUp;
+export default Signup;
