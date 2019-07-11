@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope '/api' do
+    # sessions routes
+    post '/login', to: 'sessions#login'
+    post '/register', to: 'sessions#register'
+
+    delete '/logout', to: 'sessions#destroy'
+
+  end
 end

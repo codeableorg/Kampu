@@ -9,6 +9,7 @@ import { Router } from "@reach/router";
 import store from "./store";
 import Home from "./views/home";
 import Login from "./views/login";
+import Signup from "./views/signup";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
@@ -21,7 +22,7 @@ function App() {
           maxWidth: "900px",
           margin: "0 auto",
           boxSizing: "border-box",
-          "@media (max-width: 768px)": {
+          "@media (max-width: 480px)": {
             padding: "0px 15px"
           }
         }}
@@ -39,6 +40,7 @@ function App() {
         <Router>
           <Home path="/" />
           <Login path="/login" />
+          <Signup path="/signup" />
         </Router>
       </main>
     </>
