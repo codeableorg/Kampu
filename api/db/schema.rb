@@ -15,6 +15,9 @@ ActiveRecord::Schema.define(version: 2019_07_11_201636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_201636) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "token"
@@ -55,5 +59,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_201636) do
     t.index ["token"], name: "index_users_on_token"
   end
 
+=======
+>>>>>>> Add club backend
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
