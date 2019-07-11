@@ -14,7 +14,7 @@ class ClubsController < ApplicationController
     if club.save
       render json: club, status: :created
     else
-      render json: { errors: club.errors.full_messages}, status: :unprocessable_entity
+      render json: { errors: club.errors}, status: :unprocessable_entity
     end
   end
 
