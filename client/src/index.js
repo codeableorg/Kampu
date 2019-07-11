@@ -12,6 +12,7 @@ import Login from "./views/login";
 import Signup from "./views/signup";
 import OwnerHome from "./views/owner-home";
 import CreateClub from "./views/create-club";
+import CreateSportField from "./views/create-sport-field";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
@@ -45,6 +46,7 @@ function App() {
           <Signup path="/signup" />
           <OwnerHome path="/owner" />
           <CreateClub path="/create-club" />
+          <CreateSportField path="/create-sport-field" />
         </Router>
       </main>
     </>
