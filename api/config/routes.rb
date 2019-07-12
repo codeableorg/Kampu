@@ -5,6 +5,5 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
     resources :clubs
     resources :sport_fields
-    resources :clubs
   end
 end

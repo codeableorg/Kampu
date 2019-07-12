@@ -55,16 +55,17 @@ function CreateClub() {
         margin: "auto"
       }}
     >
-      {/* <h1 css={{ letterSpacing: "-.066875rem", lineHeight: "1.5" }}>
-        New Club
-      </h1> */}
       <form onSubmit={handleSubmit}>
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="name">Name</Label>
           <Input
+            aria-label="enter name"
+            required="required"
+            autoComplete="off"
             id="name"
             name="name"
             type="text"
+            placeholder="Club's name"
             value={fields.name}
             onChange={handleChange}
           />
@@ -72,16 +73,27 @@ function CreateClub() {
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="address">Address</Label>
           <Input
+            aria-label="enter address"
+            required="required"
+            autoComplete="off"
             id="address"
             name="address"
             type="text"
+            placeholder="Club's address"
             value={fields.address}
             onChange={handleChange}
           />
         </div>
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="image">Image(s)</Label>
-          <Input id="image" name="image" type="file" onChange={handleChange} />
+          <Input
+            aria-label="choose image"
+            required="required"
+            id="image"
+            name="image"
+            type="file"
+            onChange={handleChange}
+          />
         </div>
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="schedule">Schedule</Label>
