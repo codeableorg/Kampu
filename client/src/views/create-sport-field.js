@@ -44,38 +44,47 @@ function CreateSportField() {
         margin: "auto"
       }}
     >
-      {/* <h1 css={{ letterSpacing: "-.066875rem", lineHeight: "1.5" }}>
-        New Club
-      </h1> */}
       <form onSubmit={handleSubmit}>
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="name">Name</Label>
           <Input
+            aria-label="enter name"
+            autoComplete="off"
             id="name"
             name="name"
             type="text"
             placeholder="Sports field's name"
             value={fields.name}
             onChange={handleChange}
+            required
           />
         </div>
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="description">Description</Label>
           <Input
+            aria-label="enter description"
             id="description"
             placeholder="Sports field's description"
             name="description"
             type="text"
             value={fields.description}
             onChange={handleChange}
+            required
           />
         </div>
         <div css={{ marginTop: "2em" }}>
           <Label htmlFor="image">Image(s)</Label>
-          <Input id="image" name="image" type="file" onChange={handleChange} />
+          <Input
+            aria-label="choose image"
+            required
+            id="image"
+            name="image"
+            type="file"
+            onChange={handleChange}
+          />
         </div>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="schedule">Prices</Label>
+          <Label>Prices</Label>
           <div
             css={{ marginTop: "0.75em", display: "flex", alignItems: "center" }}
           >
@@ -89,12 +98,14 @@ function CreateSportField() {
               Day:{" "}
             </label>
             <Input
+              aria-label="enter price-day"
               id="price_day"
               name="price_day"
               type="number"
               css={{ maxWidth: "80px" }}
               value={fields.price_day}
               onChange={handleChange}
+              required
             />
           </div>
           <div
@@ -110,12 +121,14 @@ function CreateSportField() {
               Night:
             </label>
             <Input
+              aria-label="enter price-night"
               id="price_night"
               name="price_night"
               type="number"
               css={{ maxWidth: "80px" }}
               value={fields.price_night}
               onChange={handleChange}
+              required
             />
           </div>
         </div>

@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch";
 import { apiUrl } from "../utils";
 
 async function postSportField(sportField) {
@@ -9,7 +8,7 @@ async function postSportField(sportField) {
     contentType: "application/json"
   });
 
-if (!response.ok) {
+  if (!response.ok) {
     const errors = await response.json();
     throw new Error(errors);
   }
