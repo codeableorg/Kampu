@@ -1,13 +1,38 @@
-const initialState = {
-  appName: "Kampu"
+import { combineReducers } from "redux";
+
+export const initialState = {
+  appName: "Kampu",
+  clubs: [],
+  sportFields: [],
+  favoriteClubs: [],
+  user: {}
 };
 
-function reducer(state = initialState, action) {
+export function clubsReducer(state = initialState.clubs, action) {
   switch (action.type) {
+    case "SET_CLUBS": {
+      return action.payload;
+    }
     default: {
       return state;
     }
   }
 }
+
+export function sportFieldsReducer(state = initialState.sportFields, action) {
+  switch (action.type) {
+    case "SET_SPORTFIELDS": {
+      return action.payload;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+const reducer = combineReducers({
+  clubs: clubsReducer,
+  sportFields: sportFieldsReducer
+});
 
 export default reducer;
