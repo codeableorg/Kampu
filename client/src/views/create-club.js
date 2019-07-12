@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
+import { navigate } from "@reach/router";
 import { Input, Label, Card, Button } from "../components/ui";
-import { postClub } from "../services/clubs";
+import { postClub } from "../services/club";
 
 function CreateClub() {
   const [fields, setFields] = React.useState({
@@ -42,6 +43,7 @@ function CreateClub() {
     });
     try {
       const club = await postClub(formData);
+      navigate("/owner");
       console.log(club);
     } catch (error) {
       console.log(error.message);

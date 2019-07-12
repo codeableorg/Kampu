@@ -22,7 +22,7 @@ function Login() {
     e.preventDefault();
     try {
       const user = await login(inputs);
-      navigate("/");
+      navigate("/owner");
       // userUpdater({ type: "LOGIN", payload: { name, email } });
     } catch (error) {
       setError(error.message);
@@ -86,7 +86,9 @@ function Login() {
             Login
           </Button>
           {error && (
-            <div css={{ color: "red", marginTop: "1rem" }}>Error: {error}</div>
+            <div css={{ color: "tomato", marginTop: "1rem" }}>
+              Error: {error}
+            </div>
           )}
         </form>
         <br />
@@ -94,8 +96,8 @@ function Login() {
         <Link
           to="/signup"
           style={{
-            color: "Black",
-            fontSize: "10px",
+            color: "#000",
+            fontSize: "14px",
             textDecoration: "none",
             display: "flex",
             justifyContent: "flex-end"
