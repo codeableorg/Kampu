@@ -8,7 +8,7 @@ class Club < ApplicationRecord
 
   private
   def set_parse
-    self.schedule = JSON.parse(self.schedule)
+    self.schedule = JSON.parse(self.schedule) if self.schedule.class != Hash
   end
 
 end
