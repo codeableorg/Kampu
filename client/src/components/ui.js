@@ -1,24 +1,45 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 
+const styleInput = {
+  background: "none",
+  border: "1px solid #eaeaea",
+  borderRadius: ".25rem",
+  boxSizing: "border-box",
+  display: "block",
+  fontSize: "1rem",
+  padding: ".5rem",
+  color: "#333",
+  width: "100%",
+  "&:focus": {
+    outline: "none",
+    borderColor: "#00b7c6"
+  }
+};
+
 function Button({ styles, ...props }) {
   return (
     <button
       {...props}
       css={{
-        backgroundColor: "#3AC69F",
-        border: "1px solid #3AC69F",
+        background: "linear-gradient(to right, #c5e9a1, #00b7c6)",
+        backgroundImage:
+          "linear-gradient(to right, #00b7c6, #40e495, #30dd8a, #2bb673)",
+        boxShadow: "0 4px 15px 0 rgba(49, 196, 190, 0.75)",
+        border: "none",
         borderRadius: ".25rem",
         color: "white",
         cursor: "pointer",
-        fontSize: "1rem",
+        fontSize: ".8rem",
         padding: ".75rem 0",
-        transition: "all 200ms ease",
+        transition: "all .4s ease-in-out",
         textAlign: "center",
+        textTransform: "uppercase",
+        backgroundSize: "300% 100%",
         width: "100%",
         "&:hover": {
-          backgroundColor: "white",
-          color: "black"
+          backgroundPosition: "100% 0",
+          transition: "all .4s ease-in-out"
         },
         ...styles
       }}
@@ -108,33 +129,10 @@ function Card({ styles, ...props }) {
       css={{
         background: "white",
         borderRadius: ".5em",
-        boxShadow: "2px 2px 5px 0px rgba(0, 0, 0, 0.39)",
+        boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, .12)",
         boxSizing: "border-box",
         padding: "2rem",
         width: "100%",
-        ...styles
-      }}
-    />
-  );
-}
-
-function Input({ styles, ...props }) {
-  return (
-    <input
-      {...props}
-      css={{
-        background: "none",
-        border: "1px solid #eaeaea",
-        borderRadius: ".25rem",
-        boxSizing: "border-box",
-        display: "block",
-        fontSize: "1rem",
-        padding: ".5rem",
-        width: "100%",
-        "&:focus": {
-          outline: "none",
-          borderColor: "#444444"
-        },
         ...styles
       }}
     />
@@ -267,11 +265,45 @@ function Progress({ styles = {}, ...props }) {
   );
 }
 
+function Label({ styles, ...props }) {
+  return (
+    <label
+      {...props}
+      css={{
+        display: "block",
+        fontWeight: "600",
+        padding: "0 8px 8px 0",
+        fontSize: "16px",
+        lineHeight: "24px",
+        color: "#888888"
+      }}
+    />
+  );
+}
+
+function Input({ styles, ...props }) {
+  return (
+    <input
+      {...props}
+      css={{
+        ...styleInput,
+        ...styles
+      }}
+    />
+  );
+}
+
+function TextArea({ styles, ...props }) {
+  return <textarea {...props} css={{ ...styleInput, ...styles }} />;
+}
+
 export {
   Button,
   Modal,
   Card,
   Input,
+  TextArea,
+  Label,
   Select,
   Title,
   SecondaryButton,
