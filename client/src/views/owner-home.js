@@ -8,7 +8,7 @@ import OwnerCreateButton from "../components/owner-create-button";
 import { useSetClubs, useSetSportFields } from "../actions/action-hooks";
 import { useClubs, useSportFields } from "../selectors/selectors";
 import { getClubs } from "../services/club";
-import { getSportFields } from "../services/sportField";
+import { getSportFields } from "../services/sport-field";
 
 function OwnerHome() {
   const clubs = useClubs();
@@ -43,7 +43,7 @@ function OwnerHome() {
       setClubs(clubs);
       setActiveClub(clubs.length ? clubs[0].id : null);
     });
-  }, [setClubs]);
+  }, []);
 
   React.useEffect(() => {
     if (activeClub) {
@@ -51,7 +51,7 @@ function OwnerHome() {
         setSportFields(sportFields);
       });
     }
-  }, [setSportFields]);
+  }, [activeClub]);
 
   const styleSportFieldsContainer = {
     display: "flex",
@@ -84,11 +84,10 @@ function OwnerHome() {
       </div>
       <Title>Sport Fields</Title>
       <div css={styleSportFieldsContainer}>
-        {sportFields ? (
+        {sportFields.length ? (
           sportFields
             .filter(sportField => sportField.club_id === activeClub)
             .map(sportField => {
-              //This is a temporal progress
               const progress = `${Math.floor(Math.random() * 100) + 1}%`;
               return (
                 <OwnerSportFieldCard

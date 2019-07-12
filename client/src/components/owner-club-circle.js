@@ -12,7 +12,8 @@ function OwnerClubCircle({ id, active, name, activeClub, setActiveClub }) {
     display: "flex",
     cursor: "pointer",
     border: "solid #ffffff00 0.5em",
-    flex: "0 0 80px"
+    flex: "0 0 80px",
+    textAlign: "center"
   };
 
   const styleActive = {

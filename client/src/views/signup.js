@@ -123,8 +123,8 @@ function Signup() {
         <Link
           to="/login"
           style={{
-            color: "Black",
-            fontSize: "10px",
+            color: "#000",
+            fontSize: "14px",
             textDecoration: "none",
             display: "flex",
             justifyContent: "flex-end"

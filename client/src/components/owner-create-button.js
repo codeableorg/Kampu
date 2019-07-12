@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
+import { Link } from "@reach/router";
 
 function OwnerCreateButton() {
   const [active, setActive] = React.useState(false);
@@ -59,6 +60,8 @@ function OwnerCreateButton() {
 
   const styleButton = {
     background: "none",
+    display: "block",
+    textDecoration: "none",
     color: "inherit",
     border: "none",
     padding: "0",
@@ -80,8 +83,12 @@ function OwnerCreateButton() {
   return (
     <div css={active ? styleListContainer : styleButtonContainer}>
       <div css={active ? styleButtonsContainerActive : styleButtonsContainer}>
-        <button css={styleButton}>Create Club</button>
-        <button css={styleButton}>Create Sport Field</button>
+        <Link to="/create-club" css={styleButton}>
+          Create Club
+        </Link>
+        <Link to="/create-sport-field" css={styleButton}>
+          Create Sport Field
+        </Link>
       </div>
       <button css={active ? styleIconActive : styleIcon} onClick={handleClick}>
         +
