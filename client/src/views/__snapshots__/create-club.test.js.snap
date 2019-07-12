@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateClub View 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1ha532s-CreateClub"
+  >
+    <form>
+      <div
+        class="css-5ossh7-CreateClub"
+      >
+        <label
+          class="css-1vx6px3-Label"
+          for="name"
+        >
+          Name
+        </label>
+        <input
+          aria-label="enter name"
+          autocomplete="off"
+          class="css-s3z14w-Input"
+          id="name"
+          name="name"
+          placeholder="Club's name"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="css-5ossh7-CreateClub"
+      >
+        <label
+          class="css-1vx6px3-Label"
+          for="address"
+        >
+          Address
+        </label>
+        <input
+          aria-label="enter address"
+          autocomplete="off"
+          class="css-s3z14w-Input"
+          id="address"
+          name="address"
+          placeholder="Club's address"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="css-5ossh7-CreateClub"
+      >
+        <label
+          class="css-1vx6px3-Label"
+          for="image"
+        >
+          Image(s)
+        </label>
+        <input
+          aria-label="choose image"
+          class="css-s3z14w-Input"
+          id="image"
+          name="image"
+          required=""
+          type="file"
+        />
+      </div>
+      <div
+        class="css-5ossh7-CreateClub"
+      >
+        <label
+          class="css-1vx6px3-Label"
+          for="schedule"
+        >
+          Schedule
+        </label>
+        <input
+          class="css-s3z14w-Input"
+          id="schedule"
+          name="schedule"
+          type="text"
+          value="{\\"monday-friday\\":{\\"init\\":\\"8\\",\\"end\\":\\"22\\"},\\"saturday\\":{\\"init\\":\\"8\\",\\"end\\":\\"22\\"},\\"sunday\\":{\\"init\\":\\"8\\",\\"end\\":\\"22\\"}}"
+        />
+      </div>
+      <div
+        class="css-5ossh7-CreateClub"
+      >
+        <button
+          class="css-lrasnk-Button"
+        >
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
