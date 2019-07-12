@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     if user.save
       render json: user
     else
-      render json: { errors: user.errors}
+      render json: { errors: user.errors}, status: :bad_request
     end
    
   end
