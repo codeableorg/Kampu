@@ -15,7 +15,7 @@ function OwnerHome() {
   const sportFields = useSportFields();
   const setClubs = useSetClubs();
   const setSportFields = useSetSportFields();
-  const [activeClub, setActiveClub] = React.useState(1);
+  const [activeClub, setActiveClub] = React.useState(null);
 
   const styleClubsContainer = {
     display: "flex",
@@ -41,13 +41,16 @@ function OwnerHome() {
   React.useEffect(() => {
     getClubs().then(clubs => {
       setClubs(clubs);
+      setActiveClub(clubs.length ? clubs[0].id : null);
     });
   }, [setClubs]);
 
   React.useEffect(() => {
-    getSportFields().then(sportFields => {
-      setSportFields(sportFields);
-    });
+    if (activeClub) {
+      getSportFields().then(sportFields => {
+        setSportFields(sportFields);
+      });
+    }
   }, [setSportFields]);
 
   const styleSportFieldsContainer = {

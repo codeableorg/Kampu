@@ -18,8 +18,4 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
   end
 
-  def club_params
-    params.permit(:name, :email, :city, :country,  :address, :image, gallery: [])
-  end
-
 end
