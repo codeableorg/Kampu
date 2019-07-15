@@ -1,9 +1,10 @@
 puts "Init seed"
 User.destroy_all
-User.create(name: 'Lian Nivin', email: 'liam@kampu.pe', role: "regular", password: '123456')
-User.create(name: 'Cristian Berly', email: 'berli@kampu.pe', role: "owner", password: '123456')
+regular_user = User.create(name: 'Lian Nivin', email: 'liam@kampu.pe', role: "regular", password: '123456')
+p 
+owner_user = User.create(name: 'Cristian Berly', email: 'berli@kampu.pe', role: "owner", password: '123456')
 
-clubs = Club.create([{name: "Club #1", address: 'Jr cayumba 440',
+Club.create([{name: "Club #1", address: 'Jr cayumba 440',
 schedule: {
   'monday-friday': {
     start: '8',
@@ -69,3 +70,7 @@ Club.create(
     },
   }
 )
+
+# favorites
+regular_user.favorite(Club.first)
+regular_user.favorite(Club.last)
