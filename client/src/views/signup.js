@@ -118,6 +118,11 @@ function Signup() {
           <Button type="submit" css={{ marginTop: "2em" }}>
             Sign Up
           </Button>
+          {error && (
+            <div css={{ color: "tomato", marginTop: "1rem" }}>
+              Error: {error}
+            </div>
+          )}
         </form>
         <br />
         <Link
