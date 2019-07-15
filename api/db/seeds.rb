@@ -47,9 +47,9 @@ schedule: {
   },
 }}])
 
-SportField.create(name: "SportField #1", club_id: 1);
-SportField.create(name: "SportField #2", club_id: 2);
-SportField.create(name: "SportField #3", club_id: 1);
+SportField.create(name: "SportField #1", description: "Soccer 5vs5", price_day: 20, price_night: 40, club_id: 1)
+SportField.create(name: "SportField #2", description: "Soccer 6vs6", price_day: 30, price_night: 60, club_id: 2)
+SportField.create(name: "SportField #3", description: "Soccer 5vs5", price_day: 20, price_night: 40, club_id: 1)
 
 Club.create(
   name: 'Club golden',
