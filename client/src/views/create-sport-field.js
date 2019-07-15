@@ -3,6 +3,8 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { Input, Label, Card, Button } from "../components/ui";
 import { postSportField } from "../services/sport-field";
+import {  navigate } from "@reach/router";
+
 
 function CreateSportField() {
   const [fields, setFields] = React.useState({
@@ -32,6 +34,7 @@ function CreateSportField() {
     try {
       const club = await postSportField(formData);
       console.log(club);
+      navigate('/owner')
     } catch (error) {
       console.log(error.message);
     }

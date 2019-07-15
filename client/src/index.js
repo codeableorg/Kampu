@@ -25,7 +25,7 @@ function App() {
           maxWidth: "900px",
           margin: "0 auto",
           boxSizing: "border-box",
-          "@media (max-width: 480px)": {
+          "@media (max-width: 720px)": {
             padding: "0px 15px"
           }
         }}

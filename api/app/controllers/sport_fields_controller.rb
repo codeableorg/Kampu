@@ -1,5 +1,9 @@
 class SportFieldsController < ApplicationController
 
+  def index
+    render json: SportField.all
+  end
+
   def create
     sport_field = SportField.new(sport_field_params)
     if sport_field.save

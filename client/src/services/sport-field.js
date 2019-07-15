@@ -16,4 +16,13 @@ async function postSportField(sportField) {
   return response.json();
 }
 
-export { postSportField };
+async function getSportFields() {
+  const response = await fetch(`${apiUrl}/sport_fields`, {
+    credentials: "include"
+  });
+
+  if (!response.ok) throw new Error(response.statusText);
+  return response.json();
+}
+
+export { postSportField, getSportFields };
