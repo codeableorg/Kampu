@@ -32,6 +32,7 @@ function Club({ club }) {
         alignItems: "center",
         padding: "1rem"
       }}
+      role="listitem"
     >
       <div
         css={{
