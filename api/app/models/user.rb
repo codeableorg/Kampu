@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :bookings
 
   has_many :favorites, dependent: :destroy
+  has_many :clubs, through: :favorites
 
   validates :email, :name, :role, presence: true
   validates :email, uniqueness: true
