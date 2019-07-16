@@ -13,6 +13,19 @@ export function clubsReducer(state = initialState.clubs, action) {
     case "SET_CLUBS": {
       return action.payload;
     }
+    case "FAVORITED":
+    case "UNFAVORITED": {
+      return state.map(club => {
+        if (club.id === action.payload.id) {
+          return {
+            ...club,
+            favorited: action.payload.favorited,
+            favorited_count: action.payload.favorited_count
+          };
+        }
+        return club;
+      });
+    }
     default: {
       return state;
     }
