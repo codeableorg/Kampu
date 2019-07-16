@@ -1,7 +1,6 @@
 puts "Init seed"
 User.destroy_all
 regular_user = User.create(name: 'Lian Nivin', email: 'liam@kampu.pe', role: "regular", password: '123456')
-p 
 owner_user = User.create(name: 'Cristian Berly', email: 'berli@kampu.pe', role: "owner", password: '123456')
 
 Club.create([{name: "Club #1", address: 'Jr cayumba 440',

@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
 
   def create
     current_user.favorite(@club)
-    render json: @club
+    render json: @club, status: :created
   end
   
   def destroy
