@@ -69,6 +69,9 @@ function Club({ club }) {
           >
             {club.favorited_count > 0 && club.favorited_count}
           </span>
+          <span css={{ marginLeft: "auto" }}>
+            {club.distance !== 0 ? `${club.distance / 1000.0}km` : null}
+          </span>
         </div>
       </div>
     </Card>
