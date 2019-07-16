@@ -2,15 +2,80 @@
 
 exports[`CreateClub View 1`] = `
 <DocumentFragment>
-  <div
-    class="css-1ha532s-CreateClub"
+  .emotion-14 {
+  background: white;
+  border-radius: .5em;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,.12);
+  box-sizing: border-box;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.emotion-2 {
+  margin-top: 2em;
+}
+
+.emotion-0 {
+  display: block;
+  font-weight: 600;
+  padding: 0 8px 8px 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #888888;
+}
+
+.emotion-1 {
+  background: none;
+  border: 1px solid #eaeaea;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1rem;
+  padding: .5rem;
+  color: #333;
+  width: 100%;
+}
+
+.emotion-1:focus {
+  outline: none;
+  border-color: #00b7c6;
+}
+
+.emotion-12 {
+  background: linear-gradient(to right,#c5e9a1,#00b7c6);
+  background-image: linear-gradient(to right,#00b7c6,#40e495,#30dd8a,#2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49,196,190,0.75);
+  border: none;
+  border-radius: .25rem;
+  color: white;
+  cursor: pointer;
+  font-size: .8rem;
+  padding: .75rem 0;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  text-align: center;
+  text-transform: uppercase;
+  background-size: 300% 100%;
+  width: 100%;
+}
+
+.emotion-12:hover {
+  background-position: 100% 0;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+<div
+    class="emotion-14"
   >
     <form>
       <div
-        class="css-5ossh7-CreateClub"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="name"
         >
           Name
@@ -18,7 +83,7 @@ exports[`CreateClub View 1`] = `
         <input
           aria-label="enter name"
           autocomplete="off"
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="name"
           name="name"
           placeholder="Club's name"
@@ -28,10 +93,10 @@ exports[`CreateClub View 1`] = `
         />
       </div>
       <div
-        class="css-5ossh7-CreateClub"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="address"
         >
           Address
@@ -39,7 +104,7 @@ exports[`CreateClub View 1`] = `
         <input
           aria-label="enter address"
           autocomplete="off"
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="address"
           name="address"
           placeholder="Club's address"
@@ -49,17 +114,17 @@ exports[`CreateClub View 1`] = `
         />
       </div>
       <div
-        class="css-5ossh7-CreateClub"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="image"
         >
           Image(s)
         </label>
         <input
           aria-label="choose image"
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="image"
           name="image"
           required=""
@@ -67,16 +132,16 @@ exports[`CreateClub View 1`] = `
         />
       </div>
       <div
-        class="css-5ossh7-CreateClub"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="schedule"
         >
           Schedule
         </label>
         <input
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="schedule"
           name="schedule"
           type="text"
@@ -84,10 +149,10 @@ exports[`CreateClub View 1`] = `
         />
       </div>
       <div
-        class="css-5ossh7-CreateClub"
+        class="emotion-2"
       >
         <button
-          class="css-lrasnk-Button"
+          class="emotion-12"
         >
           Create
         </button>

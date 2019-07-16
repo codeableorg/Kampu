@@ -2,15 +2,115 @@
 
 exports[`CreateSportField View 1`] = `
 <DocumentFragment>
-  <div
-    class="css-2dm21w-CreateSportField"
+  .emotion-19 {
+  background: white;
+  border-radius: .5em;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,.12);
+  box-sizing: border-box;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.emotion-2 {
+  margin-top: 2em;
+}
+
+.emotion-0 {
+  display: block;
+  font-weight: 600;
+  padding: 0 8px 8px 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #888888;
+}
+
+.emotion-1 {
+  background: none;
+  border: 1px solid #eaeaea;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1rem;
+  padding: .5rem;
+  color: #333;
+  width: 100%;
+}
+
+.emotion-1:focus {
+  outline: none;
+  border-color: #00b7c6;
+}
+
+.emotion-12 {
+  margin-top: 0.75em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-10 {
+  min-width: 100px;
+  margin-right: 1em;
+}
+
+.emotion-11 {
+  background: none;
+  border: 1px solid #eaeaea;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  display: block;
+  font-size: 1rem;
+  padding: .5rem;
+  color: #333;
+  width: 100%;
+  max-width: 80px;
+}
+
+.emotion-11:focus {
+  outline: none;
+  border-color: #00b7c6;
+}
+
+.emotion-17 {
+  background: linear-gradient(to right,#c5e9a1,#00b7c6);
+  background-image: linear-gradient(to right,#00b7c6,#40e495,#30dd8a,#2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49,196,190,0.75);
+  border: none;
+  border-radius: .25rem;
+  color: white;
+  cursor: pointer;
+  font-size: .8rem;
+  padding: .75rem 0;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  text-align: center;
+  text-transform: uppercase;
+  background-size: 300% 100%;
+  width: 100%;
+}
+
+.emotion-17:hover {
+  background-position: 100% 0;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+<div
+    class="emotion-19"
   >
     <form>
       <div
-        class="css-fzhjnh-CreateSportField"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="name"
         >
           Name
@@ -18,7 +118,7 @@ exports[`CreateSportField View 1`] = `
         <input
           aria-label="enter name"
           autocomplete="off"
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="name"
           name="name"
           placeholder="Sports field's name"
@@ -28,17 +128,17 @@ exports[`CreateSportField View 1`] = `
         />
       </div>
       <div
-        class="css-fzhjnh-CreateSportField"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="description"
         >
           Description
         </label>
         <input
           aria-label="enter description"
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="description"
           name="description"
           placeholder="Sports field's description"
@@ -48,17 +148,17 @@ exports[`CreateSportField View 1`] = `
         />
       </div>
       <div
-        class="css-fzhjnh-CreateSportField"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
           for="image"
         >
           Image(s)
         </label>
         <input
           aria-label="choose image"
-          class="css-s3z14w-Input"
+          class="emotion-1"
           id="image"
           name="image"
           required=""
@@ -66,25 +166,25 @@ exports[`CreateSportField View 1`] = `
         />
       </div>
       <div
-        class="css-fzhjnh-CreateSportField"
+        class="emotion-2"
       >
         <label
-          class="css-1vx6px3-Label"
+          class="emotion-0"
         >
           Prices
         </label>
         <div
-          class="css-111oolb-CreateSportField"
+          class="emotion-12"
         >
           <label
-            class="css-ypeytr-CreateSportField"
+            class="emotion-10"
             for="price_day"
           >
             Day: 
           </label>
           <input
             aria-label="enter price-day"
-            class="css-uqawe0-CreateSportField"
+            class="emotion-11"
             id="price_day"
             name="price_day"
             required=""
@@ -93,17 +193,17 @@ exports[`CreateSportField View 1`] = `
           />
         </div>
         <div
-          class="css-111oolb-CreateSportField"
+          class="emotion-12"
         >
           <label
-            class="css-ypeytr-CreateSportField"
+            class="emotion-10"
             for="price_night"
           >
             Night:
           </label>
           <input
             aria-label="enter price-night"
-            class="css-uqawe0-CreateSportField"
+            class="emotion-11"
             id="price_night"
             name="price_night"
             required=""
@@ -113,10 +213,10 @@ exports[`CreateSportField View 1`] = `
         </div>
       </div>
       <div
-        class="css-fzhjnh-CreateSportField"
+        class="emotion-2"
       >
         <button
-          class="css-lrasnk-Button"
+          class="emotion-17"
         >
           Create
         </button>
