@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { Card } from "./ui";
-import { Heart } from "./icons";
+import { Heart, MapPin } from "./icons";
 import { favorite, unfavorite } from "../services/club";
 import { useSetFavorite, useSetUnfavorite } from "../actions/action-hooks";
 
@@ -14,6 +14,12 @@ function Club({ club }) {
     cursor: "pointer",
     fill: "tomato",
     color: "tomato"
+  };
+
+  const styleMapPin = {
+    cursor: "pointer",
+    color: "#414141",
+    marginLeft: "auto"
   };
 
   async function handleClick() {
@@ -69,7 +75,8 @@ function Club({ club }) {
           >
             {club.favorited_count > 0 && club.favorited_count}
           </span>
-          <span css={{ marginLeft: "auto" }}>
+          <MapPin width="18px" height="18px" css={styleMapPin} />
+          <span>
             {club.distance !== 0 ? `${club.distance / 1000.0}km` : null}
           </span>
         </div>
