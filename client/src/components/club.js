@@ -75,10 +75,14 @@ function Club({ club }) {
           >
             {club.favorited_count > 0 && club.favorited_count}
           </span>
-          <MapPin width="18px" height="18px" css={styleMapPin} />
-          <span>
-            {club.distance !== 0 ? `${club.distance / 1000.0}km` : null}
-          </span>
+          {club.distance && (
+            <>
+              <MapPin width="18px" height="18px" css={styleMapPin} />
+              <span>
+                {club.distance !== 0 ? `${club.distance / 1000.0}km` : null}
+              </span>
+            </>
+          )}
         </div>
       </div>
     </Card>
