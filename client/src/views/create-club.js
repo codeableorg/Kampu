@@ -4,11 +4,13 @@ import { jsx } from "@emotion/core";
 import { navigate } from "@reach/router";
 import { Input, Label, Card, Button } from "../components/ui";
 import { postClub } from "../services/club";
+import { getCoords } from "../services/geocode";
 
 function CreateClub() {
   const [fields, setFields] = React.useState({
     name: "",
     address: "",
+    district: "",
     image: null,
     schedule: JSON.stringify({
       "monday-friday": {
@@ -41,10 +43,15 @@ function CreateClub() {
     Object.keys(fields).forEach(key => {
       formData.append(key, fields[key]);
     });
+    const { results } = await getCoords(
+      `${fields.address}, ${fields.district}`
+    );
+    formData.append("latitude", results[0].geometry.lat);
+    formData.append("longitude", results[0].geometry.lng);
+
     try {
-      const club = await postClub(formData);
+      await postClub(formData);
       navigate("/owner");
-      console.log(club);
     } catch (error) {
       console.log(error.message);
     }
@@ -83,6 +90,20 @@ function CreateClub() {
             type="text"
             placeholder="Club's address"
             value={fields.address}
+            onChange={handleChange}
+          />
+        </div>
+        <div css={{ marginTop: "2em" }}>
+          <Label htmlFor="district">District</Label>
+          <Input
+            aria-label="enter district"
+            required="required"
+            autoComplete="off"
+            id="district"
+            name="district"
+            type="text"
+            placeholder="Club's district"
+            value={fields.district}
             onChange={handleChange}
           />
         </div>

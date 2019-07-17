@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_153026) do
+ActiveRecord::Schema.define(version: 2019_07_15_215722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 2019_07_15_153026) do
     t.json "schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "district"
+    t.string "latitude"
+    t.string "longitude"
   end
 
   create_table "favorites", force: :cascade do |t|
