@@ -1,6 +1,7 @@
 class Club < ApplicationRecord
   has_one_attached :image
-
+  has_many :favorites
+  
   validates :name, presence: true
   validates :address, presence: true
   # validates :schedule, presence: true

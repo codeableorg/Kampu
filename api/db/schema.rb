@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_223219) do
+ActiveRecord::Schema.define(version: 2019_07_15_153026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2019_07_11_223219) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "club_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_favorites_on_club_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
   create_table "sport_fields", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -67,5 +76,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_223219) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "clubs"
+  add_foreign_key "favorites", "users"
   add_foreign_key "sport_fields", "clubs"
 end

@@ -26,4 +26,26 @@ async function getClubs() {
   return response.json();
 }
 
-export { getClubs, postClub };
+async function favorite(clubId) {
+  const response = await fetch(`${apiUrl}/clubs/${clubId}/favorites`, {
+    credentials: "include",
+    method: "POST",
+    contentType: "application/json"
+  });
+
+  if (!response.ok) throw new Error(response.statusText);
+  return response.json();
+}
+
+async function unfavorite(clubId) {
+  const response = await fetch(`${apiUrl}/clubs/${clubId}/favorites`, {
+    credentials: "include",
+    method: "DELETE",
+    contentType: "application/json"
+  });
+
+  if (!response.ok) throw new Error(response.statusText);
+  return response.json();
+}
+
+export { getClubs, postClub, favorite, unfavorite };

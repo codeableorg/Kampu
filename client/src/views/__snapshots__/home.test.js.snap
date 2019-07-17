@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home View 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      Filters
+    </h2>
+    <div>
+      Loading
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Home View 2`] = `
+<DocumentFragment>
+  .emotion-4 {
+  background: white;
+  border-radius: .5em;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,.12);
+  box-sizing: border-box;
+  padding: 2rem;
+  width: 100%;
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.emotion-0 {
+  width: 50px;
+  height: 50px;
+  background: #ddd;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  cursor: pointer;
+}
+
+.emotion-2 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #657786;
+  margin-left: 5px;
+}
+
+<div>
+    <h2>
+      Filters
+    </h2>
+    <div
+      class="emotion-4"
+      role="listitem"
+    >
+      <div
+        class="emotion-0"
+      />
+      <div>
+        <h3>
+          Club #1
+        </h3>
+        <div>
+          Address: Jr cayumba 440
+        </div>
+        <div>
+          Price: 
+        </div>
+        <div
+          class="emotion-3"
+        >
+          <svg
+            class="emotion-1"
+            fill="none"
+            height="18px"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="18px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            />
+          </svg>
+          <span
+            class="emotion-2"
+          >
+            2
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
