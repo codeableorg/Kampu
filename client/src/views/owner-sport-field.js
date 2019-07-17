@@ -82,10 +82,8 @@ function OwnerSportField({ id }) {
     return booking ? booking.id : "";
   }
 
-  // selectedDate = new Date().toLocaleDateString("en-CA");
-
-  function handleSelectedDate(e) {
-    setSelectedDate(e.target.value);
+  function handleSelectedDate(event) {
+    setSelectedDate(event.target.value);
   }
 
   return (

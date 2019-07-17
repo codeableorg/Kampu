@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :email, :name, :role, presence: true
   validates :email, uniqueness: true
 
-
   def invalidate_token
     update(token: nil)
   end

@@ -21,7 +21,6 @@ class SportFieldsController < ApplicationController
     render json: {club: club, bookings: bookings}
   end
 
-
   private
   def sport_field_params
     params.permit(:name, :description, :price_day, :price_night, :image)
