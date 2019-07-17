@@ -10,11 +10,11 @@ schedule: {
     end: '22'
   },
   'saturday': {
-    start: '8',
+    start: '10',
     end: '22'
   },
   'sunday': {
-    start: '8',
+    start: '14',
     end: '22'
   },
 }}, {name: "Club #2", address: 'Av. Jorge Chavez 184', district: "Miraflores", latitude: -13.1199378, longitude: -77.0353161,
