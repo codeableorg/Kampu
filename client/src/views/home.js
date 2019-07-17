@@ -4,7 +4,6 @@ import { jsx } from "@emotion/core";
 import { useSetClubs } from "../actions/action-hooks";
 import { useClubs } from "../selectors/selectors";
 import { getClubs } from "../services/club";
-import ClubCard from "../components/club-card";
 import Club from "../components/club";
 import { getDistance } from "geolib";
 import { Select } from "../components/ui";
@@ -13,7 +12,7 @@ function Home() {
   const clubs = useClubs();
   const setClubs = useSetClubs();
   const [position, setPosition] = React.useState([0, 0]);
-  const [selectedLocation, setSelectedLocation] = React.useState();
+  const [selectedLocation, setSelectedLocation] = React.useState("");
   const [sortType, setSortType] = React.useState("location");
 
   React.useEffect(() => {
@@ -42,12 +41,10 @@ function Home() {
   }, [setPosition]);
 
   function handleChangeLocation(e) {
-    console.log(e.target.value);
     setSelectedLocation(e.target.value);
   }
 
   function handleChangeSortType(e) {
-    console.log(e.target.value);
     setSortType(e.target.value);
   }
 
@@ -64,6 +61,14 @@ function Home() {
 
       default:
         break;
+    }
+  }
+
+  function filterBy(club) {
+    if (selectedLocation !== "") {
+      return selectedLocation === club.district;
+    } else {
+      return true;
     }
   }
 
@@ -115,9 +120,9 @@ function Home() {
               distance = setDistance(club, position);
             }
             club.distance = distance;
-            console.log(club);
             return club;
           })
+          .filter(filterBy)
           .sort(sortBy)
           .map(club => {
             return <Club key={club.id} club={club} />;

@@ -50,11 +50,8 @@ function App() {
           <OwnerHome path="/owner" />
           <CreateClub path="/create-club" />
           <CreateSportField path="/create-sport-field" />
-<<<<<<< HEAD
           <OwnerSportField path="/owner-sport-field/:id" />
-=======
           <Favorites path="/favorites" />
->>>>>>> Get favorite clubs
         </Router>
       </main>
     </>
