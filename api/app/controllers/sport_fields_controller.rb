@@ -19,8 +19,6 @@ class SportFieldsController < ApplicationController
     bookings = @sport_field.bookings.where("DATE(date) = ?", params[:selectedDate])
     club = @sport_field.club
     render json: {club: club, bookings: bookings}
-  # CREAR UNA VISTA en el CLIENTE y crear un servicio para traerlo
-  # start_hour: 14, end_hour: 15
   end
 
 
