@@ -2,6 +2,10 @@ export function setClubs(clubs) {
   return { type: "SET_CLUBS", payload: clubs };
 }
 
+export function setClubsFavorites(clubs) {
+  return { type: "SET_CLUBS_FAVORITES", payload: clubs };
+}
+
 export function setFavorite(clubs) {
   return { type: "FAVORITED", payload: clubs };
 }

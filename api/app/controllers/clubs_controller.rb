@@ -2,7 +2,11 @@ class ClubsController < ApplicationController
   before_action :set_club, only: [:show, :update, :destroy]
 
   def index
-    render json: Club.all
+    if params[:favorites].present?
+      render json: current_user.clubs
+    else
+      render json: Club.all
+    end
   end
 
   def show

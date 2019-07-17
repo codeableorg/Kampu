@@ -14,6 +14,7 @@ import OwnerHome from "./views/owner-home";
 import CreateClub from "./views/create-club";
 import CreateSportField from "./views/create-sport-field";
 import OwnerSportField from "./views/owner-sport-field";
+import Favorites from "./views/favorites";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
@@ -26,6 +27,7 @@ function App() {
           maxWidth: "900px",
           margin: "0 auto",
           boxSizing: "border-box",
+          marginBottom: "80px",
           "@media (max-width: 720px)": {
             padding: "0px 15px"
           }
@@ -48,7 +50,11 @@ function App() {
           <OwnerHome path="/owner" />
           <CreateClub path="/create-club" />
           <CreateSportField path="/create-sport-field" />
+<<<<<<< HEAD
           <OwnerSportField path="/owner-sport-field/:id" />
+=======
+          <Favorites path="/favorites" />
+>>>>>>> Get favorite clubs
         </Router>
       </main>
     </>
