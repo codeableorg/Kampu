@@ -113,9 +113,14 @@ function Home() {
       {clubs ? (
         clubs
           .map(club => {
-            let distance = 0;
-            if (club.latitude == null || club.longitude == null) {
-              distance = 0;
+            let distance = null;
+            if (
+              club.latitude == null ||
+              club.longitude == null ||
+              club.latitude === "null" ||
+              club.longitude === "null"
+            ) {
+              distance = null;
             } else if (position[0] !== 0) {
               distance = setDistance(club, position);
             }
