@@ -54,7 +54,6 @@ function CreateClub() {
     const { results } = await getCoords(
       `${fields.address}, ${fields.district}`
     );
-    console.log(results);
     formData.append(
       "latitude",
       results.length ? results[0].geometry.lat : null
