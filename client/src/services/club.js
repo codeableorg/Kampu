@@ -27,7 +27,7 @@ async function getClubs() {
 }
 
 async function getFavoriteClubs() {
-  const response = await fetch(`${apiUrl}/clubs`, {
+  const response = await fetch(`${apiUrl}/clubs?favorites=true`, {
     credentials: "include"
   });
 
