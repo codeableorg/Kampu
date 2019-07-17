@@ -53,7 +53,7 @@ SportField.create(name: "SportField #3", description: "Soccer 5vs5", price_day: 
 
 Club.create(
   name: 'Club golden',
-  address: 'Jr cayumba 440',
+  address: 'Jr Something 123', district: "Cercado de Lima", latitude: -12.0641388, longitude: -77.0358862,
   schedule: {
     'monday-friday': {
       start: '8',

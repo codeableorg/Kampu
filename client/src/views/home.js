@@ -109,10 +109,13 @@ function Home() {
         clubs
           .map(club => {
             let distance = 0;
-            if (position[0] !== 0) {
+            if (club.latitude == null || club.longitude == null) {
+              distance = 0;
+            } else if (position[0] !== 0) {
               distance = setDistance(club, position);
             }
             club.distance = distance;
+            console.log(club);
             return club;
           })
           .sort(sortBy)
