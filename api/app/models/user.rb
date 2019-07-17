@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_secure_token
+  has_many :bookings
 
   has_many :favorites, dependent: :destroy
 

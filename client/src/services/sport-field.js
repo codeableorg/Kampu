@@ -25,4 +25,21 @@ async function getSportFields() {
   return response.json();
 }
 
-export { postSportField, getSportFields };
+async function scheduleBooking(id, selectedDate) {
+  const response = await fetch(
+    `${apiUrl}/sport_fields/${id}/schedule?selectedDate=${selectedDate}`,
+    {
+      credentials: "include",
+      contentType: "application/json"
+    }
+  );
+
+  if (!response.ok) {
+    const errors = await response.json();
+    throw new Error(errors);
+  }
+
+  return response.json();
+}
+
+export { postSportField, getSportFields, scheduleBooking };

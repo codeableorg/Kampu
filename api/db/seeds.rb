@@ -10,11 +10,11 @@ schedule: {
     end: '22'
   },
   'saturday': {
-    start: '8',
+    start: '10',
     end: '22'
   },
   'sunday': {
-    start: '8',
+    start: '14',
     end: '22'
   },
 }}, {name: "Club #2", address: 'Av. Jorge Chavez 184', district: "Miraflores", latitude: -13.1199378, longitude: -77.0353161,
@@ -47,9 +47,9 @@ schedule: {
   },
 }}])
 
-SportField.create(name: "SportField #1", description: "Soccer 5vs5", price_day: 20, price_night: 40, club_id: 1)
-SportField.create(name: "SportField #2", description: "Soccer 6vs6", price_day: 30, price_night: 60, club_id: 2)
-SportField.create(name: "SportField #3", description: "Soccer 5vs5", price_day: 20, price_night: 40, club_id: 1)
+sportfield1 = SportField.create(name: "SportField #1", description: "Soccer 5vs5", price_day: 20, price_night: 40, club_id: 1)
+sportfield2 = SportField.create(name: "SportField #2", club_id: 2);	SportField.create(name: "SportField #2", description: "Soccer 6vs6", price_day: 30, price_night: 60, club_id: 2)
+sportfield3 = SportField.create(name: "SportField #3", club_id: 1);	SportField.create(name: "SportField #3", description: "Soccer 5vs5", price_day: 20, price_night: 40, club_id: 1)
 
 Club.create(
   name: 'Club golden',
@@ -73,3 +73,14 @@ Club.create(
 # favorites
 regular_user.favorite(Club.first)
 regular_user.favorite(Club.last)
+regular_user.bookings.create(date: Time.now, start_hour: 14, end_hour: 15, amount: 100, sport_field_id: sportfield1.id );
+
+regular_user.bookings.create(date: Time.now, start_hour: 15, end_hour: 16, amount: 100, sport_field_id: sportfield1.id );
+
+regular_user.bookings.create(date: Time.now, start_hour: 16, end_hour: 17, amount: 100, sport_field_id: sportfield1.id );
+
+regular_user.bookings.create(date: Time.now, start_hour: 17, end_hour: 18, amount: 100, sport_field_id: sportfield1.id );
+
+regular_user.bookings.create(date: Time.now, start_hour: 15, end_hour: 16, amount: 200, sport_field_id: sportfield2.id );
+
+regular_user.bookings.create(date: Time.now, start_hour: 16, end_hour: 17, amount: 300, sport_field_id: sportfield3.id );

@@ -13,6 +13,15 @@ class SportFieldsController < ApplicationController
     end
   end
 
+  def schedule
+    @sport_field = SportField.find(params[:id])
+    p params[:selectedDate]
+    bookings = @sport_field.bookings.where("DATE(date) = ?", params[:selectedDate])
+    club = @sport_field.club
+    render json: {club: club, bookings: bookings}
+  end
+
+
   private
   def sport_field_params
     params.permit(:name, :description, :price_day, :price_night, :image)
