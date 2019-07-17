@@ -94,6 +94,7 @@ function OwnerHome() {
                   key={sportField.id}
                   name={sportField.name}
                   progressStatus={progress}
+                  id={sportField.id}
                 />
               );
             })
