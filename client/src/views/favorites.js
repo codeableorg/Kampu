@@ -2,19 +2,18 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { getFavoriteClubs } from "../services/club";
-import { useClubs } from "../selectors/selectors";
-import { useSetClubs } from "../actions/action-hooks";
+import { useClubsFavorites } from "../selectors/selectors";
+import { useSetClubsFavorites } from "../actions/action-hooks";
 import Club from "../components/club";
 
 function Home() {
   const [loading, setLoading] = React.useState(false);
-  const [clubs, setClubs] = React.useState([]);
-  // const setClubs = useSetClubs();
+  const clubs = useClubsFavorites();
+  const setClubs = useSetClubsFavorites();
 
   React.useEffect(() => {
     setLoading(true);
     getFavoriteClubs().then(clubs => {
-      console.log(clubs);
       setClubs(clubs);
       setLoading(false);
     });

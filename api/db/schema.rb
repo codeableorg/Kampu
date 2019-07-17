@@ -69,15 +69,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_215722) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.bigint "club_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["club_id"], name: "index_favorites_on_club_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
   create_table "sport_fields", force: :cascade do |t|
     t.string "name"
     t.string "description"
