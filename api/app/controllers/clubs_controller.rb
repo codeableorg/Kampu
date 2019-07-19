@@ -32,7 +32,7 @@ class ClubsController < ApplicationController
   end
 
   def club_params
-    params.permit(:name, :address, :schedule, :image, :district, :latitude, :longitude)
+    params.permit(:name, :address, :schedule, :district, :latitude, :longitude, image: [])
   end
 
 end

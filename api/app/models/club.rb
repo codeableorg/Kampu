@@ -1,5 +1,5 @@
 class Club < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :image
   has_many :favorites
   has_many :sport_fields
   

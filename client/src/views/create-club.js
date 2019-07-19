@@ -31,6 +31,7 @@ function CreateClub() {
 
   function handleChange(e) {
     if (e.target.name === "image") {
+      console.log([...e.target.files]);
       setFields({ ...fields, image: e.target.files[0] });
     } else {
       setFields({ ...fields, [e.target.name]: e.target.value });
@@ -129,6 +130,7 @@ function CreateClub() {
             id="image"
             name="image"
             type="file"
+            multiple
             onChange={handleChange}
           />
         </div>

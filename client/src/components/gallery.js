@@ -3,18 +3,23 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
+import { useClubs } from "../selectors/selectors";
 
-function Gallery() {
-  const images = [
-    {
-      original:
-        "https://pvpanthers.com/common/controls/image_handler.aspx?thumb_id=0&image_path=/images/2017/2/7/Soccer_Field_1.jpeg"
-    },
-    {
-      original:
-        "https://apelotear.com/media/canchas/8ECE298C-60A2-4E92-8A3A-C4C82EF948AF.jpeg"
-    }
-  ];
+function Gallery({ id }) {
+  const clubs = useClubs();
+  const [images, setImages] = React.useState([]);
+
+  function getImagesReady(originalArray) {
+    return originalArray.map(element => {
+      return {
+        original: element
+      };
+    });
+  }
+
+  React.useEffect(() => {
+    setImages(getImagesReady(clubs[0].image));
+  }, []);
 
   return (
     <div
