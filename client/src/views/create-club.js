@@ -11,7 +11,7 @@ function CreateClub() {
     name: "",
     address: "",
     district: "",
-    image: null
+    image: []
   });
   const [schedule, setSchedule] = React.useState({
     "monday-friday": {
@@ -31,7 +31,7 @@ function CreateClub() {
 
   function handleChange(e) {
     if (e.target.name === "image") {
-      setFields({ ...fields, image: e.target.files[0] });
+      setFields({ ...fields, image: [...fields.image, ...e.target.files] });
     } else {
       setFields({ ...fields, [e.target.name]: e.target.value });
     }
@@ -49,7 +49,13 @@ function CreateClub() {
     e.preventDefault();
     const formData = new FormData();
     Object.keys(fields).forEach(key => {
-      formData.append(key, fields[key]);
+      if (key === "image") {
+        fields[key].forEach(file => {
+          formData.append("image[]", file);
+        });
+      } else {
+        formData.append(key, fields[key]);
+      }
     });
     const { results } = await getCoords(
       `${fields.address}, ${fields.district}`
@@ -129,6 +135,7 @@ function CreateClub() {
             id="image"
             name="image"
             type="file"
+            multiple
             onChange={handleChange}
           />
         </div>

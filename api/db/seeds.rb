@@ -1,9 +1,14 @@
 puts "Init seed"
+
+def get_image(file_name)
+  { io: File.open(File.join(Rails.root, "/app/assets/images/#{file_name}")), filename: file_name }
+end
+
 User.destroy_all
 regular_user = User.create(name: 'Lian Nivin', email: 'liam@kampu.pe', role: "regular", password: '123456')
 owner_user = User.create(name: 'Cristian Berly', email: 'berli@kampu.pe', role: "owner", password: '123456')
 
-clubs = Club.create([{name: "Club #1", address: 'Jr cayumba 440', district: "Lince", latitude: -12.1199378, longitude: -77.0373161,
+clubs = Club.create([{name: "Club #1", image: get_image("cancha1.jpg"), address: 'Jr cayumba 440', district: "Lince", latitude: -12.1199378, longitude: -77.0373161,
 schedule: {
   'monday-friday': {
     start: '8',

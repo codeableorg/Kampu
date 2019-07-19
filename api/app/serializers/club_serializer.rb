@@ -5,7 +5,11 @@ class ClubSerializer < ActiveModel::Serializer
 
   def image
     # rails_blob_path(object.image, only_path: true) if object.image.attached?
-    url_for(object.image) if self.object.image.attached?
+    if self.object.image.attached?
+      object.image.map do |img|
+        url_for(img)
+      end
+    end
   end
 
   def favorited

@@ -13,7 +13,6 @@ async function postClub(club) {
     console.log(errors);
     throw new Error(errors);
   }
-
   return response.json();
 }
 
