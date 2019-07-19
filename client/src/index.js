@@ -14,6 +14,7 @@ import OwnerHome from "./views/owner-home";
 import CreateClub from "./views/create-club";
 import CreateSportField from "./views/create-sport-field";
 import OwnerSportField from "./views/owner-sport-field";
+import Clubs from "./views/clubs";
 import Favorites from "./views/favorites";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
@@ -52,6 +53,7 @@ function App() {
           <CreateSportField path="/create-sport-field" />
           <OwnerSportField path="/owner-sport-field/:id" />
           <Favorites path="/favorites" />
+          <Clubs path="/clubs/:id" />
         </Router>
       </main>
     </>

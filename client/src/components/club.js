@@ -5,6 +5,7 @@ import { Card } from "./ui";
 import { Heart, MapPin } from "./icons";
 import { favorite, unfavorite } from "../services/club";
 import { useSetFavorite, useSetUnfavorite } from "../actions/action-hooks";
+import { Link } from "@reach/router";
 
 function Club({ club }) {
   const setFavorite = useSetFavorite();
@@ -50,7 +51,12 @@ function Club({ club }) {
         }}
       />
       <div>
-        <h3>{club.name}</h3>
+        <Link
+          to={`/clubs/${club.id}`}
+          css={{ textDecoration: "none", color: "inherit" }}
+        >
+          <h3>{club.name}</h3>
+        </Link>
         <div>Address: {club.address}</div>
         <div>Price: {club.price}</div>
         <div

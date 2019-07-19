@@ -1,7 +1,7 @@
 class ClubSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :address, :image, :schedule, :favorited, :favorited_count, :district, :latitude, :longitude
+  attributes :id, :name, :address, :image, :schedule, :favorited, :favorited_count, :district, :latitude, :longitude, :sport_fields
 
   def image
     # rails_blob_path(object.image, only_path: true) if object.image.attached?
