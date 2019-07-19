@@ -1,30 +1,45 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import React from "react";
-import { Label, Card } from "../components/ui";
+import { Text, Card } from "../components/ui";
+import { Sun, Moon, Ball } from "./icons";
 
 function SportfieldInfo({ sportField }) {
   return (
-    <Card>
-      <Label css={{ textAlign: "center" }}> {sportField.name}</Label>
+    <Card
+      css={{
+        flex: "1",
+        margin: "1em",
+        "@media screen and (max-width: 760px)": {
+          margin: "1em 0"
+        }
+      }}
+    >
+      <Text css={{ textAlign: "center" }}> {sportField.name}</Text>
 
-      <Label css={{ display: "flex", justifyContent: "space-between" }}>
-        <Label>O</Label>
-        <Label>{sportField.description}</Label>
-      </Label>
+      <Text css={{ display: "flex", justifyContent: "center" }}>
+        <Text>
+          <Ball css={{ width: "20px", height: "20px" }} />
+        </Text>
+        <Text>{sportField.description}</Text>
+      </Text>
 
-      <Label>Price</Label>
+      <Text>Price</Text>
 
-      <Label css={{ display: "flex", justifyContent: "space-between" }}>
-        <Label css={{ display: "flex" }}>
-          <Label>0</Label>
-          <Label>{sportField.price_day}</Label>
-        </Label>
-        <Label css={{ display: "flex" }}>
-          <Label>0</Label>
-          <Label>{sportField.price_night}</Label>
-        </Label>
-      </Label>
+      <Text css={{ display: "flex", justifyContent: "space-between" }}>
+        <Text css={{ display: "flex" }}>
+          <Text>
+            <Sun />
+          </Text>
+          <Text>${sportField.price_day}</Text>
+        </Text>
+        <Text css={{ display: "flex" }}>
+          <Text>
+            <Moon />
+          </Text>
+          <Text>${sportField.price_night}</Text>
+        </Text>
+      </Text>
     </Card>
   );
 }

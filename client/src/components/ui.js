@@ -281,6 +281,22 @@ function Label({ styles, ...props }) {
   );
 }
 
+function Text({ styles, ...props }) {
+  return (
+    <span
+      {...props}
+      css={{
+        display: "block",
+        fontWeight: "300",
+        padding: "0 8px 8px 0",
+        fontSize: "16px",
+        lineHeight: "24px",
+        color: "#888888"
+      }}
+    />
+  );
+}
+
 function Input({ styles, ...props }) {
   return (
     <input
@@ -304,6 +320,7 @@ export {
   Input,
   TextArea,
   Label,
+  Text,
   Select,
   Title,
   SecondaryButton,

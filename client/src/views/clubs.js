@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { Label, Card } from "../components/ui";
+import { Title, Text, Card } from "../components/ui";
 import { clubData } from "../services/club";
 import SportfieldInfo from "../components/sportfield-info";
 
@@ -14,8 +14,10 @@ function Clubs({ id }) {
     });
   }, []);
 
-  console.log(club);
-  console.log(club.sport_fields);
+  const styleTitle = {
+    fontSize: "0.8em"
+  };
+
   return (
     <div>
       <div
@@ -30,53 +32,58 @@ function Clubs({ id }) {
         }}
       >
         <div>
-          <Label>Address</Label>
-          <Label css={{ fontSize: "12px" }}>{club.address}</Label>
+          <Title css={styleTitle}>Address</Title>
+          <Text css={{ fontSize: "12px" }}>{club.address}</Text>
         </div>
-        {console.log(club.sport_fields)}
 
         <br />
 
         <div>
-          <Label>Schedule</Label>
+          <Title css={styleTitle}>Schedule</Title>
           <div css={{ display: "flex", justifyContent: "space-between" }}>
-            <Label htmlFor="monday-friday.init" css={{ fontSize: "12px" }}>
+            <Text htmlFor="monday-friday.init" css={{ fontSize: "12px" }}>
               Monday - Friday
-            </Label>
-            <Label css={{ fontSize: "12px" }}>
+            </Text>
+            <Text css={{ fontSize: "12px" }}>
               {club.schedule && club.schedule["monday-friday"].start} -{" "}
               {club.schedule && club.schedule["monday-friday"].end}
-            </Label>
+            </Text>
           </div>
 
           <div css={{ display: "flex", justifyContent: "space-between" }}>
-            <Label
-              htmlFor="schedule-saturdays-start"
-              css={{ fontSize: "12px" }}
-            >
+            <Text htmlFor="schedule-saturdays-start" css={{ fontSize: "12px" }}>
               Saturday
-            </Label>
-            <Label css={{ fontSize: "12px" }}>
+            </Text>
+            <Text css={{ fontSize: "12px" }}>
               {club.schedule && club.schedule["saturday"].start} -{" "}
               {club.schedule && club.schedule["saturday"].end}
-            </Label>
+            </Text>
           </div>
 
           <div css={{ display: "flex", justifyContent: "space-between" }}>
-            <Label htmlFor="schedule-sundays-start" css={{ fontSize: "12px" }}>
+            <Text htmlFor="schedule-sundays-start" css={{ fontSize: "12px" }}>
               Sunday
-            </Label>
-            <Label css={{ fontSize: "12px" }}>
+            </Text>
+            <Text css={{ fontSize: "12px" }}>
               {club.schedule && club.schedule["sunday"].start} -{" "}
               {club.schedule && club.schedule["sunday"].end}
-            </Label>
+            </Text>
           </div>
         </div>
       </div>
       <br />
-      {club.sport_fields.map(sportField => {
-        return <SportfieldInfo sportField={sportField} />;
-      })}
+      <div
+        css={{
+          display: "flex",
+          "@media screen and (max-width: 760px)": {
+            display: "block"
+          }
+        }}
+      >
+        {club.sport_fields.map(sportField => {
+          return <SportfieldInfo key={sportField.id} sportField={sportField} />;
+        })}
+      </div>
     </div>
   );
 }
