@@ -1,10 +1,21 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { navigate } from "@reach/router";
-import { Input, Label, Card, Button } from "../components/ui";
+import { Label, Card } from "../components/ui";
+import { clubData } from "../services/club";
+import SportfieldInfo from "../components/sportfield-info";
 
-function InformationClub() {
+function Clubs({ id }) {
+  const [club, setClub] = React.useState({ sport_fields: [] });
+
+  React.useEffect(() => {
+    clubData(id).then(data => {
+      setClub(data);
+    });
+  }, []);
+
+  console.log(club);
+  console.log(club.sport_fields);
   return (
     <div>
       <div
@@ -20,17 +31,22 @@ function InformationClub() {
       >
         <div>
           <Label>Address</Label>
-          <Label css={{ fontSize: "14px" }}>Av. Pardo 123 - Miraflores</Label>
+          <Label css={{ fontSize: "12px" }}>{club.address}</Label>
         </div>
+        {console.log(club.sport_fields)}
+
         <br />
+
         <div>
           <Label>Schedule</Label>
-
           <div css={{ display: "flex", justifyContent: "space-between" }}>
             <Label htmlFor="monday-friday.init" css={{ fontSize: "12px" }}>
               Monday - Friday
             </Label>
-            <Label css={{ fontSize: "12px" }}>08:00-22:00</Label>
+            <Label css={{ fontSize: "12px" }}>
+              {club.schedule && club.schedule["monday-friday"].start} -{" "}
+              {club.schedule && club.schedule["monday-friday"].end}
+            </Label>
           </div>
 
           <div css={{ display: "flex", justifyContent: "space-between" }}>
@@ -40,50 +56,29 @@ function InformationClub() {
             >
               Saturday
             </Label>
-            <Label css={{ fontSize: "12px" }}>08:00-22:00</Label>
+            <Label css={{ fontSize: "12px" }}>
+              {club.schedule && club.schedule["saturday"].start} -{" "}
+              {club.schedule && club.schedule["saturday"].end}
+            </Label>
           </div>
 
           <div css={{ display: "flex", justifyContent: "space-between" }}>
             <Label htmlFor="schedule-sundays-start" css={{ fontSize: "12px" }}>
               Sunday
             </Label>
-            <Label css={{ fontSize: "12px" }}>08:00-22:00</Label>
+            <Label css={{ fontSize: "12px" }}>
+              {club.schedule && club.schedule["sunday"].start} -{" "}
+              {club.schedule && club.schedule["sunday"].end}
+            </Label>
           </div>
         </div>
       </div>
-
-      <div css={{ display: "flex", fontSize: "12px" }}>
-        <div>
-          <Card>
-            <div css={{ textAlign: "center" }}>Sport Field #1</div>
-            <div css={{ display: "flex", justifyContent: "space-between" }}>
-              <div>O</div>
-              <div>
-                <div>Syntetic Grass</div>
-                <div>6 vs. 6</div>
-              </div>
-            </div>
-            <div>Price</div>
-            <div css={{ display: "flex", justifyContent: "space-between" }}>
-              <div css={{ display: "flex" }}>
-                <div>0</div>
-                <div>s</div>
-              </div>
-              <div css={{ display: "flex" }}>
-                <div>0</div>
-                <div>9</div>
-              </div>
-            </div>
-          </Card>
-          <Card>hola</Card>
-        </div>
-        <div>
-          <Card>hola</Card>
-          <Card>hola</Card>
-        </div>
-      </div>
+      <br />
+      {club.sport_fields.map(sportField => {
+        return <SportfieldInfo sportField={sportField} />;
+      })}
     </div>
   );
 }
 
-export default InformationClub;
+export default Clubs;

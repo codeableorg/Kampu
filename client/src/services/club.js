@@ -57,4 +57,13 @@ async function unfavorite(clubId) {
   return response.json();
 }
 
-export { getClubs, postClub, favorite, unfavorite, getFavoriteClubs };
+async function clubData(id) {
+  const response = await fetch(`${apiUrl}/clubs/${id}`, {
+    credentials: "include"
+  });
+
+  if (!response.ok) throw new Error(response.statusText);
+  return response.json();
+}
+
+export { getClubs, postClub, favorite, unfavorite, getFavoriteClubs, clubData };
