@@ -44,13 +44,23 @@ function Signup() {
     <div
       css={{
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        height: "100vh",
+        position: "fixed",
+        top: "0",
+        width: "100%",
+        backgroundColor: "#0d0d0d8a",
+        backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
+        backgroundBlendMode: "overlay",
+        backgroundPosition: "center",
+        left: "0",
+        alignItems: "center"
       }}
     >
       <Card
         css={{
-          minWidth: "400px",
           width: "50%",
+          maxWidth: "450px",
           "@media screen and (max-width: 480px)": {
             width: "100%",
             minWidth: "initial"
