@@ -3,10 +3,8 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
-import { useClubs } from "../selectors/selectors";
 
-function Gallery({ id }) {
-  const clubs = useClubs();
+function Gallery({ club }) {
   const [images, setImages] = React.useState([]);
 
   function getImagesReady(originalArray) {
@@ -16,10 +14,11 @@ function Gallery({ id }) {
       };
     });
   }
+  console.log(club);
 
   React.useEffect(() => {
-    setImages(getImagesReady(clubs[0].image));
-  }, []);
+    setImages(getImagesReady(club ? club.image : []));
+  }, [club]);
 
   return (
     <div
@@ -28,7 +27,7 @@ function Gallery({ id }) {
           objectFit: "cover",
           maxHeight: "45vw",
           "@media screen and (min-width: 530px)": {
-            maxHeight: "300px"
+            height: "300px"
           }
         }
       }}

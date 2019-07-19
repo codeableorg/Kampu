@@ -4,9 +4,10 @@ import { jsx } from "@emotion/core";
 import { Title, Text, Card } from "../components/ui";
 import { clubData } from "../services/club";
 import SportfieldInfo from "../components/sportfield-info";
+import Gallery from "../components/gallery";
 
 function Clubs({ id }) {
-  const [club, setClub] = React.useState({ sport_fields: [] });
+  const [club, setClub] = React.useState({ sport_fields: [], image: [] });
 
   React.useEffect(() => {
     clubData(id).then(data => {
@@ -20,6 +21,7 @@ function Clubs({ id }) {
 
   return (
     <div>
+      <Gallery club={club} />
       <div
         css={{
           display: "flex",

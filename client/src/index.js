@@ -16,7 +16,6 @@ import CreateSportField from "./views/create-sport-field";
 import OwnerSportField from "./views/owner-sport-field";
 import Clubs from "./views/clubs";
 import Favorites from "./views/favorites";
-import Clubs from "./views/clubs";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
