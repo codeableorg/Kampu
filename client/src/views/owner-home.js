@@ -9,6 +9,7 @@ import { useSetClubs, useSetSportFields } from "../actions/action-hooks";
 import { useClubs, useSportFields } from "../selectors/selectors";
 import { getClubs } from "../services/club";
 import { getSportFields } from "../services/sport-field";
+import { Link } from "@reach/router";
 
 function OwnerHome() {
   const clubs = useClubs();
@@ -65,6 +66,7 @@ function OwnerHome() {
   return (
     <div>
       <Title>Clubs</Title>
+      <Link to="/report/1">Report</Link>
       <div css={styleClubsContainer}>
         {clubs ? (
           clubs.map(club => {
