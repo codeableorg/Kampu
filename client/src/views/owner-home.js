@@ -5,18 +5,26 @@ import { Title } from "../components/ui";
 import OwnerSportFieldCard from "../components/owner-sportfield-card";
 import OwnerClubCircle from "../components/owner-club-circle";
 import OwnerCreateButton from "../components/owner-create-button";
-import { useSetClubs, useSetSportFields } from "../actions/action-hooks";
-import { useClubs, useSportFields } from "../selectors/selectors";
+import {
+  useSetClubs,
+  useSetSportFields,
+  useSetSelectedClub
+} from "../actions/action-hooks";
+import {
+  useClubs,
+  useSportFields,
+  useSelectedClub
+} from "../selectors/selectors";
 import { getClubs } from "../services/club";
 import { getSportFields } from "../services/sport-field";
-import { Link } from "@reach/router";
 
 function OwnerHome() {
   const clubs = useClubs();
   const sportFields = useSportFields();
   const setClubs = useSetClubs();
   const setSportFields = useSetSportFields();
-  const [activeClub, setActiveClub] = React.useState(null);
+  const setActiveClub = useSetSelectedClub();
+  const activeClub = useSelectedClub();
 
   const styleClubsContainer = {
     display: "flex",
@@ -66,7 +74,6 @@ function OwnerHome() {
   return (
     <div>
       <Title>Clubs</Title>
-      <Link to="/report/1">Report</Link>
       <div css={styleClubsContainer}>
         {clubs ? (
           clubs.map(club => {

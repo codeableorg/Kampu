@@ -28,7 +28,7 @@ function Report({ id }) {
     padding: "1em",
     color: "rgba(0,0,0,0.45)",
     textShadow: "0 0 1px rgba(0,0,0,0.1)",
-    fontSize: "1.5em",
+    fontSize: "calc(0.8em + 1vw)",
     boxShadow: "inset 0 -1px rgba(0,0,0,0.25), inset 0 1px rgba(0,0,0,0.25)"
   };
 
@@ -36,7 +36,7 @@ function Report({ id }) {
     color: "#f7f7f7",
     padding: "0.7em 1em 0.7em 1.15em",
     textShadow: "0 0 1px rgba(255,255,255,0.1)",
-    fontSize: "1.4em",
+    fontSize: "calc(0.5em + 1vw)",
     boxShadow: "inset 0 -1px rgba(0,0,0,0.25), inset 0 1px rgba(0,0,0,0.25)"
   };
 

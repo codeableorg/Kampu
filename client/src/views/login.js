@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { jsx } from "@emotion/core";
 import { Link, navigate } from "@reach/router";
 import { login } from "../services/user";
-
+import { useSetUser } from "../actions/action-hooks";
 import { Input, Card, Button } from "../components/ui";
 
 function Login() {
@@ -13,6 +13,7 @@ function Login() {
   });
 
   const [error, setError] = React.useState(null);
+  const setUser = useSetUser();
 
   function handleChange(e) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -22,8 +23,8 @@ function Login() {
     e.preventDefault();
     try {
       const user = await login(inputs);
-      navigate("/owner");
-      // userUpdater({ type: "LOGIN", payload: { name, email } });
+      setUser({ name: user.name, email: user.email, role: user.role });
+      user.role === "owner" ? navigate("/owner") : navigate("/");
     } catch (error) {
       setError(error.message);
     }

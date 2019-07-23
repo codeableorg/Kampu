@@ -28,8 +28,14 @@ function BarChart({ sportsFields }) {
         scales: {
           yAxes: [
             {
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: "Total($)"
+              },
               ticks: {
-                beginAtZero: true
+                suggestedMin: 0,
+                suggestedMax: 100
               }
             }
           ]
@@ -43,10 +49,11 @@ function BarChart({ sportsFields }) {
       css={{
         display: "flex",
         justifyContent: "center",
+        marginBottom: "20px",
         maxWidth: "90%"
       }}
     >
-      <canvas id="myChart" width="400" height="400" />
+      <canvas id="myChart" css={{ width: "100%", height: "auto" }} />
     </div>
   );
 }
