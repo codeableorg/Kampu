@@ -5,6 +5,7 @@ export const initialState = {
   clubs: [],
   sportFields: [],
   favoriteClubs: [],
+  cart: {},
   user: {}
 };
 
@@ -70,10 +71,25 @@ export function favoriteClubsReducer(
   }
 }
 
+export function cartReducer(state = initialState.cart, action) {
+  switch (action.type) {
+    case "SET_CART": {
+      return action.payload;
+    }
+    case "RESET_CART": {
+      return {};
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 const reducer = combineReducers({
   clubs: clubsReducer,
   sportFields: sportFieldsReducer,
-  favoriteClubs: favoriteClubsReducer
+  favoriteClubs: favoriteClubsReducer,
+  cart: cartReducer
 });
 
 export default reducer;

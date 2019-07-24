@@ -5,7 +5,8 @@ import {
   setClubsFavorites,
   setSportFields,
   setFavorite,
-  setUnfavorite
+  setUnfavorite,
+  setCart
 } from "./actions";
 
 export function useSetClubs() {
@@ -15,7 +16,9 @@ export function useSetClubs() {
 
 export function useSetClubsFavorites() {
   const dispatch = useDispatch();
-  return React.useCallback(clubs => dispatch(setClubsFavorites(clubs)), [dispatch]);
+  return React.useCallback(clubs => dispatch(setClubsFavorites(clubs)), [
+    dispatch
+  ]);
 }
 
 export function useSetFavorite() {
@@ -26,6 +29,11 @@ export function useSetFavorite() {
 export function useSetUnfavorite() {
   const dispatch = useDispatch();
   return React.useCallback(club => dispatch(setUnfavorite(club)), [dispatch]);
+}
+
+export function useSetCart() {
+  const dispatch = useDispatch();
+  return React.useCallback(cart => dispatch(setCart(cart)), [dispatch]);
 }
 
 export function useSetSportFields() {

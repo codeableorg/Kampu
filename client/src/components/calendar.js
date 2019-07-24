@@ -8,6 +8,7 @@ function Calendar({
   end,
   loading,
   onSelected,
+  onContinue,
   getData,
   events,
   selected
@@ -34,11 +35,24 @@ function Calendar({
   }
 
   function next() {
-    setCursor(dateFns.addDays(cursor, 7));
+    if (dateFns.differenceInCalendarDays(cursor, new Date()) < 30) {
+      setCursor(dateFns.addDays(cursor, 7));
+    } else {
+      alert("Please select an available booking date");
+    }
   }
 
   function back() {
-    setCursor(dateFns.subDays(cursor, 7));
+    if (
+      dateFns.differenceInCalendarDays(
+        cursor,
+        dateFns.startOfWeek(new Date())
+      ) >= 7
+    ) {
+      setCursor(dateFns.subDays(cursor, 7));
+    } else {
+      alert("Please select an available booking date");
+    }
   }
 
   function compare(date, hour) {
@@ -70,6 +84,7 @@ function Calendar({
       <button onClick={back}>Back</button>
       <button onClick={next}>Next</button>
       <button onClick={today}>Today</button>
+      <button onClick={onContinue}>Continue</button>
       {/* header */}
       <div>{loading && "cargando..."}</div>
       <div
@@ -93,7 +108,7 @@ function Calendar({
       >
         <div />
         {dates.map(dat => (
-          <div key={dat}>{dateFns.format(dat, "ddd M/DD")}</div>
+          <div key={dat}>{dateFns.format(dat, "ddd DD/MM")}</div>
         ))}
       </div>
       {/* body */}
@@ -114,7 +129,7 @@ function Calendar({
           }}
         >
           <div>{hour}</div>
-          {dates.map((date, index) => (
+          {dates.map(date => (
             <div
               key={date}
               onClick={() => onSel(date, hour)}

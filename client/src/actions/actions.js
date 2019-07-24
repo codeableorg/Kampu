@@ -16,3 +16,7 @@ export function setUnfavorite(clubs) {
 export function setSportFields(sportFields) {
   return { type: "SET_SPORTFIELDS", payload: sportFields };
 }
+
+export function setCart(data) {
+  return { type: "SET_CART", payload: data };
+}
