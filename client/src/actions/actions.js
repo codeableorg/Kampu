@@ -16,3 +16,11 @@ export function setUnfavorite(clubs) {
 export function setSportFields(sportFields) {
   return { type: "SET_SPORTFIELDS", payload: sportFields };
 }
+
+export function setUser(user) {
+  return { type: "SET_USER", payload: user };
+}
+
+export function setSelectedClub(id) {
+  return { type: "SET_SELECTED_CLUB", payload: id };
+}

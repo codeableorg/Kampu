@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 export const initialState = {
   appName: "Kampu",
   clubs: [],
+  selectedClub: null,
   sportFields: [],
   favoriteClubs: [],
   user: {}
@@ -70,10 +71,34 @@ export function favoriteClubsReducer(
   }
 }
 
+export function userReducer(state = initialState.user, action) {
+  switch (action.type) {
+    case "SET_USER": {
+      return action.payload;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export function selectedClubReducer(state = initialState.selectedClub, action) {
+  switch (action.type) {
+    case "SET_SELECTED_CLUB": {
+      return action.payload;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 const reducer = combineReducers({
   clubs: clubsReducer,
+  selectedClub: selectedClubReducer,
   sportFields: sportFieldsReducer,
-  favoriteClubs: favoriteClubsReducer
+  favoriteClubs: favoriteClubsReducer,
+  user: userReducer
 });
 
 export default reducer;

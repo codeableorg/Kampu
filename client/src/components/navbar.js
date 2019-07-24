@@ -2,8 +2,11 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { Link } from "@reach/router";
+import { useUser, useSelectedClub } from "../selectors/selectors";
 
 function Navbar() {
+  const user = useUser();
+  const selectedClub = useSelectedClub();
   const styleMenu = {
     textDecoration: "none",
     color: "inherit",
@@ -63,15 +66,32 @@ function Navbar() {
             textAlign: "center"
           }}
         >
-          <Link to="/" css={styleMenu}>
-            Home
-          </Link>
-          <Link to="/favorites" css={styleMenu}>
-            Heart
-          </Link>
-          <Link to="/" css={styleMenu}>
-            Profile
-          </Link>
+          {user.role === "regular" && (
+            <>
+              <Link to="/" css={styleMenu}>
+                Home
+              </Link>
+              <Link to="/favorites" css={styleMenu}>
+                Heart
+              </Link>
+              <Link to="/" css={styleMenu}>
+                Profile
+              </Link>
+            </>
+          )}
+          {user.role === "owner" && (
+            <>
+              <Link to="/owner" css={styleMenu}>
+                Home
+              </Link>
+              <Link to={`/report/${selectedClub}`} css={styleMenu}>
+                Report
+              </Link>
+              <Link to="/profile" css={styleMenu}>
+                Profile
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </>

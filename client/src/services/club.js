@@ -65,4 +65,24 @@ async function clubData(id) {
   return response.json();
 }
 
-export { getClubs, postClub, favorite, unfavorite, getFavoriteClubs, clubData };
+async function clubReport(id, filterDate) {
+  const response = await fetch(
+    `${apiUrl}/report/${id}?filterDate=${filterDate}`,
+    {
+      credentials: "include"
+    }
+  );
+
+  if (!response.ok) throw new Error(response.statusText);
+  return response.json();
+}
+
+export {
+  getClubs,
+  postClub,
+  favorite,
+  unfavorite,
+  getFavoriteClubs,
+  clubData,
+  clubReport
+};
