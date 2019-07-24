@@ -65,10 +65,13 @@ async function clubData(id) {
   return response.json();
 }
 
-async function clubReport(id) {
-  const response = await fetch(`${apiUrl}/report/${id}`, {
-    credentials: "include"
-  });
+async function clubReport(id, filterDate) {
+  const response = await fetch(
+    `${apiUrl}/report/${id}?filterDate=${filterDate}`,
+    {
+      credentials: "include"
+    }
+  );
 
   if (!response.ok) throw new Error(response.statusText);
   return response.json();

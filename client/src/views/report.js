@@ -4,15 +4,21 @@ import { jsx } from "@emotion/core";
 import { clubReport } from "../services/club";
 import { Title } from "../components/ui";
 import BarChart from "../components/barchart";
+import { Select } from "../components/ui";
 
 function Report({ id }) {
   const [sportsFields, setSportsFields] = React.useState();
+  const [filterDate, setFilterDate] = React.useState("month");
 
   React.useEffect(() => {
-    clubReport(id).then(data => {
+    clubReport(id, filterDate).then(data => {
       setSportsFields(data);
     });
-  }, [id]);
+  }, [id, filterDate]);
+
+  function handleChangeFilterDate(e) {
+    setFilterDate(e.target.value);
+  }
 
   const styleTable = {
     margin: "0 auto",
@@ -49,6 +55,16 @@ function Report({ id }) {
   return (
     <>
       <Title>Report</Title>
+      <div
+        css={{ display: "flex", justifyContent: "center", marginBottom: "1em" }}
+      >
+        <Select onChange={handleChangeFilterDate} defaultValue="month">
+          <option value="week">Last week</option>
+          <option value="month">Last month</option>
+          <option value="3month">Last 3 months</option>
+          <option value="year">Last year</option>
+        </Select>
+      </div>
       <BarChart sportsFields={sportsFields} />
       <table css={styleTable}>
         <thead>
