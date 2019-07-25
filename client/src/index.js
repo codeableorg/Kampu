@@ -39,7 +39,7 @@ function App() {
         <Global
           styles={{
             body: {
-              background: "#f7f7f7",
+              background: "#fdfdfd",
               fontFamily: "'Rubik', sans-serif",
               margin: 0,
               color: "#333"

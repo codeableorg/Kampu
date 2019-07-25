@@ -37,7 +37,8 @@ function Club({ club }) {
         marginTop: "2rem",
         display: "flex",
         alignItems: "center",
-        padding: "1rem"
+        padding: "1rem",
+        boxShadow: "0 7px 30px -7px rgba(0,64,128,.2)"
       }}
       role="listitem"
     >
