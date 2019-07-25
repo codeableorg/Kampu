@@ -3,10 +3,13 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { Link } from "@reach/router";
 import { useUser, useSelectedClub } from "../selectors/selectors";
+import { logout } from "../services/user";
+import { useLogout } from "../actions/action-hooks";
 
 function Navbar() {
   const user = useUser();
   const selectedClub = useSelectedClub();
+  const setLogout = useLogout();
   const styleMenu = {
     textDecoration: "none",
     color: "inherit",
@@ -17,6 +20,22 @@ function Navbar() {
       border: "none"
     }
   };
+
+  const styleLogout = {
+    background: "none",
+    color: "inherit",
+    border: "none",
+    padding: "0",
+    font: "inherit",
+    cursor: "pointer",
+    outline: "inherit"
+  };
+
+  async function handleLogoutButton() {
+    logout().then(() => {
+      setLogout();
+    });
+  }
 
   return (
     <>
@@ -32,7 +51,10 @@ function Navbar() {
         <div
           css={{
             maxWidth: "900px",
-            margin: "auto"
+            margin: "auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center"
           }}
         >
           <Link to="/" css={{ textDecoration: "none" }}>
@@ -51,6 +73,11 @@ function Navbar() {
               Kampu
             </h2>
           </Link>
+          {user.email && (
+            <button css={styleLogout} onClick={handleLogoutButton}>
+              Logout
+            </button>
+          )}
         </div>
         <div
           css={{

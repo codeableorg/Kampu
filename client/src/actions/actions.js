@@ -21,6 +21,10 @@ export function setUser(user) {
   return { type: "SET_USER", payload: user };
 }
 
+export function logout() {
+  return { type: "SET_LOGOUT" };
+}
+
 export function setSelectedClub(id) {
   return { type: "SET_SELECTED_CLUB", payload: id };
 }
