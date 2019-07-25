@@ -21,6 +21,11 @@ class SportFieldsController < ApplicationController
     render json: {club: club, bookings: bookings}
   end
 
+  def times
+    @sport_field = SportField.find(params[:id])
+    bookings = @sport_field.bookings.where(:date => params[:start]..params[:end])
+    render json: bookings
+  end
 
   private
   def sport_field_params

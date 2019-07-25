@@ -24,3 +24,7 @@ export function setUser(user) {
 export function setSelectedClub(id) {
   return { type: "SET_SELECTED_CLUB", payload: id };
 }
+
+export function setCart(data) {
+  return { type: "SET_CART", payload: data };
+}

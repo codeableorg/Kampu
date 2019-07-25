@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     resources :sport_fields do
       get 'schedule', on: :member
+      get 'times', on: :member
     end
   end
 end
