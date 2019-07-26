@@ -13,7 +13,7 @@ function Checkout() {
   const cart = useCart();
 
   React.useEffect(() => {
-    if (Object.keys(cart).length) {
+    if (!Object.keys(cart).length) {
       navigate("/");
     }
   }, []);

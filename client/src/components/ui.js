@@ -49,15 +49,24 @@ function Button({ styles, ...props }) {
 
 function SecondaryButton({ styles, ...props }) {
   return (
-    <span
+    <button
       {...props}
       css={{
-        color: "#000000",
+        backgroundColor: "#000",
+        border: "1px solid #000",
+        borderRadius: ".25rem",
+        color: "white",
         cursor: "pointer",
         fontSize: ".8rem",
+        padding: ".75rem 0",
+        transition: "all 200ms ease",
         textAlign: "center",
-        textDecoration: "underline",
-        padding: "1em",
+        textTransform: "uppercase",
+        width: "100%",
+        "&:hover": {
+          backgroundColor: "white",
+          color: "#000"
+        },
         ...styles
       }}
     />
