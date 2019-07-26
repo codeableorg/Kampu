@@ -4,7 +4,7 @@ import { jsx } from "@emotion/core";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Global } from "@emotion/core";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 
 import store from "./store";
 import Home from "./views/home";
@@ -21,8 +21,13 @@ import SportField from "./views/sport-field";
 import Checkout from "./views/checkout";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
+import { getUser } from "./services/user";
+import { useUser } from "./selectors/selectors";
+import { setUser } from "./actions/actions";
 
 function App() {
+  const user = useUser();
+
   return (
     <>
       <Navbar />
@@ -51,6 +56,17 @@ function App() {
           }}
         />
         <Router>
+          {user.name ? (
+            <Redirect
+              from="/login"
+              to={user.role === "regular" ? "/" : "/owner"}
+              noThrow
+            />
+          ) : (
+            window.location.pathname !== "/login" && (
+              <Redirect from={window.location.pathname} to="/login" noThrow />
+            )
+          )}
           <Home path="/" />
           <Login path="/login" />
           <Signup path="/signup" />
@@ -71,11 +87,20 @@ function App() {
 
 const $root = document.getElementById("root");
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  $root
-);
+async function main() {
+  try {
+    const user = await getUser();
+    store.dispatch(setUser(user));
+  } catch (error) {
+    console.error(error);
+  } finally {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      $root
+    );
+  }
+}
 
-register();
+main().then(register());
