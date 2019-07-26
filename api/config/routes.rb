@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
     get '/schedule/:id', to: 'sport_fields#schedule'
     get '/report/:id', to: 'clubs#report'
+    get '/me', to: 'users#me'
     resources :clubs do
       resource :favorites, only: [:create, :destroy]
     end

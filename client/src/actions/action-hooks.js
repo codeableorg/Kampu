@@ -8,7 +8,8 @@ import {
   setUnfavorite,
   setUser,
   setSelectedClub,
-  setCart
+  setCart,
+  logout
 } from "./actions";
 
 export function useSetClubs() {
@@ -54,4 +55,9 @@ export function useSetUser() {
 export function useSetSelectedClub() {
   const dispatch = useDispatch();
   return React.useCallback(id => dispatch(setSelectedClub(id)), [dispatch]);
+}
+
+export function useLogout() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(logout()), [dispatch]);
 }
