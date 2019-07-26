@@ -42,10 +42,13 @@ function Navbar() {
       <nav
         css={{
           background: "#fff",
-          borderBottom: "1px solid #e5edef",
           padding: "15px",
           marginBottom: "2em",
-          flex: 1
+          flex: 1,
+          boxShadow: "0 5px 10px 0 rgba(0,64,128,.05)",
+          top: "0",
+          position: "sticky",
+          zIndex: 100
         }}
       >
         <div
@@ -62,10 +65,11 @@ function Navbar() {
               css={{
                 textDecoration: "none",
                 margin: "0",
-                fontSize: "35px",
-                fontWeight: "500",
+                fontSize: "30px",
+                letterSpacing: "1px",
+                display: "inline-block",
                 backgroundImage:
-                  "-webkit-gradient(linear, 0% 0%, 25% 100%,from(#c5e9a1), to(#00b7c6))",
+                  "-webkit-gradient(linear, 0% 0%, 25% 150%,from(#c5e9a1), to(#00b7c6))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent"
               }}

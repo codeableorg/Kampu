@@ -6,9 +6,9 @@ import {
   setSportFields,
   setFavorite,
   setUnfavorite,
+  setCart,
   setUser,
   setSelectedClub,
-  setCart,
   logout
 } from "./actions";
 

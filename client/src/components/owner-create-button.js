@@ -8,9 +8,10 @@ function OwnerCreateButton() {
 
   const styleButtonContainer = {
     position: "fixed",
-    bottom: "2em",
+    bottom: "3.5em",
     right: "1em",
-    background: "#C3C4C3",
+    color: "#fff",
+    backgroundColor: "#50cbb7",
     width: "3em",
     height: "3em",
     display: "flex",
