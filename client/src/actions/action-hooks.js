@@ -6,7 +6,10 @@ import {
   setSportFields,
   setFavorite,
   setUnfavorite,
-  setCart
+  setCart,
+  setUser,
+  setSelectedClub,
+  logout
 } from "./actions";
 
 export function useSetClubs() {
@@ -42,4 +45,19 @@ export function useSetSportFields() {
     sportFields => dispatch(setSportFields(sportFields)),
     [dispatch]
   );
+}
+
+export function useSetUser() {
+  const dispatch = useDispatch();
+  return React.useCallback(user => dispatch(setUser(user)), [dispatch]);
+}
+
+export function useSetSelectedClub() {
+  const dispatch = useDispatch();
+  return React.useCallback(id => dispatch(setSelectedClub(id)), [dispatch]);
+}
+
+export function useLogout() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(logout()), [dispatch]);
 }
