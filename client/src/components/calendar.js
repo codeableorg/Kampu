@@ -92,7 +92,7 @@ function Calendar({
           display: "flex",
           marginTop: "2em",
           position: "sticky",
-          top: "0",
+          top: "66px",
           zIndex: "123",
           background: "white",
           div: {

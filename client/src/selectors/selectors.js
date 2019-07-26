@@ -12,4 +12,8 @@ function useSportFields() {
   return useSelector(state => state.sportFields, shallowEqual);
 }
 
-export { useClubs, useSportFields, useClubsFavorites };
+function useCart() {
+  return useSelector(state => state.cart, shallowEqual);
+}
+
+export { useClubs, useSportFields, useClubsFavorites, useCart };
