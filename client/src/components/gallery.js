@@ -8,6 +8,7 @@ function Gallery({ club }) {
   const [images, setImages] = React.useState([]);
 
   function getImagesReady(originalArray) {
+    if (originalArray === null) return [];
     return originalArray.map(element => {
       return {
         original: element

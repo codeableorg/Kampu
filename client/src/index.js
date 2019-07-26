@@ -16,6 +16,9 @@ import CreateSportField from "./views/create-sport-field";
 import OwnerSportField from "./views/owner-sport-field";
 import Clubs from "./views/clubs";
 import Favorites from "./views/favorites";
+import Report from "./views/report";
+import SportField from "./views/sport-field";
+import Checkout from "./views/checkout";
 import Navbar from "./components/navbar";
 import { register } from "./service-worker";
 
@@ -38,9 +41,12 @@ function App() {
           styles={{
             body: {
               background: "#f7f7f7",
-              fontFamily: "sans-serif",
+              fontFamily: "'Rubik', sans-serif",
               margin: 0,
               color: "#333"
+            },
+            "button, input": {
+              fontFamily: "inherit"
             }
           }}
         />
@@ -52,8 +58,11 @@ function App() {
           <CreateClub path="/create-club" />
           <CreateSportField path="/create-sport-field" />
           <OwnerSportField path="/owner-sport-field/:id" />
+          <Report path="/report/:id" />
           <Favorites path="/favorites" />
           <Clubs path="/clubs/:id" />
+          <Checkout path="/checkout" />
+          <SportField path="/sport-field/:id" />
         </Router>
       </main>
     </>

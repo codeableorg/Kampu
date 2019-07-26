@@ -1,46 +1,51 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import React from "react";
+import { Link } from "@reach/router";
 import { Text, Card } from "../components/ui";
 import { Sun, Moon, Ball } from "./icons";
 
 function SportfieldInfo({ sportField }) {
   return (
-    <Card
+    <Link
+      to={`/sport-field/${sportField.id}`}
       css={{
         flex: "1",
         margin: "1em",
+        textDecoration: "none",
         "@media screen and (max-width: 760px)": {
           margin: "1em 0"
         }
       }}
     >
-      <Text css={{ textAlign: "center" }}> {sportField.name}</Text>
+      <Card>
+        <Text css={{ textAlign: "center" }}> {sportField.name}</Text>
 
-      <Text css={{ display: "flex", justifyContent: "center" }}>
-        <Text>
-          <Ball css={{ width: "20px", height: "20px" }} />
-        </Text>
-        <Text>{sportField.description}</Text>
-      </Text>
-
-      <Text>Price</Text>
-
-      <Text css={{ display: "flex", justifyContent: "space-between" }}>
-        <Text css={{ display: "flex" }}>
+        <Text css={{ display: "flex", justifyContent: "center" }}>
           <Text>
-            <Sun />
+            <Ball css={{ width: "20px", height: "20px" }} />
           </Text>
-          <Text>${sportField.price_day}</Text>
+          <Text>{sportField.description}</Text>
         </Text>
-        <Text css={{ display: "flex" }}>
-          <Text>
-            <Moon />
+
+        <Text>Price</Text>
+
+        <Text css={{ display: "flex", justifyContent: "space-between" }}>
+          <Text css={{ display: "flex" }}>
+            <Text>
+              <Sun />
+            </Text>
+            <Text>${sportField.price_day}</Text>
           </Text>
-          <Text>${sportField.price_night}</Text>
+          <Text css={{ display: "flex" }}>
+            <Text>
+              <Moon />
+            </Text>
+            <Text>${sportField.price_night}</Text>
+          </Text>
         </Text>
-      </Text>
-    </Card>
+      </Card>
+    </Link>
   );
 }
 
