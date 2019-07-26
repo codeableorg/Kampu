@@ -70,6 +70,7 @@ function Club({ club }) {
             width="18px"
             height="18px"
             css={club.favorited ? styleFavorited : { cursor: "pointer" }}
+            aria-label="like"
             onClick={handleClick}
           />
           <span
