@@ -7,17 +7,21 @@ import { getClubs } from "../services/club";
 import Club from "../components/club";
 import { getDistance } from "geolib";
 import { Select } from "../components/ui";
+import Spinner from "../components/spinner";
 
 function Home() {
   const clubs = useClubs();
   const setClubs = useSetClubs();
+  const [loading, setLoading] = React.useState(false);
   const [position, setPosition] = React.useState([0, 0]);
   const [selectedLocation, setSelectedLocation] = React.useState("");
   const [sortType, setSortType] = React.useState("location");
 
   React.useEffect(() => {
+    setLoading(true);
     getClubs().then(clubs => {
       setClubs(clubs);
+      setLoading(false);
     });
   }, [setClubs]);
 
@@ -109,8 +113,8 @@ function Home() {
           <option value="name">Name</option>
         </Select>
       </div>
-
-      {clubs ? (
+      {loading && <Spinner />}
+      {!loading &&
         clubs
           .map(club => {
             let distance = null;
@@ -131,10 +135,7 @@ function Home() {
           .sort(sortBy)
           .map(club => {
             return <Club key={club.id} club={club} />;
-          })
-      ) : (
-        <p>Loading...</p>
-      )}
+          })}
     </div>
   );
 }

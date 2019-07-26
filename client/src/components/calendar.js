@@ -2,6 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import dateFns from "date-fns";
+import { SecondaryButton } from "./ui";
 
 function Calendar({
   start,
@@ -79,20 +80,40 @@ function Calendar({
     }
   }
 
+  const buttons = {
+    maxWidth: "100px",
+    marginRight: "5px"
+  };
+
   return (
     <div>
-      <button onClick={back}>Back</button>
-      <button onClick={next}>Next</button>
-      <button onClick={today}>Today</button>
-      <button onClick={onContinue}>Continue</button>
+      <div
+        css={{
+          textAlign: "center"
+        }}
+      >
+        <SecondaryButton onClick={back} css={buttons}>
+          Back
+        </SecondaryButton>
+        <SecondaryButton onClick={next} css={buttons}>
+          Next
+        </SecondaryButton>
+        <SecondaryButton onClick={today} css={buttons}>
+          Today
+        </SecondaryButton>
+        <SecondaryButton onClick={onContinue} css={buttons}>
+          Continue
+        </SecondaryButton>
+      </div>
       {/* header */}
       <div>{loading && "cargando..."}</div>
       <div
         css={{
           display: "flex",
           marginTop: "2em",
+          textAlign: "center",
           position: "sticky",
-          top: "0",
+          top: "66px",
           zIndex: "123",
           background: "white",
           div: {

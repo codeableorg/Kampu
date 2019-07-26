@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { Title } from "../components/ui";
+import { Title, styleScroll } from "../components/ui";
 import OwnerSportFieldCard from "../components/owner-sportfield-card";
 import OwnerClubCircle from "../components/owner-club-circle";
 import OwnerCreateButton from "../components/owner-create-button";
@@ -17,6 +17,7 @@ import {
 } from "../selectors/selectors";
 import { getClubs } from "../services/club";
 import { getSportFields } from "../services/sport-field";
+import Spinner from "../components/spinner";
 
 function OwnerHome() {
   const clubs = useClubs();
@@ -25,31 +26,21 @@ function OwnerHome() {
   const setSportFields = useSetSportFields();
   const setActiveClub = useSetSelectedClub();
   const activeClub = useSelectedClub();
+  const [loading, setLoading] = React.useState(false);
 
   const styleClubsContainer = {
     display: "flex",
     alignItems: "center",
     overflowX: "auto",
     padding: "1em 0",
-    "&::-webkit-scrollbar-track": {
-      boxShadow: "inset 0 0 6px rgba(0,0,0,0.3)",
-      borderRadius: "10px",
-      backgroundColor: "#F5F5F5"
-    },
-    "&::-webkit-scrollbar": {
-      height: "10px",
-      backgroundColor: "#F5F5F5"
-    },
-    "&::-webkit-scrollbar-thumb": {
-      borderRadius: "10px",
-      boxShadow: "inset 0 0 6px rgba(0,0,0,.3)",
-      backgroundColor: "#8f8f8f"
-    }
+    ...styleScroll
   };
 
   React.useEffect(() => {
+    setLoading(true);
     getClubs().then(clubs => {
       setClubs(clubs);
+      setLoading(false);
       setActiveClub(clubs.length ? clubs[0].id : null);
     });
   }, []);
@@ -75,7 +66,8 @@ function OwnerHome() {
     <div>
       <Title>Clubs</Title>
       <div css={styleClubsContainer}>
-        {clubs ? (
+        {loading && <Spinner />}
+        {!loading &&
           clubs.map(club => {
             return (
               <OwnerClubCircle
@@ -86,10 +78,7 @@ function OwnerHome() {
                 setActiveClub={setActiveClub}
               />
             );
-          })
-        ) : (
-          <p>Loading...</p>
-        )}
+          })}
       </div>
       <Title>Sport Fields</Title>
       <div css={styleSportFieldsContainer}>
@@ -108,7 +97,7 @@ function OwnerHome() {
               );
             })
         ) : (
-          <p>Loading...</p>
+          <Spinner />
         )}
       </div>
       <OwnerCreateButton />
