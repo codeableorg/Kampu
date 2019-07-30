@@ -4,12 +4,14 @@ import { jsx } from "@emotion/core";
 import { Link } from "@reach/router";
 import { useUser, useSelectedClub } from "../selectors/selectors";
 import { logout } from "../services/user";
-import { useLogout } from "../actions/action-hooks";
+import { useLogout, useSetNotify } from "../actions/action-hooks";
 
 function Navbar() {
   const user = useUser();
   const selectedClub = useSelectedClub();
   const setLogout = useLogout();
+  const setNotify = useSetNotify();
+
   const styleMenu = {
     textDecoration: "none",
     color: "inherit",
@@ -33,6 +35,7 @@ function Navbar() {
 
   async function handleLogoutButton() {
     logout().then(() => {
+      setNotify("User logout");
       setLogout();
     });
   }

@@ -3,18 +3,29 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { Input, Label, Card, Button } from "../components/ui";
 import { postSportField } from "../services/sport-field";
-import {  navigate } from "@reach/router";
-
+import { navigate } from "@reach/router";
+import { useSetNotify } from "../actions/action-hooks";
+import { useSelectedClub } from "../selectors/selectors";
 
 function CreateSportField() {
+  const club_id = useSelectedClub();
   const [fields, setFields] = React.useState({
     name: "",
     description: "",
     image: null,
     price_day: "",
-    price_night: ""
+    price_night: "",
+    club_id
   });
   const [error, setError] = React.useState(null);
+  const setNotify = useSetNotify();
+
+  React.useEffect(() => {
+    if (!club_id) {
+      setNotify("You need to select a club");
+      navigate("/owner");
+    }
+  }, []);
 
   function handleChange(e) {
     if (e.target.name === "image") {
@@ -32,9 +43,9 @@ function CreateSportField() {
       formData.append(key, fields[key]);
     });
     try {
-      const club = await postSportField(formData);
-      console.log(club);
-      navigate('/owner')
+      await postSportField(formData);
+      setNotify("SportField created");
+      navigate("/owner");
     } catch (error) {
       console.log(error.message);
     }

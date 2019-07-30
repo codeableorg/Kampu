@@ -37,7 +37,7 @@ class SportFieldsController < ApplicationController
     @sport_field = SportField.find(params[:id])
   end
   def sport_field_params
-    params.permit(:name, :description, :price_day, :price_night, :image)
+    params.permit(:name, :description, :price_day, :price_night, :image, :club_id)
   end
 
 end
