@@ -61,4 +61,18 @@ async function getUser() {
   return { name, email, role };
 }
 
-export { login, logout, register, getUser };
+async function getUserAllInfo() {
+  const response = await fetch(`${apiUrl}/userinfo`, {
+    credentials: "include"
+  });
+
+  if (!response.ok) {
+    const { errors } = await response.json();
+    throw new Error(errors);
+  }
+
+  const { name, email, role, bookings } = await response.json();
+  return { name, email, role, bookings };
+}
+
+export { login, logout, register, getUser, getUserAllInfo };
