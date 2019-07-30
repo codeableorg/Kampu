@@ -32,3 +32,11 @@ export function setSelectedClub(id) {
 export function setCart(data) {
   return { type: "SET_CART", payload: data };
 }
+
+export function setNotify(message) {
+  return { type: "SET_NOTIFY", payload: message };
+}
+
+export function resetNotify() {
+  return { type: "RESET_NOTIFY" };
+}

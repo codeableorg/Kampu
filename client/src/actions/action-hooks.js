@@ -9,7 +9,9 @@ import {
   setCart,
   setUser,
   setSelectedClub,
-  logout
+  logout,
+  setNotify,
+  resetNotify
 } from "./actions";
 
 export function useSetClubs() {
@@ -60,4 +62,14 @@ export function useSetSelectedClub() {
 export function useLogout() {
   const dispatch = useDispatch();
   return React.useCallback(() => dispatch(logout()), [dispatch]);
+}
+
+export function useSetNotify() {
+  const dispatch = useDispatch();
+  return React.useCallback(message => dispatch(setNotify(message)), [dispatch]);
+}
+
+export function useResetNotify() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(resetNotify()), [dispatch]);
 }

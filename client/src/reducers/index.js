@@ -7,7 +7,8 @@ export const initialState = {
   sportFields: [],
   favoriteClubs: [],
   cart: {},
-  user: {}
+  user: {},
+  notify: null
 };
 
 export function clubsReducer(state = initialState.clubs, action) {
@@ -111,13 +112,28 @@ export function cartReducer(state = initialState.cart, action) {
   }
 }
 
+export function notifyReducer(state = initialState.notify, action) {
+  switch (action.type) {
+    case "SET_NOTIFY": {
+      return action.payload;
+    }
+    case "RESET_NOTIFY": {
+      return null;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 const reducer = combineReducers({
   clubs: clubsReducer,
   selectedClub: selectedClubReducer,
   sportFields: sportFieldsReducer,
   favoriteClubs: favoriteClubsReducer,
   user: userReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  notify: notifyReducer
 });
 
 export default reducer;

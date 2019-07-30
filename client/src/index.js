@@ -20,16 +20,18 @@ import Report from "./views/report";
 import SportField from "./views/sport-field";
 import Checkout from "./views/checkout";
 import Navbar from "./components/navbar";
+import Notify from "./components/notify";
 import { register } from "./service-worker";
 import { getUser } from "./services/user";
 import { useUser } from "./selectors/selectors";
-import { setUser } from "./actions/actions";
+import { setUser, setNotify } from "./actions/actions";
 
 function App() {
   const user = useUser();
 
   return (
     <>
+      <Notify />
       <Navbar />
       <main
         css={{
@@ -92,7 +94,9 @@ async function main() {
     const user = await getUser();
     store.dispatch(setUser(user));
   } catch (error) {
-    console.error(error);
+    if (window.location.pathname !== "/login") {
+      store.dispatch(setNotify("The user must login"));
+    }
   } finally {
     render(
       <Provider store={store}>
