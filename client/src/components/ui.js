@@ -49,15 +49,24 @@ function Button({ styles, ...props }) {
 
 function SecondaryButton({ styles, ...props }) {
   return (
-    <span
+    <button
       {...props}
       css={{
-        color: "#000000",
+        backgroundColor: "#000",
+        border: "1px solid #000",
+        borderRadius: ".25rem",
+        color: "white",
         cursor: "pointer",
         fontSize: ".8rem",
+        padding: ".75rem 0",
+        transition: "all 200ms ease",
         textAlign: "center",
-        textDecoration: "underline",
-        padding: "1em",
+        textTransform: "uppercase",
+        width: "100%",
+        "&:hover": {
+          backgroundColor: "white",
+          color: "#000"
+        },
         ...styles
       }}
     />
@@ -313,6 +322,27 @@ function TextArea({ styles, ...props }) {
   return <textarea {...props} css={{ ...styleInput, ...styles }} />;
 }
 
+const styleScroll = {
+  transition: "all 0.3s",
+  "&::-webkit-scrollbar": {
+    width: "6px",
+    height: "6px"
+  },
+  "&::-webkit-scrollbar-track": {
+    background: "#f2f3f5"
+  },
+  "&:hover::-webkit-scrollbar-track": {
+    background: "rgba(215, 218, 224, 0.3)"
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "transparent",
+    borderRadius: "10px"
+  },
+  "&:hover::-webkit-scrollbar-thumb": {
+    background: "rgba(144, 143, 143, 0.8)"
+  }
+};
+
 export {
   Button,
   Modal,
@@ -325,5 +355,6 @@ export {
   Title,
   SecondaryButton,
   Line,
-  Progress
+  Progress,
+  styleScroll
 };

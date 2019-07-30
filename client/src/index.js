@@ -4,7 +4,7 @@ import { jsx } from "@emotion/core";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Global } from "@emotion/core";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 
 import store from "./store";
 import Home from "./views/home";
@@ -16,12 +16,22 @@ import CreateSportField from "./views/create-sport-field";
 import OwnerSportField from "./views/owner-sport-field";
 import Clubs from "./views/clubs";
 import Favorites from "./views/favorites";
+import Report from "./views/report";
+import SportField from "./views/sport-field";
+import Checkout from "./views/checkout";
 import Navbar from "./components/navbar";
+import Notify from "./components/notify";
 import { register } from "./service-worker";
+import { getUser } from "./services/user";
+import { useUser } from "./selectors/selectors";
+import { setUser, setNotify } from "./actions/actions";
 
 function App() {
+  const user = useUser();
+
   return (
     <>
+      <Notify />
       <Navbar />
       <main
         css={{
@@ -37,14 +47,28 @@ function App() {
         <Global
           styles={{
             body: {
-              background: "#f7f7f7",
-              fontFamily: "sans-serif",
+              background: "#fdfdfd",
+              fontFamily: "'Rubik', sans-serif",
               margin: 0,
               color: "#333"
+            },
+            "button, input": {
+              fontFamily: "inherit"
             }
           }}
         />
         <Router>
+          {user.name ? (
+            <Redirect
+              from="/login"
+              to={user.role === "regular" ? "/" : "/owner"}
+              noThrow
+            />
+          ) : (
+            window.location.pathname !== "/login" && (
+              <Redirect from={window.location.pathname} to="/login" noThrow />
+            )
+          )}
           <Home path="/" />
           <Login path="/login" />
           <Signup path="/signup" />
@@ -52,8 +76,11 @@ function App() {
           <CreateClub path="/create-club" />
           <CreateSportField path="/create-sport-field" />
           <OwnerSportField path="/owner-sport-field/:id" />
+          <Report path="/report/:id" />
           <Favorites path="/favorites" />
           <Clubs path="/clubs/:id" />
+          <Checkout path="/checkout" />
+          <SportField path="/sport-field/:id" />
         </Router>
       </main>
     </>
@@ -62,11 +89,22 @@ function App() {
 
 const $root = document.getElementById("root");
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  $root
-);
+async function main() {
+  try {
+    const user = await getUser();
+    store.dispatch(setUser(user));
+  } catch (error) {
+    if (window.location.pathname !== "/login") {
+      store.dispatch(setNotify("The user must login"));
+    }
+  } finally {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      $root
+    );
+  }
+}
 
-register();
+main().then(register());

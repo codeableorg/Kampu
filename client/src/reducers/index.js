@@ -3,9 +3,12 @@ import { combineReducers } from "redux";
 export const initialState = {
   appName: "Kampu",
   clubs: [],
+  selectedClub: null,
   sportFields: [],
   favoriteClubs: [],
-  user: {}
+  cart: {},
+  user: {},
+  notify: null
 };
 
 export function clubsReducer(state = initialState.clubs, action) {
@@ -70,10 +73,67 @@ export function favoriteClubsReducer(
   }
 }
 
+export function userReducer(state = initialState.user, action) {
+  switch (action.type) {
+    case "SET_USER": {
+      return action.payload;
+    }
+    case "SET_LOGOUT": {
+      return {};
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export function selectedClubReducer(state = initialState.selectedClub, action) {
+  switch (action.type) {
+    case "SET_SELECTED_CLUB": {
+      return action.payload;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export function cartReducer(state = initialState.cart, action) {
+  switch (action.type) {
+    case "SET_CART": {
+      return action.payload;
+    }
+    case "RESET_CART": {
+      return {};
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
+export function notifyReducer(state = initialState.notify, action) {
+  switch (action.type) {
+    case "SET_NOTIFY": {
+      return action.payload;
+    }
+    case "RESET_NOTIFY": {
+      return null;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 const reducer = combineReducers({
   clubs: clubsReducer,
+  selectedClub: selectedClubReducer,
   sportFields: sportFieldsReducer,
-  favoriteClubs: favoriteClubsReducer
+  favoriteClubs: favoriteClubsReducer,
+  user: userReducer,
+  cart: cartReducer,
+  notify: notifyReducer
 });
 
 export default reducer;

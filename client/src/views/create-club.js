@@ -5,6 +5,7 @@ import { navigate } from "@reach/router";
 import { Input, Label, Card, Button } from "../components/ui";
 import { postClub } from "../services/club";
 import { getCoords } from "../services/geocode";
+import { useSetNotify } from "../actions/action-hooks";
 
 function CreateClub() {
   const [fields, setFields] = React.useState({
@@ -28,6 +29,7 @@ function CreateClub() {
     }
   });
   const [error, setError] = React.useState(null);
+  const setNotify = useSetNotify();
 
   function handleChange(e) {
     if (e.target.name === "image") {
@@ -71,6 +73,7 @@ function CreateClub() {
     formData.append("schedule", JSON.stringify(schedule));
     try {
       await postClub(formData);
+      setNotify("Club created");
       navigate("/owner");
     } catch (error) {
       console.log(error.message);

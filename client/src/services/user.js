@@ -47,4 +47,18 @@ async function logout() {
   }
 }
 
-export { login, logout, register };
+async function getUser() {
+  const response = await fetch(`${apiUrl}/me`, {
+    credentials: "include"
+  });
+
+  if (!response.ok) {
+    const { errors } = await response.json();
+    throw new Error(errors);
+  }
+
+  const { name, email, role } = await response.json();
+  return { name, email, role };
+}
+
+export { login, logout, register, getUser };

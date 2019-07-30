@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { jsx } from "@emotion/core";
 import { Link, navigate } from "@reach/router";
 import { login } from "../services/user";
-
+import { useSetUser, useSetNotify } from "../actions/action-hooks";
 import { Input, Card, Button } from "../components/ui";
 
 function Login() {
@@ -13,6 +13,8 @@ function Login() {
   });
 
   const [error, setError] = React.useState(null);
+  const setUser = useSetUser();
+  const setNotify = useSetNotify();
 
   function handleChange(e) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -22,8 +24,9 @@ function Login() {
     e.preventDefault();
     try {
       const user = await login(inputs);
-      navigate("/owner");
-      // userUpdater({ type: "LOGIN", payload: { name, email } });
+      setUser({ name: user.name, email: user.email, role: user.role });
+      setNotify("Successful login");
+      user.role === "owner" ? navigate("/owner") : navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -42,7 +45,8 @@ function Login() {
         position: "fixed",
         top: "0",
         width: "100%",
-        backgroundColor: "#0d0d0d8a",
+        zIndex: "1000",
+        backgroundColor: "rgba(13, 13, 13, 0.85)",
         backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
         backgroundBlendMode: "overlay",
         backgroundPosition: "center",
@@ -124,4 +128,3 @@ function Login() {
 }
 
 export default Login;
-  

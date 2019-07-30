@@ -1,7 +1,12 @@
 class SportFieldsController < ApplicationController
+  before_action :set_sport_field, only: [:show]
 
   def index
     render json: SportField.all
+  end
+
+  def show
+    render json: @sport_field
   end
 
   def create
@@ -21,10 +26,18 @@ class SportFieldsController < ApplicationController
     render json: {club: club, bookings: bookings}
   end
 
+  def times
+    @sport_field = SportField.find(params[:id])
+    bookings = @sport_field.bookings.where(:date => params[:start]..params[:end])
+    render json: bookings
+  end
 
   private
+  def set_sport_field
+    @sport_field = SportField.find(params[:id])
+  end
   def sport_field_params
-    params.permit(:name, :description, :price_day, :price_night, :image)
+    params.permit(:name, :description, :price_day, :price_night, :image, :club_id)
   end
 
 end
