@@ -2,12 +2,14 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { navigate } from "@reach/router";
+import { Elements, StripeProvider } from "react-stripe-elements";
 import { useCart, useUser } from "../selectors/selectors";
-import { Card, Button } from "../components/ui";
-import Spinner from "../components/spinner";
+import { useSetNotify } from "../actions/action-hooks";
 import { getSportField } from "../services/sport-field";
 import { postBooking } from "../services/booking";
-import { useSetNotify } from "../actions/action-hooks";
+import CheckoutForm from "../components/checkout-form";
+import { Card, Button } from "../components/ui";
+import Spinner from "../components/spinner";
 
 function Checkout() {
   const [loading, setLoading] = React.useState(true);
@@ -110,6 +112,14 @@ function Checkout() {
           </Button>
         </div>
       )}
+      <hr />
+      <StripeProvider apiKey="pk_test_GQ6ksSD0e2NwrBBdQ2aRYMtI">
+        <div className="example">
+          <Elements>
+            <CheckoutForm />
+          </Elements>
+        </div>
+      </StripeProvider>
     </Card>
   );
 }
