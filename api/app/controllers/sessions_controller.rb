@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
   def register
     user = User.new(user_params)
     if user.save
+      regenerate_and_signed_token(user)
       render json: user
     else
       render json: { errors: user.errors.full_messages}, status: :bad_request
@@ -24,7 +25,7 @@ class SessionsController < ApplicationController
 
   def destroy
     current_user.invalidate_token
-    cookies.delete :auth_token
+    cookies.update(response.cookies)
     head :ok
   end
 
