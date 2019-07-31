@@ -113,7 +113,7 @@ function Checkout() {
         </div>
       )}
       <hr />
-      <StripeProvider apiKey="pk_test_GQ6ksSD0e2NwrBBdQ2aRYMtI">
+      <StripeProvider apiKey="pk_test_cRfuPOWxiJFAn55eQFKV2hrx00g1pyDU4E">
         <div className="example">
           <Elements>
             <CheckoutForm />

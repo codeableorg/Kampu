@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
 
     charge = Stripe::Charge.create({
       amount: @amount,
-      description: "Alquiler de una hora ",
+      description: "Kampu - Sports Field booking",
       currency: "usd",
       source: params[:token]
     });

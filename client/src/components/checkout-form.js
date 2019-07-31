@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { postCharge } from "../services/charge";
 
-function CheckoutForm() {
+function CheckoutForm({ stripe }) {
   const [loading, setLoading] = React.useState(false);
 
   async function handleSubmit() {
     setLoading(true);
-    const { token } = await this.props.stripe.createToken({ name: "Name" });
+    const { token } = await stripe.createToken({ name: "Name" });
     const response = await postCharge(token.id);
     if (response.ok) {
       setLoading(false);
