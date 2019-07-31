@@ -1,6 +1,9 @@
+/** @jsx jsx */
+import { jsx } from "@emotion/core";
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { postCharge } from "../services/charge";
+import { Button } from "../components/ui";
 
 function CheckoutForm({ stripe }) {
   const [loading, setLoading] = React.useState(false);
@@ -18,7 +21,9 @@ function CheckoutForm({ stripe }) {
     <div className="checkout">
       <p>Would you like to complete the purchase?</p>
       <CardElement />
-      <button onClick={handleSubmit}>Send</button>
+      <div onClick={handleSubmit} css={{ textAlign: "center" }}>
+        <Button css={{ marginTop: "2em", maxWidth: "150px" }}>Pay</Button>
+      </div>
     </div>
   );
 }
