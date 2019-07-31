@@ -19,6 +19,7 @@ import Favorites from "./views/favorites";
 import Report from "./views/report";
 import SportField from "./views/sport-field";
 import Checkout from "./views/checkout";
+import Profile from "./views/profile";
 import Navbar from "./components/navbar";
 import Notify from "./components/notify";
 import { register } from "./service-worker";
@@ -81,6 +82,7 @@ function App() {
           <Clubs path="/clubs/:id" />
           <Checkout path="/checkout" />
           <SportField path="/sport-field/:id" />
+          <Profile path="/profile" />
         </Router>
       </main>
     </>

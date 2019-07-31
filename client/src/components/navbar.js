@@ -108,7 +108,7 @@ function Navbar() {
               <Link to="/favorites" css={styleMenu}>
                 Heart
               </Link>
-              <Link to="/" css={styleMenu}>
+              <Link to="/profile" css={styleMenu}>
                 Profile
               </Link>
             </>
