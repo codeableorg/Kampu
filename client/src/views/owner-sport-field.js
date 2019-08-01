@@ -3,6 +3,8 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import { navigate } from "@reach/router";
 import { scheduleBooking } from "../services/sport-field";
+import { Button } from "../components/ui";
+import { Link } from "@reach/router";
 
 function OwnerSportField({ id }) {
   const [selectedDate, setSelectedDate] = React.useState(
@@ -100,8 +102,10 @@ function OwnerSportField({ id }) {
       <div
         css={{
           display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           justifyContent: "center",
-          marginBottom: "50px"
+          marginBottom: "1em"
         }}
       >
         <input
@@ -111,6 +115,16 @@ function OwnerSportField({ id }) {
           value={selectedDate}
           onChange={handleSelectedDate}
         />
+        <Link
+          to={`/sport-field/${id}`}
+          css={{
+            textDecoration: "none"
+          }}
+        >
+          <Button css={{ margin: "1em 0", padding: "0.75em" }}>
+            Create a Booking
+          </Button>
+        </Link>
       </div>
       <table css={table}>
         <thead>

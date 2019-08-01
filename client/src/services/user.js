@@ -57,8 +57,8 @@ async function getUser() {
     throw new Error(errors);
   }
 
-  const { name, email, role } = await response.json();
-  return { name, email, role };
+  const { id, name, email, role } = await response.json();
+  return { id, name, email, role };
 }
 
 async function getUserAllInfo() {
@@ -71,8 +71,8 @@ async function getUserAllInfo() {
     throw new Error(errors);
   }
 
-  const { name, email, role, bookings } = await response.json();
-  return { name, email, role, bookings };
+  const { id, name, email, role, bookings } = await response.json();
+  return { id, name, email, role, bookings };
 }
 
 export { login, logout, register, getUser, getUserAllInfo };

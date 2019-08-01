@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
 
-  attributes :id, :name, :email, :bookings
+  attributes :id, :name, :email, :role, :bookings
 
   def bookings
     object.bookings.map do |booking|
