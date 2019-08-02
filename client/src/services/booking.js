@@ -4,8 +4,10 @@ async function postBooking(booking) {
   const response = await fetch(`${apiUrl}/booking`, {
     method: "POST",
     credentials: "include",
-    body: booking,
-    contentType: "application/json"
+    body: JSON.stringify(booking),
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
 
   if (!response.ok) {

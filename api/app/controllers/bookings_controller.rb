@@ -25,11 +25,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-<<<<<<< HEAD
-    params.permit(:date, :start_hour, :end_hour, :amount, :sport_field_id, :user_id)
-=======
     params.permit(:date, :start_hour, :end_hour, :amount, :sport_field_id)
->>>>>>> 007913f7d6b21f93ec55aea792518ab9c3c21af8
   end
 
 end
