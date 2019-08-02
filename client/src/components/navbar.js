@@ -5,6 +5,7 @@ import { Link } from "@reach/router";
 import { useUser, useSelectedClub } from "../selectors/selectors";
 import { logout } from "../services/user";
 import { useLogout, useSetNotify } from "../actions/action-hooks";
+import { HomeIcon, Profile, BarChartIcon, Heart } from "./icons";
 
 function Navbar() {
   const user = useUser();
@@ -103,26 +104,26 @@ function Navbar() {
           {user.role === "regular" && (
             <>
               <Link to="/" css={styleMenu}>
-                Home
+                <HomeIcon />
               </Link>
               <Link to="/favorites" css={styleMenu}>
-                Heart
+                <Heart />
               </Link>
               <Link to="/profile" css={styleMenu}>
-                Profile
+                <Profile />
               </Link>
             </>
           )}
           {user.role === "owner" && (
             <>
               <Link to="/owner" css={styleMenu}>
-                Home
+                <HomeIcon />
               </Link>
               <Link to={`/report/${selectedClub}`} css={styleMenu}>
-                Report
+                <BarChartIcon />
               </Link>
               <Link to="/profile" css={styleMenu}>
-                Profile
+                <Profile />
               </Link>
             </>
           )}
