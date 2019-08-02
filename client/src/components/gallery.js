@@ -15,7 +15,6 @@ function Gallery({ club }) {
       };
     });
   }
-  console.log(club);
 
   React.useEffect(() => {
     setImages(getImagesReady(club ? club.image : []));
