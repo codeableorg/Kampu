@@ -6,12 +6,14 @@ import { postCharge } from "../services/charge";
 import { useSetNotify } from "../actions/action-hooks";
 import { Button } from "../components/ui";
 import { navigate } from "@reach/router";
+import { useUser } from "../selectors/selectors";
 
 function CheckoutForm({ stripe, data }) {
   const setNotify = useSetNotify();
+  const user = useUser();
 
   async function handleSubmit() {
-    const { token } = await stripe.createToken({ name: "Name" });
+    const { token } = await stripe.createToken({ name: user.name });
     const response = await postCharge({ ...data, token: token.id });
     if (response) {
       setNotify("Payment successfull");
