@@ -15,5 +15,7 @@ Rails.application.routes.draw do
       get 'schedule', on: :member
       get 'times', on: :member
     end
+
+    post '/charge', to: 'charges#create'
   end
 end
