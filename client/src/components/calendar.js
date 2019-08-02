@@ -3,6 +3,8 @@ import React from "react";
 import { jsx } from "@emotion/core";
 import dateFns from "date-fns";
 import { SecondaryButton } from "./ui";
+import { useSetNotify } from "../actions/action-hooks";
+import { formatHour } from "../utils";
 
 function Calendar({
   start,
@@ -17,6 +19,7 @@ function Calendar({
   const [cursor, setCursor] = React.useState(dateFns.startOfWeek(new Date()));
   const [dates, setDates] = React.useState([]);
   const hours = Array.from(Array(end - start).keys()).map(i => i + start);
+  const setNotify = useSetNotify();
 
   React.useEffect(() => {
     const times = Array.from(Array(7).keys()).map((_, index) => {
@@ -39,7 +42,7 @@ function Calendar({
     if (dateFns.differenceInCalendarDays(cursor, new Date()) < 30) {
       setCursor(dateFns.addDays(cursor, 7));
     } else {
-      alert("Please select an available booking date");
+      setNotify("Please select an available booking date");
     }
   }
 
@@ -52,15 +55,16 @@ function Calendar({
     ) {
       setCursor(dateFns.subDays(cursor, 7));
     } else {
-      alert("Please select an available booking date");
+      setNotify("Please select an available booking date");
     }
   }
 
   function compare(date, hour) {
     const finder = events.find(event => {
       return (
-        dateFns.format(date, "YYYY-MM-D") === event.date &&
-        event.start_hour === hour
+        dateFns.format(date, "YYYY-MM-DD") === event.date &&
+        event.start_hour <= hour &&
+        event.end_hour > hour
       );
     });
     return finder ? finder.id : "";
@@ -74,7 +78,7 @@ function Calendar({
 
   function onSel(date, hour) {
     if (compare(date, hour)) {
-      alert("Este horario ya esta ocupado");
+      setNotify("Este horario ya esta ocupado");
     } else {
       onSelected(date, hour);
     }
@@ -116,7 +120,7 @@ function Calendar({
           top: "66px",
           zIndex: "123",
           background: "white",
-          div: {
+          "& > div": {
             flex: "1",
             borderWidth: "1px",
             borderStyle: "solid",
@@ -129,7 +133,10 @@ function Calendar({
       >
         <div />
         {dates.map(dat => (
-          <div key={dat}>{dateFns.format(dat, "ddd DD/MM")}</div>
+          <div key={dat}>
+            <div>{dateFns.format(dat, "ddd")}</div>
+            <div>{dateFns.format(dat, "DD/MM")}</div>
+          </div>
         ))}
       </div>
       {/* body */}
@@ -149,7 +156,7 @@ function Calendar({
             }
           }}
         >
-          <div>{hour}</div>
+          <div>{formatHour(hour)}</div>
           {dates.map(date => (
             <div
               key={date}
