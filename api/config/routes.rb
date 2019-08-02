@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/report/:id', to: 'clubs#report'
     get '/me', to: 'users#me'
     get '/userinfo', to: 'users#user_with_bookings'
+    post '/booking', to: 'bookings#create'
     resources :clubs do
       resource :favorites, only: [:create, :destroy]
     end
