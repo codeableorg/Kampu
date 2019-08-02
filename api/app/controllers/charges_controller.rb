@@ -2,14 +2,14 @@ class ChargesController < ApplicationController
   def create
     
     charge = Stripe::Charge.create({
-      amount: params[:amount],
+      amount: params[:amount] * 100,
       description: "Kampu - Sports Field booking",
       currency: "usd",
       source: params[:token]
     })
 
     booking = current_user.bookings.create(
-      date: params[:date], 
+      date: params[:date],
       start_hour: params[:start_hour], 
       end_hour: params[:end_hour], 
       amount: params[:amount],
