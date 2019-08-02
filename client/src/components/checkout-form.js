@@ -1,19 +1,21 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import React, { Component } from "react";
+import React from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { postCharge } from "../services/charge";
+import { useSetNotify } from "../actions/action-hooks";
 import { Button } from "../components/ui";
+import { navigate } from "@reach/router";
 
-function CheckoutForm({ stripe }) {
-  const [loading, setLoading] = React.useState(false);
+function CheckoutForm({ stripe, data }) {
+  const setNotify = useSetNotify();
 
   async function handleSubmit() {
-    setLoading(true);
     const { token } = await stripe.createToken({ name: "Name" });
-    const response = await postCharge(token.id);
-    if (response.ok) {
-      setLoading(false);
+    const response = await postCharge({ ...data, token: token.id });
+    if (response) {
+      setNotify("Payment successfull");
+      navigate("/");
     }
   }
 
@@ -21,8 +23,13 @@ function CheckoutForm({ stripe }) {
     <div className="checkout">
       <p>Would you like to complete the purchase?</p>
       <CardElement />
-      <div onClick={handleSubmit} css={{ textAlign: "center" }}>
-        <Button css={{ marginTop: "2em", maxWidth: "150px" }}>Pay</Button>
+      <div css={{ textAlign: "center" }}>
+        <Button
+          css={{ marginTop: "2em", maxWidth: "150px" }}
+          onClick={handleSubmit}
+        >
+          Pay
+        </Button>
       </div>
     </div>
   );

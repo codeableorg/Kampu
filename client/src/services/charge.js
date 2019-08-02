@@ -1,10 +1,10 @@
 import { apiUrl } from "../utils";
 
-async function postCharge(token) {
+async function postCharge(data) {
   const response = await fetch(`${apiUrl}/charge`, {
     method: "POST",
     credentials: "include",
-    body: JSON.stringify({ token }),
+    body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json"
     }
