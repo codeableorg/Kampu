@@ -55,16 +55,14 @@ function Checkout() {
       (acc, element) => acc + getPrice(element.hour),
       0
     );
-    const sport_field_id = parseInt(cart.SportField);
-    const user_id = user.id;
+    let sport_field_id = parseInt(cart.SportField);
 
     const booking = {
       date,
       start_hour,
       end_hour,
       amount,
-      sport_field_id,
-      user_id
+      sport_field_id
     };
     console.log(booking);
     try {
