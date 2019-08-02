@@ -113,6 +113,7 @@ function Checkout() {
         <div>Total</div>
         <div>${getTotal()}</div>
       </div>
+      <hr />
       {user.role === "owner" && (
         <div css={{ textAlign: "center" }}>
           <Button
@@ -123,14 +124,15 @@ function Checkout() {
           </Button>
         </div>
       )}
-      <hr />
-      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
-        <div className="example">
-          <Elements>
-            <CheckoutForm data={data} />
-          </Elements>
-        </div>
-      </StripeProvider>
+      {user.role === "regular" && (
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
+          <div className="example">
+            <Elements>
+              <CheckoutForm data={data} />
+            </Elements>
+          </div>
+        </StripeProvider>
+      )}
     </Card>
   );
 }
