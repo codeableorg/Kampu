@@ -24,11 +24,20 @@ function Navbar() {
     }
   };
 
+  const styleMenuTop = {
+    textDecoration: "none",
+    color: "inherit",
+    padding: "1em",
+    borderRight: "1px solid #ddd",
+    flex: "auto"
+  };
+
   const styleLogout = {
     background: "none",
     color: "inherit",
     border: "none",
-    padding: "0",
+    padding: "0 1em",
+    flex: "auto",
     font: "inherit",
     cursor: "pointer",
     outline: "inherit"
@@ -81,11 +90,46 @@ function Navbar() {
               Kampu
             </h2>
           </Link>
-          {user.email && (
-            <button css={styleLogout} onClick={handleLogoutButton}>
-              Logout
-            </button>
-          )}
+          <div
+            css={{
+              display: "flex",
+              "@media screen and (max-width: 760px)": {
+                display: "none"
+              }
+            }}
+          >
+            {user.role === "regular" && (
+              <div>
+                <Link to="/" css={styleMenuTop}>
+                  Home
+                </Link>
+                <Link to="/favorites" css={styleMenuTop}>
+                  Favorites
+                </Link>
+                <Link to="/profile" css={styleMenuTop}>
+                  Profile
+                </Link>
+              </div>
+            )}
+            {user.role === "owner" && (
+              <div>
+                <Link to="/owner" css={styleMenuTop}>
+                  Home
+                </Link>
+                <Link to={`/report/${selectedClub}`} css={styleMenuTop}>
+                  Reports
+                </Link>
+                <Link to="/profile" css={styleMenuTop}>
+                  Profile
+                </Link>
+              </div>
+            )}
+            {user.email && (
+              <button css={styleLogout} onClick={handleLogoutButton}>
+                Logout
+              </button>
+            )}
+          </div>
         </div>
         <div
           css={{
@@ -98,7 +142,10 @@ function Navbar() {
             left: "0",
             alignItems: "center",
             justifyContent: "space-around",
-            textAlign: "center"
+            textAlign: "center",
+            "@media screen and (min-width: 760px)": {
+              display: "none"
+            }
           }}
         >
           {user.role === "regular" && (
