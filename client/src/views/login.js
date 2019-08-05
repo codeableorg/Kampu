@@ -4,7 +4,8 @@ import { jsx } from "@emotion/core";
 import { Link, navigate } from "@reach/router";
 import { login } from "../services/user";
 import { useSetUser, useSetNotify } from "../actions/action-hooks";
-import { Input, Card, Button } from "../components/ui";
+import { Card, Button, MaterialInput } from "../components/ui";
+import Soccer from "../assets/soccer.svg";
 
 function Login() {
   const [inputs, setInputs] = useState({
@@ -65,34 +66,24 @@ function Login() {
         }}
       >
         <form onSubmit={handleSubmit}>
+          <img src={Soccer} css={{ width: "100%" }} alt="" />
           <h2 css={{ textAlign: "center", fontWeight: "400" }}>
             Welcome to Kampu
           </h2>
-          <Input
+          <MaterialInput
             type="email"
-            name="email"
+            name="Email"
             onChange={handleChange}
+            placeholder=" "
             value={inputs.email}
-            placeholder="Email"
             required
-            css={{
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
           />
-          <Input
+          <MaterialInput
             type="password"
-            name="password"
+            name="Password"
             onChange={handleChange}
             value={inputs.password}
-            placeholder="Enter your password"
-            css={{
-              marginTop: "1em",
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
+            placeholder=" "
           />
           <Button
             type="submit"

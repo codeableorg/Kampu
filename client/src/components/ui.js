@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import "./ui.css";
 
 const styleInput = {
   background: "none",
@@ -318,6 +319,22 @@ function Input({ styles, ...props }) {
   );
 }
 
+function MaterialInput({ name, styles, ...props }) {
+  return (
+    <label className="space-field">
+      <input
+        {...props}
+        name={name.toLowerCase()}
+        css={{
+          ...styleInput,
+          ...styles
+        }}
+      />
+      <span>{name}</span>
+    </label>
+  );
+}
+
 function TextArea({ styles, ...props }) {
   return <textarea {...props} css={{ ...styleInput, ...styles }} />;
 }
@@ -356,5 +373,6 @@ export {
   SecondaryButton,
   Line,
   Progress,
-  styleScroll
+  styleScroll,
+  MaterialInput
 };
