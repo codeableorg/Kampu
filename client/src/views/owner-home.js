@@ -76,6 +76,7 @@ function OwnerHome() {
                 name={club.name}
                 activeClub={activeClub}
                 setActiveClub={setActiveClub}
+                image={club.image[0]}
               />
             );
           })}
