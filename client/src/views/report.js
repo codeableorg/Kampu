@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
+import { navigate } from "@reach/router";
 import { clubReport } from "../services/club";
 import { Title } from "../components/ui";
 import BarChart from "../components/barchart";
@@ -11,9 +12,13 @@ function Report({ id }) {
   const [filterDate, setFilterDate] = React.useState("month");
 
   React.useEffect(() => {
-    clubReport(id, filterDate).then(data => {
-      setSportsFields(data);
-    });
+    if (id !== "null") {
+      clubReport(id, filterDate).then(data => {
+        setSportsFields(data);
+      });
+    } else {
+      navigate("/owner");
+    }
   }, [id, filterDate]);
 
   function handleChangeFilterDate(e) {

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get '/schedule/:id', to: 'sport_fields#schedule'
     get '/report/:id', to: 'clubs#report'
     get '/me', to: 'users#me'
+    get '/userinfo', to: 'users#user_with_bookings'
+    post '/booking', to: 'bookings#create'
     resources :clubs do
       resource :favorites, only: [:create, :destroy]
     end
@@ -13,5 +15,7 @@ Rails.application.routes.draw do
       get 'schedule', on: :member
       get 'times', on: :member
     end
+
+    post '/charge', to: 'charges#create'
   end
 end
