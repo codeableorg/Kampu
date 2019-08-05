@@ -58,7 +58,7 @@ function App() {
             }
           }}
         />
-        <Router>
+        <Router primary={false}>
           {user.name ? (
             <Redirect
               from="/login"

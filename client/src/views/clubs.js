@@ -77,6 +77,7 @@ function Clubs({ id }) {
       <div
         css={{
           display: "flex",
+          flexWrap: "wrap",
           "@media screen and (max-width: 760px)": {
             display: "block"
           }

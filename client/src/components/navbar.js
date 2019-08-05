@@ -83,7 +83,10 @@ function Navbar() {
             alignItems: "center"
           }}
         >
-          <Link to="/" css={{ textDecoration: "none" }}>
+          <Link
+            to={user.role === "regular" ? "/" : "/owner"}
+            css={{ textDecoration: "none" }}
+          >
             <h2
               css={{
                 textDecoration: "none",
