@@ -35,35 +35,59 @@ function Club({ club }) {
     <Card
       css={{
         marginTop: "2rem",
-        display: "flex",
         alignItems: "center",
-        padding: "1rem",
-        boxShadow: "0 7px 30px -7px rgba(0,64,128,.2)"
+        padding: "0",
+        width: "30%",
+        boxShadow: "0 7px 30px -7px rgba(0, 64, 128, 0.2)",
+        "@media screen and (max-width: 750px)": {
+          width: "45%"
+        },
+        "@media screen and (max-width: 520px)": {
+          width: "100%"
+        }
       }}
       role="listitem"
     >
-      <div
+      <img
+        src={club.image[0]}
+        alt={club.name}
         css={{
-          width: "50px",
-          height: "50px",
-          background: "#ddd",
-          borderRadius: "50%",
-          marginRight: "1em"
+          width: "100%",
+          height: "200px",
+          objectFit: "cover",
+          borderRadius: "5px 5px 0 0",
+          display: "block"
         }}
       />
-      <div>
+      <div
+        css={{
+          padding: "16px"
+        }}
+      >
         <Link
           to={`/clubs/${club.id}`}
           css={{ textDecoration: "none", color: "inherit" }}
         >
-          <h3>{club.name}</h3>
+          <h3
+            css={{
+              fontSize: "1em",
+              color: "hsla(0, 0%, 15%, 1)",
+              wordSpacing: "1.25px",
+              letterSpacing: ".5px",
+              margin: "8px 0",
+              lineHeight: "1.5"
+            }}
+          >
+            {club.name}
+          </h3>
         </Link>
-        <div>Address: {club.address}</div>
-        <div>Price: {club.price}</div>
+        <div>{club.address}</div>
+        <div css={{ marginTop: "8px" }}>Price: {club.price}</div>
         <div
           css={{
             display: "flex",
-            alignItems: "center"
+            alignItems: "center",
+            marginTop: "8px"
           }}
         >
           <Heart
@@ -86,7 +110,7 @@ function Club({ club }) {
           {club.distance && (
             <>
               <MapPin width="18px" height="18px" css={styleMapPin} />
-              <span>
+              <span css={{ paddingLeft: "5px" }}>
                 {club.distance !== 0 ? `${club.distance / 1000.0}km` : null}
               </span>
             </>
