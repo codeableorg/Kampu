@@ -12,12 +12,13 @@ function RoleButton({ name, type, userType, setUserType }) {
     display: "flex",
     cursor: "pointer",
     border: "solid #ffffff00 0.1em",
-    flex: "0 0 80px"
+    boxSizing: "border-box",
+    transition: "all 0.3s"
   };
 
   const styleActive = {
     ...styleCircle,
-    border: "solid #272727 0.2em"
+    border: "solid #9adda8e0 0.5em"
   };
 
   const styleName = {

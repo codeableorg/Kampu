@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { jsx } from "@emotion/core";
 import { Link, navigate } from "@reach/router";
 import { register } from "../services/user";
+import { useSetUser } from "../actions/action-hooks";
 
-import { Input, Card, Button } from "../components/ui";
+import { Input, Card, Button, MaterialInput } from "../components/ui";
 import RoleButton from "../components/role-button";
 
 function Signup() {
@@ -14,6 +15,7 @@ function Signup() {
     email: "",
     password: ""
   });
+  const setUser = useSetUser();
 
   const [error, setError] = React.useState(null);
 
@@ -29,8 +31,8 @@ function Signup() {
     e.preventDefault();
     try {
       const user = await register(inputs);
-      navigate("/");
-      // userUpdater({ type: "LOGIN", payload: { name, email } });
+      setUser(user);
+      navigate(user.role === "regular" ? "/" : "/owner");
     } catch (error) {
       setError(error.message);
     }
@@ -67,7 +69,13 @@ function Signup() {
           }
         }}
       >
-        <div css={{ display: "flex", justifyContent: "center" }}>
+        <div
+          css={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1em"
+          }}
+        >
           <RoleButton
             name="Regular"
             type="regular"
@@ -82,49 +90,29 @@ function Signup() {
           />
         </div>
         <form onSubmit={handleSubmit}>
-          <Input
+          <MaterialInput
             type="text"
-            name="name"
+            name="Name"
             onChange={handleChange}
+            placeholder=" "
             value={inputs.userName}
-            placeholder="Enter your name *"
             required
-            css={{
-              marginTop: "2em",
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
           />
-
-          <Input
+          <MaterialInput
             type="email"
-            name="email"
+            name="Email"
             onChange={handleChange}
+            placeholder=" "
             value={inputs.email}
-            placeholder="Email *"
             required
-            css={{
-              marginTop: "1em",
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
           />
-          <Input
+          <MaterialInput
             type="password"
-            name="password"
+            name="Password"
             onChange={handleChange}
-            value={inputs.password1}
-            placeholder="Enter a password *"
-            css={{
-              marginTop: "1em",
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
+            value={inputs.password}
+            placeholder=" "
           />
-
           <Button type="submit" css={{ marginTop: "2em" }}>
             Sign Up
           </Button>
