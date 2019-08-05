@@ -6,6 +6,7 @@ import Calendar from "../components/calendar";
 import { getClub } from "../services/club";
 import { times } from "../services/sport-field";
 import { useSetCart } from "../actions/action-hooks";
+import { useSetNotify } from "../actions/action-hooks";
 
 function SportField({ id }) {
   const [selected, setSelected] = React.useState([]);
@@ -13,6 +14,7 @@ function SportField({ id }) {
   const [events, setEvents] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const setCart = useSetCart();
+  const setNotify = useSetNotify();
 
   React.useState(() => {
     getClub(id).then(club => {
@@ -22,7 +24,6 @@ function SportField({ id }) {
 
   function handleChange(date, hour) {
     if (!selected.some(selec => selec.date === date && selec.hour === hour)) {
-      console.log();
       setSelected([
         ...selected.filter(selec => selec.date === date),
         { date, hour }
@@ -52,7 +53,7 @@ function SportField({ id }) {
       });
       navigate("/checkout");
     } else {
-      alert("Select some dates please");
+      setNotify("Select some dates please");
     }
   }
 
