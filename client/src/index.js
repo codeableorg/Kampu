@@ -36,11 +36,11 @@ function App() {
       <Navbar />
       <main
         css={{
-          maxWidth: "900px",
+          maxWidth: "1000px",
           margin: "0 auto",
           boxSizing: "border-box",
           marginBottom: "80px",
-          "@media (max-width: 720px)": {
+          "@media (max-width: 1030px)": {
             padding: "0px 15px"
           }
         }}

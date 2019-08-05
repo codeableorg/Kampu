@@ -83,7 +83,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <>
       <div css={styleSelectsContainer}>
         <Select
           onChange={handleChangeLocation}
@@ -113,30 +113,38 @@ function Home() {
           <option value="name">Name</option>
         </Select>
       </div>
-      {loading && <Spinner />}
-      {!loading &&
-        clubs
-          .map(club => {
-            let distance = null;
-            if (
-              club.latitude == null ||
-              club.longitude == null ||
-              club.latitude === "null" ||
-              club.longitude === "null"
-            ) {
-              distance = null;
-            } else if (position[0] !== 0) {
-              distance = setDistance(club, position);
-            }
-            club.distance = distance;
-            return club;
-          })
-          .filter(filterBy)
-          .sort(sortBy)
-          .map(club => {
-            return <Club key={club.id} club={club} />;
-          })}
-    </div>
+      <div
+        css={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between"
+        }}
+      >
+        {loading && <Spinner />}
+        {!loading &&
+          clubs
+            .map(club => {
+              let distance = null;
+              if (
+                club.latitude == null ||
+                club.longitude == null ||
+                club.latitude === "null" ||
+                club.longitude === "null"
+              ) {
+                distance = null;
+              } else if (position[0] !== 0) {
+                distance = setDistance(club, position);
+              }
+              club.distance = distance;
+              return club;
+            })
+            .filter(filterBy)
+            .sort(sortBy)
+            .map(club => {
+              return <Club key={club.id} club={club} />;
+            })}
+      </div>
+    </>
   );
 }
 
