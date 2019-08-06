@@ -105,14 +105,17 @@ function Navbar() {
           </Link>
           <div
             css={{
-              display: "flex",
-              "@media screen and (max-width: 760px)": {
-                display: "none"
-              }
+              display: "flex"
             }}
           >
             {user.role === "regular" && (
-              <div>
+              <div
+                css={{
+                  "@media screen and (max-width: 760px)": {
+                    display: "none"
+                  }
+                }}
+              >
                 <NavLink to="/" css={styleMenuTop}>
                   Home
                 </NavLink>
@@ -125,7 +128,13 @@ function Navbar() {
               </div>
             )}
             {user.role === "owner" && (
-              <div>
+              <div
+                css={{
+                  "@media screen and (max-width: 760px)": {
+                    display: "none"
+                  }
+                }}
+              >
                 <NavLink to="/owner" css={styleMenuTop}>
                   Home
                 </NavLink>
