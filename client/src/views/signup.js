@@ -8,7 +8,11 @@ import { useSetUser } from "../actions/action-hooks";
 import { Card, Button, MaterialInput } from "../components/ui";
 import RoleButton from "../components/role-button";
 
-function Signup() {
+function Signup({ user }) {
+  React.useEffect(() => {
+    navigate(user.role === "regular" ? "/" : "/owner");
+  }, [user]);
+
   const [inputs, setInputs] = useState({
     name: "",
     role: "regular",
@@ -39,8 +43,16 @@ function Signup() {
   }
 
   React.useEffect(() => {
+    if (user.name) {
+      navigate(user.role === "regular" ? "/" : "/owner");
+    }
+  }, [user]);
+
+  React.useEffect(() => {
     setError(null);
   }, [inputs]);
+
+  if (user.name) return null;
 
   return (
     <div
@@ -51,7 +63,8 @@ function Signup() {
         position: "fixed",
         top: "0",
         width: "100%",
-        backgroundColor: "#0d0d0d8a",
+        zIndex: "1000",
+        backgroundColor: "rgba(13, 13, 13, 0.85)",
         backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
         backgroundBlendMode: "overlay",
         backgroundPosition: "center",
