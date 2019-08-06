@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { Input, Label, Card, Button } from "../components/ui";
+import { Input, Label, Card, Button, MaterialInput } from "../components/ui";
 import { postSportField } from "../services/sport-field";
 import { navigate } from "@reach/router";
 import { useSetNotify } from "../actions/action-hooks";
@@ -60,30 +60,29 @@ function CreateSportField() {
     >
       <form onSubmit={handleSubmit}>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="name">Name</Label>
-          <Input
+          <MaterialInput
             aria-label="enter name"
+            required
             autoComplete="off"
-            id="name"
-            name="name"
             type="text"
-            placeholder="Sports field's name"
+            id="name"
+            name="Name"
+            placeholder=" "
             value={fields.name}
             onChange={handleChange}
-            required
           />
         </div>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="description">Description</Label>
-          <Input
+          <MaterialInput
             aria-label="enter description"
-            id="description"
-            placeholder="Sports field's description"
-            name="description"
+            required
+            autoComplete="off"
             type="text"
+            id="description"
+            name="Description"
+            placeholder=" "
             value={fields.description}
             onChange={handleChange}
-            required
           />
         </div>
         <div css={{ marginTop: "2em" }}>

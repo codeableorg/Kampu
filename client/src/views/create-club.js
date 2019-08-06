@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { navigate } from "@reach/router";
-import { Input, Label, Card, Button } from "../components/ui";
+import { Input, Label, Card, Button, MaterialInput } from "../components/ui";
 import { postClub } from "../services/club";
 import { getCoords } from "../services/geocode";
 import { useSetNotify } from "../actions/action-hooks";
@@ -88,44 +88,41 @@ function CreateClub() {
       }}
     >
       <form onSubmit={handleSubmit}>
-        <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="name">Name</Label>
-          <Input
+        <div>
+          <MaterialInput
             aria-label="enter name"
-            required="required"
+            required
             autoComplete="off"
-            id="name"
-            name="name"
             type="text"
-            placeholder="Club's name"
+            id="name"
+            name="Name"
+            placeholder=" "
             value={fields.name}
             onChange={handleChange}
           />
         </div>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="address">Address</Label>
-          <Input
+          <MaterialInput
             aria-label="enter address"
-            required="required"
+            required
             autoComplete="off"
-            id="address"
-            name="address"
             type="text"
-            placeholder="Club's address"
+            id="address"
+            name="Address"
+            placeholder=" "
             value={fields.address}
             onChange={handleChange}
           />
         </div>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="district">District</Label>
-          <Input
+          <MaterialInput
             aria-label="enter district"
-            required="required"
+            required
             autoComplete="off"
-            id="district"
-            name="district"
             type="text"
-            placeholder="Club's district"
+            id="district"
+            name="District"
+            placeholder=" "
             value={fields.district}
             onChange={handleChange}
           />

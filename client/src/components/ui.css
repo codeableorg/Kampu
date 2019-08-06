@@ -1,7 +1,5 @@
 .space-field {
-  --pure-material-safari-helper1: rgb(
-    var(--pure-material-primary-rgb, 33, 150, 243)
-  );
+  --pure-material-safari-helper1: #23bcc1;
   position: relative;
   display: inline-block;
   padding-top: 6px;
@@ -48,7 +46,7 @@
   top: 0;
   left: 0;
   display: flex;
-  border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+  border-color: #23bcc1;
   width: 100%;
   max-height: 100%;
   color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
@@ -132,17 +130,16 @@
 /* Focus */
 .space-field > input:focus,
 .space-field > textarea:focus {
-  border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  border-color: #23bcc1;
   border-top-color: transparent;
-  box-shadow: inset 1px 0 var(--pure-material-safari-helper1),
-    inset -1px 0 var(--pure-material-safari-helper1),
-    inset 0 -1px var(--pure-material-safari-helper1);
+  box-shadow: inset 1px 0 rgb(35, 188, 193), inset -1px 0 rgb(35, 188, 193),
+    inset 0 -1px rgb(35, 188, 193);
   outline: none;
 }
 
 .space-field > input:focus + span,
 .space-field > textarea:focus + span {
-  color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  color: #23bcc1;
 }
 
 .space-field > input:focus + span::before,

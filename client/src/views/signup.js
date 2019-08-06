@@ -5,7 +5,7 @@ import { Link, navigate } from "@reach/router";
 import { register } from "../services/user";
 import { useSetUser } from "../actions/action-hooks";
 
-import { Input, Card, Button, MaterialInput } from "../components/ui";
+import { Card, Button, MaterialInput } from "../components/ui";
 import RoleButton from "../components/role-button";
 
 function Signup() {
