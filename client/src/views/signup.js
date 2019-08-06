@@ -9,10 +9,6 @@ import { Card, Button, MaterialInput } from "../components/ui";
 import RoleButton from "../components/role-button";
 
 function Signup({ user }) {
-  React.useEffect(() => {
-    navigate(user.role === "regular" ? "/" : "/owner");
-  }, [user]);
-
   const [inputs, setInputs] = useState({
     name: "",
     role: "regular",
