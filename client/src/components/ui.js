@@ -321,7 +321,7 @@ function Input({ styles, ...props }) {
 
 function MaterialInput({ name, styles, ...props }) {
   return (
-    <label className="space-field">
+    <label className="space-field" css={{ marginTop: "8px" }}>
       <input
         {...props}
         name={name.toLowerCase()}
@@ -360,6 +360,22 @@ const styleScroll = {
   }
 };
 
+const styleFormUser = {
+  display: "flex",
+  justifyContent: "center",
+  height: "100vh",
+  position: "fixed",
+  top: "0",
+  width: "100%",
+  zIndex: "1000",
+  backgroundColor: "rgba(13, 13, 13, 0.85)",
+  backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
+  backgroundBlendMode: "overlay",
+  backgroundPosition: "center",
+  left: "0",
+  alignItems: "center"
+};
+
 export {
   Button,
   Modal,
@@ -374,5 +390,6 @@ export {
   Line,
   Progress,
   styleScroll,
-  MaterialInput
+  MaterialInput,
+  styleFormUser
 };

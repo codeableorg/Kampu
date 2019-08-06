@@ -4,8 +4,10 @@ import { jsx } from "@emotion/core";
 import { Link, navigate } from "@reach/router";
 import { register } from "../services/user";
 import { useSetUser } from "../actions/action-hooks";
+import OwnerIcon from "../assets/owner.png";
+import RegularIcon from "../assets/regular.png";
 
-import { Card, Button, MaterialInput } from "../components/ui";
+import { Card, Button, MaterialInput, styleFormUser } from "../components/ui";
 import RoleButton from "../components/role-button";
 
 function Signup({ user }) {
@@ -51,33 +53,32 @@ function Signup({ user }) {
   if (user.name) return null;
 
   return (
-    <div
-      css={{
-        display: "flex",
-        justifyContent: "center",
-        height: "100vh",
-        position: "fixed",
-        top: "0",
-        width: "100%",
-        zIndex: "1000",
-        backgroundColor: "rgba(13, 13, 13, 0.85)",
-        backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
-        backgroundBlendMode: "overlay",
-        backgroundPosition: "center",
-        left: "0",
-        alignItems: "center"
-      }}
-    >
+    <div css={styleFormUser}>
       <Card
         css={{
           width: "50%",
           maxWidth: "450px",
-          "@media screen and (max-width: 480px)": {
+          "@media screen and (max-width: 740px)": {
             width: "100%",
             minWidth: "initial"
+          },
+          "@media screen and (max-width: 480px)": {
+            margin: "1em"
           }
         }}
       >
+        <h2
+          css={{
+            fontSize: "30px",
+            color: "#07bcc1",
+            margin: "0px"
+          }}
+        >
+          Kampu
+        </h2>
+        <p css={{ fontSize: "14px", color: "#718096" }}>
+          Reserve the sport field for you next game
+        </p>
         <div
           css={{
             display: "flex",
@@ -90,12 +91,14 @@ function Signup({ user }) {
             type="regular"
             setUserType={setUserType}
             userType={inputs.role}
+            icon={RegularIcon}
           />
           <RoleButton
             name="Owner"
             type="owner"
             setUserType={setUserType}
             userType={inputs.role}
+            icon={OwnerIcon}
           />
         </div>
         <form onSubmit={handleSubmit}>
@@ -134,12 +137,15 @@ function Signup({ user }) {
         <br />
         <Link
           to="/login"
-          style={{
-            color: "#000",
+          css={{
+            color: "#718096",
             fontSize: "14px",
             textDecoration: "none",
             display: "flex",
-            justifyContent: "flex-end"
+            justifyContent: "flex-end",
+            ":hover": {
+              color: "#1a202c"
+            }
           }}
         >
           Go to Login
