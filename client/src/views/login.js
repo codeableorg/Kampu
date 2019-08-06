@@ -7,7 +7,7 @@ import { useSetUser, useSetNotify } from "../actions/action-hooks";
 import { Card, Button, MaterialInput } from "../components/ui";
 import Soccer from "../assets/soccer.svg";
 
-function Login() {
+function Login({ user }) {
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
@@ -34,8 +34,16 @@ function Login() {
   }
 
   React.useEffect(() => {
+    if (user.name) {
+      navigate(user.role === "regular" ? "/" : "/owner");
+    }
+  }, [user]);
+
+  React.useEffect(() => {
     setError(null);
   }, [inputs]);
+
+  if (user.name) return null;
 
   return (
     <div
