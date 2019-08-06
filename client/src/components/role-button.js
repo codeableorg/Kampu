@@ -1,31 +1,24 @@
 /** @jsx jsx */
-
+import React from "react";
 import { jsx } from "@emotion/core";
 
-function RoleButton({ name, type, userType, setUserType }) {
+function RoleButton({ name, type, userType, setUserType, icon }) {
   const styleCircle = {
-    backgroundColor: "#bababa",
-    width: "80px",
-    height: "80px",
+    width: "70px",
+    height: "70px",
     borderRadius: "50%",
-    margin: "0 1em",
+    justifyContent: "center",
+    alignItems: "center",
     display: "flex",
     cursor: "pointer",
-    border: "solid #ffffff00 0.1em",
-    boxSizing: "border-box",
-    transition: "all 0.3s"
+    border: "5px solid transparent",
+    transition: "all .5s",
+    marginRight: "10px"
   };
 
   const styleActive = {
     ...styleCircle,
-    border: "solid #9adda8e0 0.5em"
-  };
-
-  const styleName = {
-    fontWeight: "bold",
-    fontSize: "12px",
-    margin: "auto",
-    alignSelf: "center"
+    borderColor: "#9adda8e0"
   };
 
   function handleClick() {
@@ -33,11 +26,24 @@ function RoleButton({ name, type, userType, setUserType }) {
   }
 
   return (
-    <div
-      onClick={handleClick}
-      css={userType === type ? styleActive : styleCircle}
-    >
-      <p css={styleName}>{name}</p>
+    <div css={{ textAlign: "center" }} onClick={handleClick}>
+      <div css={userType === type ? styleActive : styleCircle}>
+        <img
+          src={icon}
+          alt="ss"
+          css={{ display: "block", height: "85px", width: "85px" }}
+        />
+      </div>
+      <div
+        css={{
+          fontSize: "14px",
+          margin: "5px 0",
+          transition: "all 0.3s",
+          fontWeight: userType === type ? "bold" : "regular"
+        }}
+      >
+        {name}
+      </div>
     </div>
   );
 }
