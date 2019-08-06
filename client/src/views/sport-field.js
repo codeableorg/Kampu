@@ -70,7 +70,7 @@ function SportField({ id }) {
       <Calendar
         onSelected={handleChange}
         events={events}
-        start={club ? parseInt(club.schedule["monday-friday"].init) : 0}
+        start={club ? parseInt(club.schedule["monday-friday"].start) : 0}
         end={club ? parseInt(club.schedule["monday-friday"].end) : 0}
         getData={getData}
         loading={loading}

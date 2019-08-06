@@ -16,15 +16,15 @@ function CreateClub() {
   });
   const [schedule, setSchedule] = React.useState({
     "monday-friday": {
-      init: 0,
+      start: 0,
       end: 0
     },
     saturday: {
-      init: 0,
+      start: 0,
       end: 0
     },
     sunday: {
-      init: 0,
+      start: 0,
       end: 0
     }
   });
@@ -143,13 +143,13 @@ function CreateClub() {
           <Label>Schedule</Label>
 
           <div css={{ display: "flex", justifyContent: "space-between" }}>
-            <Label htmlFor="monday-friday.init" css={{ fontSize: "12px" }}>
+            <Label htmlFor="monday-friday.start" css={{ fontSize: "12px" }}>
               Monday - Friday
             </Label>
             <div>
               <input
-                id="monday-friday.init"
-                name="monday-friday.init"
+                id="monday-friday.start"
+                name="monday-friday.start"
                 type="time"
                 step="3600"
                 onChange={handleChangeSchedule}
@@ -173,8 +173,8 @@ function CreateClub() {
             </Label>
             <div>
               <input
-                id="saturday.init"
-                name="saturday.init"
+                id="saturday.start"
+                name="saturday.start"
                 type="time"
                 step="3600"
                 onChange={handleChangeSchedule}
@@ -195,8 +195,8 @@ function CreateClub() {
             </Label>
             <div>
               <input
-                id="sunday.init"
-                name="sunday.init"
+                id="sunday.start"
+                name="sunday.start"
                 type="time"
                 step="3600"
                 onChange={handleChangeSchedule}
