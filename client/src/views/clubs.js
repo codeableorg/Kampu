@@ -13,7 +13,7 @@ function Clubs({ id }) {
     getClub(id).then(data => {
       setClub(data);
     });
-  }, []);
+  }, [id]);
 
   const styleTitle = {
     fontSize: "0.8em"
@@ -47,7 +47,7 @@ function Clubs({ id }) {
               Monday - Friday
             </Text>
             <Text css={{ fontSize: "12px" }}>
-              {club.schedule && club.schedule["monday-friday"].start} -{" "}
+              {club.schedule && club.schedule["monday-friday"].init} -{" "}
               {club.schedule && club.schedule["monday-friday"].end}
             </Text>
           </div>
@@ -57,7 +57,7 @@ function Clubs({ id }) {
               Saturday
             </Text>
             <Text css={{ fontSize: "12px" }}>
-              {club.schedule && club.schedule["saturday"].start} -{" "}
+              {club.schedule && club.schedule["saturday"].init} -{" "}
               {club.schedule && club.schedule["saturday"].end}
             </Text>
           </div>
@@ -67,7 +67,7 @@ function Clubs({ id }) {
               Sunday
             </Text>
             <Text css={{ fontSize: "12px" }}>
-              {club.schedule && club.schedule["sunday"].start} -{" "}
+              {club.schedule && club.schedule["sunday"].init} -{" "}
               {club.schedule && club.schedule["sunday"].end}
             </Text>
           </div>

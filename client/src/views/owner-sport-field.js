@@ -63,7 +63,7 @@ function OwnerSportField({ id }) {
     scheduleBooking(id, selectedDate).then(({ bookings, club }) => {
       const str = gethours(club["schedule"], new Date(selectedDate).getDay());
       setRange({
-        start: parseInt(str.start),
+        start: parseInt(str.init),
         end: parseInt(str.end)
       });
       console.log(bookings);

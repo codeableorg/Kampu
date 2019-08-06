@@ -43,7 +43,7 @@ function CreateClub() {
     const [day, time] = e.target.name.split(".");
     setSchedule({
       ...schedule,
-      [day]: { ...schedule[day], [time]: e.target.value }
+      [day]: { ...schedule[day], [time]: parseInt(e.target.value) }
     });
   }
 
