@@ -71,7 +71,7 @@ function Login({ user }) {
             Kampu
           </h2>
           <p css={{ fontSize: "14px", color: "#718096" }}>
-            Reserve the sport field for you next game
+            Reserve the sport field for your next game
           </p>
           <img src={Soccer} css={{ width: "100%" }} alt="" />
           <MaterialInput
