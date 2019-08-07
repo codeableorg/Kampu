@@ -48,3 +48,4 @@ gem 'active_model_serializers'
 gem 'rspec-rails'
 
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'aws-sdk-s3'
