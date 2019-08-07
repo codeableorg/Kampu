@@ -97,7 +97,7 @@ function Calendar({
         event.end_hour > hour
       );
     });
-    return finder ? finder.id : "";
+    return finder ? "⚽" : "";
   }
 
   function active(date, hour) {
@@ -260,7 +260,13 @@ function Calendar({
               <div
                 key={date}
                 onClick={() => onSel(date, hour)}
-                css={{ background: active(date, hour) ? "#5ecfb5" : "inherit" }}
+                css={{
+                  background: active(date, hour)
+                    ? "#5ecfb5"
+                    : compare(date, hour) !== ""
+                    ? "#ddd"
+                    : "inherit"
+                }}
               >
                 {compare(date, hour)}
               </div>

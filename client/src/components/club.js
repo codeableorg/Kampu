@@ -82,7 +82,7 @@ function Club({ club }) {
           </h3>
         </Link>
         <div>{club.address}</div>
-        <div css={{ marginTop: "8px" }}>Price: {club.price}</div>
+        <div css={{ marginTop: "8px" }}>Price: ${club.price}</div>
         <div
           css={{
             display: "flex",
@@ -111,7 +111,9 @@ function Club({ club }) {
             <>
               <MapPin width="18px" height="18px" css={styleMapPin} />
               <span css={{ paddingLeft: "5px" }}>
-                {club.distance !== 0 ? `${club.distance / 1000.0}km` : null}
+                {club.distance !== 0
+                  ? `${Math.round((club.distance / 1000.0) * 100) / 100}km`
+                  : null}
               </span>
             </>
           )}
