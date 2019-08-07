@@ -120,6 +120,9 @@ function Calendar({
     padding: ".5rem 0",
     backgroundColor: "#0ca8ad",
     border: "1px solid #0ca8ad",
+    "@media screen and (max-width: 750px)": {
+      margin: "auto"
+    },
     ":hover": {
       color: "#0ca8ad"
     }
@@ -136,7 +139,15 @@ function Calendar({
           flexWrap: "wrap"
         }}
       >
-        <div css={{ display: "flex", minWidth: "130px" }}>
+        <div
+          css={{
+            display: "flex",
+            minWidth: "130px",
+            "@media screen and (max-width: 750px)": {
+              margin: "10px auto"
+            }
+          }}
+        >
           <div
             css={{
               marginRight: "10px",
@@ -175,15 +186,27 @@ function Calendar({
           Continue
         </SecondaryButton>
       </div>
-      <div css={{ fontSize: "14px" }}>
+      <div
+        css={{
+          fontSize: "14px",
+          marginTop: "2em",
+          "@media screen and (max-width: 750px)": {
+            overflow: "auto",
+            minWidth: "280px",
+            maxHeight: "400px"
+          }
+        }}
+      >
         <div>{loading && "cargando..."}</div>
         <div
           css={{
             display: "flex",
-            marginTop: "2em",
             textAlign: "center",
             position: "sticky",
             top: "66px",
+            "@media screen and (max-width: 750px)": {
+              top: "0"
+            },
             zIndex: "123",
             background: "white",
             "& > div:first": {
@@ -196,11 +219,18 @@ function Calendar({
               borderColor: "rgba(0, 0, 0, .1)",
               textAlign: "center",
               paddingTop: "10px",
-              paddingBottom: "10px"
+              paddingBottom: "10px",
+              minWidth: "75px"
             }
           }}
         >
-          <div />
+          <div
+            css={{
+              minWidth: "75px",
+              position: "sticky",
+              left: "0"
+            }}
+          />
           {dates.map(dat => (
             <div key={dat}>{dateFns.format(dat, "ddd DD/MM")}</div>
           ))}
@@ -218,7 +248,10 @@ function Calendar({
                 borderColor: "rgba(0, 0, 0, .1)",
                 textAlign: "center",
                 paddingTop: "1rem",
-                paddingBottom: "1rem"
+                paddingBottom: "1rem",
+                minWidth: "75px",
+                position: "sticky",
+                left: "0"
               }
             }}
           >

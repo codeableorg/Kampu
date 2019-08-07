@@ -339,27 +339,6 @@ function TextArea({ styles, ...props }) {
   return <textarea {...props} css={{ ...styleInput, ...styles }} />;
 }
 
-const styleScroll = {
-  transition: "all 0.3s",
-  "&::-webkit-scrollbar": {
-    width: "6px",
-    height: "6px"
-  },
-  "&::-webkit-scrollbar-track": {
-    background: "#f2f3f5"
-  },
-  "&:hover::-webkit-scrollbar-track": {
-    background: "rgba(215, 218, 224, 0.3)"
-  },
-  "&::-webkit-scrollbar-thumb": {
-    background: "transparent",
-    borderRadius: "10px"
-  },
-  "&:hover::-webkit-scrollbar-thumb": {
-    background: "rgba(144, 143, 143, 0.8)"
-  }
-};
-
 const styleFormUser = {
   display: "flex",
   justifyContent: "center",
@@ -389,7 +368,6 @@ export {
   SecondaryButton,
   Line,
   Progress,
-  styleScroll,
   MaterialInput,
   styleFormUser
 };
