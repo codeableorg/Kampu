@@ -302,7 +302,7 @@ function Text({ styles, ...props }) {
         padding: "0 8px 8px 0",
         fontSize: "16px",
         lineHeight: "24px",
-        color: "#888888"
+        color: "#333"
       }}
     />
   );
@@ -353,13 +353,7 @@ const styleFormUser = {
   backgroundBlendMode: "overlay",
   backgroundPosition: "center",
   left: "0",
-  alignItems: "center",
-  img: {
-    textAlign: "center",
-    margin: "auto",
-    display: "block",
-    maxWidth: "300px"
-  }
+  alignItems: "center"
 };
 
 export {
