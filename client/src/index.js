@@ -27,6 +27,11 @@ import { getUser } from "./services/user";
 import { useUser } from "./selectors/selectors";
 import { setUser, setNotify } from "./actions/actions";
 
+const PrivateRoute = ({ component: Component, user, path, ...props }) => {
+  if (!user.name) return <Redirect from="*" to="/login" noThrow />;
+  return <Component path={path} {...props} />;
+};
+
 function App() {
   const user = useUser();
 
@@ -58,31 +63,32 @@ function App() {
             }
           }}
         />
-        <Router>
-          {user.name ? (
-            <Redirect
-              from="/login"
-              to={user.role === "regular" ? "/" : "/owner"}
-              noThrow
-            />
-          ) : (
-            window.location.pathname !== "/login" && (
-              <Redirect from={window.location.pathname} to="/login" noThrow />
-            )
-          )}
-          <Home path="/" />
-          <Login path="/login" />
-          <Signup path="/signup" />
-          <OwnerHome path="/owner" />
-          <CreateClub path="/create-club" />
-          <CreateSportField path="/create-sport-field" />
-          <OwnerSportField path="/owner-sport-field/:id" />
-          <Report path="/report/:id" />
-          <Favorites path="/favorites" />
-          <Clubs path="/clubs/:id" />
-          <Checkout path="/checkout" />
-          <SportField path="/sport-field/:id" />
-          <Profile path="/profile" />
+        <Router primary={false}>
+          <Login path="/login" user={user} />
+          <Signup path="/signup" user={user} />
+          <PrivateRoute component={Home} path="/" user={user} />
+          <PrivateRoute component={OwnerHome} path="/owner" user={user} />
+          <PrivateRoute component={CreateClub} path="/create-club" user={user} />
+          <PrivateRoute
+            component={CreateSportField}
+            path="/create-sport-field"
+            user={user}
+          />
+          <PrivateRoute
+            component={OwnerSportField}
+            path="/owner-sport-field/:id"
+            user={user}
+          />
+          <PrivateRoute component={Report} path="/report/:id" user={user} />
+          <PrivateRoute component={Favorites} path="/favorites" user={user} />
+          <PrivateRoute component={Clubs} path="/clubs/:id" user={user} />
+          <PrivateRoute component={Checkout} path="/checkout" user={user} />
+          <PrivateRoute
+            component={SportField}
+            path="/sport-field/:id"
+            user={user}
+          />
+          <PrivateRoute component={Profile} path="/profile" user={user} />
         </Router>
       </main>
     </>
@@ -96,7 +102,7 @@ async function main() {
     const user = await getUser();
     store.dispatch(setUser(user));
   } catch (error) {
-    if (window.location.pathname !== "/login") {
+    if (!["/login", "/signup"].includes(window.location.pathname)) {
       store.dispatch(setNotify("The user must login"));
     }
   } finally {

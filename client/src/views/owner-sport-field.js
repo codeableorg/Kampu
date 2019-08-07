@@ -14,48 +14,60 @@ function OwnerSportField({ id }) {
   const [range, setRange] = React.useState({ start: 0, end: 0 });
   const [bookings, setBookings] = React.useState([]);
 
-  const border = {
-    border: "2px solid #dddddd",
-    textAlign: "left",
-    padding: "8px"
-  };
-  const date = {
-    height: "35px",
-    margin: "0 auto",
-    fontFamily: "arial, sans-serif",
-    fontSize: "14px",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    backgroundColor: "gray",
-    outline: "none",
-    border: "0",
-    borderRadius: "10px",
-    padding: "0px 10px 0px 10px",
-    color: "black",
-
-    "&:hover": {
-      color: "blue",
-      cursor: "pointer"
+  const styleDate = {
+    appearance: "none",
+    color: "#95a5a6",
+    fontFamily: "Helvetica, arial, sans-serif",
+    fontSize: "18px",
+    border: "1px solid #ecf0f1",
+    background: "#ecf0f1",
+    padding: "5px",
+    display: "inline-block !important",
+    visibility: "visible !important",
+    "&::-webkit-clear-button": {
+      display: "none"
     },
-    "&:active": {
-      color: "yellow"
+    "&::-webkit-inner-spin-button": {
+      display: "none"
+    },
+    "&::-webkit-calendar-picker-indicator": {
+      color: "#2c3e50"
+    },
+    "&:focus": {
+      color: "#95a5a6",
+      boxShadow: "none"
     }
   };
 
-  const table = {
-    fontFamily: "arial, sans-serif",
-    fontSize: "12px",
+  const styleTable = {
+    margin: "0 auto",
+    marginBottom: "20px",
     borderCollapse: "collapse",
-    width: "90%",
-    top: "10px",
-    right: "10px",
-    left: "10px",
-    bottom: "10px",
-    background: "gray",
-    padding: "0px",
-    textAlign: "center",
-    "@media screen and (min-width: 768px)": {
-      width: "50%"
+    border: "none",
+    borderRadius: "3px",
+    background: "#52be7f"
+  };
+
+  const styleTh = {
+    fontWeight: "normal",
+    padding: "1em",
+    color: "rgba(0,0,0,0.45)",
+    textShadow: "0 0 1px rgba(0,0,0,0.1)",
+    fontSize: "calc(0.8em + 1vw)",
+    boxShadow: "inset 0 -1px rgba(0,0,0,0.25), inset 0 1px rgba(0,0,0,0.25)"
+  };
+
+  const styleTd = {
+    color: "#f7f7f7",
+    padding: "0.7em 1em 0.7em 1.15em",
+    textShadow: "0 0 1px rgba(255,255,255,0.1)",
+    fontSize: "calc(0.5em + 1vw)",
+    boxShadow: "inset 0 -1px rgba(0,0,0,0.25), inset 0 1px rgba(0,0,0,0.25)"
+  };
+
+  const styleTr = {
+    "&:hover": {
+      background: "rgba(0,0,0,0.1)"
     }
   };
 
@@ -111,7 +123,7 @@ function OwnerSportField({ id }) {
         <input
           type="date"
           name="bookingDate"
-          css={date}
+          css={styleDate}
           value={selectedDate}
           onChange={handleSelectedDate}
         />
@@ -126,20 +138,20 @@ function OwnerSportField({ id }) {
           </Button>
         </Link>
       </div>
-      <table css={table}>
+      <table css={styleTable}>
         <thead>
           <tr>
-            <th css={border}>Time</th>
-            <th css={border}>Customer Id</th>
+            <th css={styleTh}>Time</th>
+            <th css={styleTh}>Customer Id</th>
           </tr>
         </thead>
         <tbody>
           {Array.from({ length: range.end - range.start }).map((_, i) => (
-            <tr key={i}>
-              <td css={border}>
+            <tr key={i} css={styleTr}>
+              <td css={styleTd}>
                 {i + range.start}:00 - {i + range.start + 1}:00
               </td>
-              <td css={border}>{getInfo(i + range.start)}</td>
+              <td css={styleTd}>{getInfo(i + range.start)}</td>
             </tr>
           ))}
         </tbody>

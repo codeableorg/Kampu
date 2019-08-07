@@ -4,6 +4,7 @@ import { jsx } from "@emotion/core";
 import { navigate } from "@reach/router";
 import Calendar from "../components/calendar";
 import { getClub } from "../services/club";
+import { getSportField } from "../services/sport-field";
 import { times } from "../services/sport-field";
 import { useSetCart } from "../actions/action-hooks";
 import { useSetNotify } from "../actions/action-hooks";
@@ -11,14 +12,18 @@ import { useSetNotify } from "../actions/action-hooks";
 function SportField({ id }) {
   const [selected, setSelected] = React.useState([]);
   const [club, setClub] = React.useState(null);
+  const [sportField, setSportField] = React.useState(null);
   const [events, setEvents] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const setCart = useSetCart();
   const setNotify = useSetNotify();
 
   React.useState(() => {
-    getClub(id).then(club => {
-      setClub(club);
+    getSportField(id).then(sport => {
+      setSportField(sport);
+      getClub(sport.club_id).then(club => {
+        setClub(club);
+      });
     });
   }, []);
 
@@ -49,7 +54,7 @@ function SportField({ id }) {
     if (selected.length) {
       setCart({
         selected,
-        SportField: id
+        SportField: sportField.id
       });
       navigate("/checkout");
     } else {
@@ -58,21 +63,17 @@ function SportField({ id }) {
   }
 
   return (
-    <>
-      <h2 css={{ textAlign: "center", fontSize: "30px", letterSpacing: "1px" }}>
-        Schedule
-      </h2>
-      <Calendar
-        onSelected={handleChange}
-        events={events}
-        start={club ? parseInt(club.schedule["monday-friday"].start) : 0}
-        end={club ? parseInt(club.schedule["monday-friday"].end) : 0}
-        getData={getData}
-        loading={loading}
-        selected={selected}
-        onContinue={onContinue}
-      />
-    </>
+    <Calendar
+      title="Schedule"
+      onSelected={handleChange}
+      events={events}
+      start={club ? parseInt(club.schedule["monday-friday"].start) : 0}
+      end={club ? parseInt(club.schedule["monday-friday"].end) : 0}
+      getData={getData}
+      loading={loading}
+      selected={selected}
+      onContinue={onContinue}
+    />
   );
 }
 

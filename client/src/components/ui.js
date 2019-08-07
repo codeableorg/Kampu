@@ -1,5 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
+import "./ui.css";
+import bg from "../assets/bg.jpg";
 
 const styleInput = {
   background: "none",
@@ -318,28 +320,45 @@ function Input({ styles, ...props }) {
   );
 }
 
+function MaterialInput({ name, styles, ...props }) {
+  return (
+    <label className="space-field" css={{ marginTop: "8px" }}>
+      <input
+        {...props}
+        name={name.toLowerCase()}
+        css={{
+          ...styleInput,
+          ...styles
+        }}
+      />
+      <span>{name}</span>
+    </label>
+  );
+}
+
 function TextArea({ styles, ...props }) {
   return <textarea {...props} css={{ ...styleInput, ...styles }} />;
 }
 
-const styleScroll = {
-  transition: "all 0.3s",
-  "&::-webkit-scrollbar": {
-    width: "6px",
-    height: "6px"
-  },
-  "&::-webkit-scrollbar-track": {
-    background: "#f2f3f5"
-  },
-  "&:hover::-webkit-scrollbar-track": {
-    background: "rgba(215, 218, 224, 0.3)"
-  },
-  "&::-webkit-scrollbar-thumb": {
-    background: "transparent",
-    borderRadius: "10px"
-  },
-  "&:hover::-webkit-scrollbar-thumb": {
-    background: "rgba(144, 143, 143, 0.8)"
+const styleFormUser = {
+  display: "flex",
+  justifyContent: "center",
+  height: "100vh",
+  position: "fixed",
+  top: "0",
+  width: "100%",
+  zIndex: "1000",
+  backgroundColor: "rgba(13, 13, 13, 0.85)",
+  backgroundImage: `url(${bg})`,
+  backgroundBlendMode: "overlay",
+  backgroundPosition: "center",
+  left: "0",
+  alignItems: "center",
+  img: {
+    textAlign: "center",
+    margin: "auto",
+    display: "block",
+    maxWidth: "300px"
   }
 };
 
@@ -356,5 +375,6 @@ export {
   SecondaryButton,
   Line,
   Progress,
-  styleScroll
+  MaterialInput,
+  styleFormUser
 };

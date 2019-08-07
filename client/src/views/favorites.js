@@ -23,9 +23,17 @@ function Home() {
     <div>
       <h2>Favorites Clubs</h2>
       {loading && <div>Loading</div>}
-      {clubs.map(club => (
-        <Club club={club} key={club.id} />
-      ))}
+      <div
+        css={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between"
+        }}
+      >
+        {clubs.map(club => (
+          <Club club={club} key={club.id} />
+        ))}
+      </div>
     </div>
   );
 }

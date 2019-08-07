@@ -7,6 +7,17 @@ import { logout } from "../services/user";
 import { useLogout, useSetNotify } from "../actions/action-hooks";
 import { HomeIcon, Profile, BarChartIcon, Heart } from "./icons";
 
+const NavLink = props => (
+  <Link
+    {...props}
+    getProps={({ isCurrent }) => ({
+      style: {
+        color: isCurrent ? "#13919b" : "inherit"
+      }
+    })}
+  />
+);
+
 function Navbar() {
   const user = useUser();
   const selectedClub = useSelectedClub();
@@ -28,7 +39,6 @@ function Navbar() {
     textDecoration: "none",
     color: "inherit",
     padding: "1em",
-    borderRight: "1px solid #ddd",
     flex: "auto"
   };
 
@@ -73,7 +83,10 @@ function Navbar() {
             alignItems: "center"
           }}
         >
-          <Link to="/" css={{ textDecoration: "none" }}>
+          <Link
+            to={user.role === "regular" ? "/" : "/owner"}
+            css={{ textDecoration: "none" }}
+          >
             <h2
               css={{
                 textDecoration: "none",
@@ -92,36 +105,45 @@ function Navbar() {
           </Link>
           <div
             css={{
-              display: "flex",
-              "@media screen and (max-width: 760px)": {
-                display: "none"
-              }
+              display: "flex"
             }}
           >
             {user.role === "regular" && (
-              <div>
-                <Link to="/" css={styleMenuTop}>
+              <div
+                css={{
+                  "@media screen and (max-width: 760px)": {
+                    display: "none"
+                  }
+                }}
+              >
+                <NavLink to="/" css={styleMenuTop}>
                   Home
-                </Link>
-                <Link to="/favorites" css={styleMenuTop}>
+                </NavLink>
+                <NavLink to="/favorites" css={styleMenuTop}>
                   Favorites
-                </Link>
-                <Link to="/profile" css={styleMenuTop}>
+                </NavLink>
+                <NavLink to="/profile" css={styleMenuTop}>
                   Profile
-                </Link>
+                </NavLink>
               </div>
             )}
             {user.role === "owner" && (
-              <div>
-                <Link to="/owner" css={styleMenuTop}>
+              <div
+                css={{
+                  "@media screen and (max-width: 760px)": {
+                    display: "none"
+                  }
+                }}
+              >
+                <NavLink to="/owner" css={styleMenuTop}>
                   Home
-                </Link>
-                <Link to={`/report/${selectedClub}`} css={styleMenuTop}>
+                </NavLink>
+                <NavLink to={`/report/${selectedClub}`} css={styleMenuTop}>
                   Reports
-                </Link>
-                <Link to="/profile" css={styleMenuTop}>
+                </NavLink>
+                <NavLink to="/profile" css={styleMenuTop}>
                   Profile
-                </Link>
+                </NavLink>
               </div>
             )}
             {user.email && (

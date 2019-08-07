@@ -2,7 +2,7 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { navigate } from "@reach/router";
-import { Input, Label, Card, Button } from "../components/ui";
+import { Input, Label, Card, Button, MaterialInput } from "../components/ui";
 import { postClub } from "../services/club";
 import { getCoords } from "../services/geocode";
 import { useSetNotify } from "../actions/action-hooks";
@@ -16,15 +16,15 @@ function CreateClub() {
   });
   const [schedule, setSchedule] = React.useState({
     "monday-friday": {
-      init: 0,
+      start: 0,
       end: 0
     },
     saturday: {
-      init: 0,
+      start: 0,
       end: 0
     },
     sunday: {
-      init: 0,
+      start: 0,
       end: 0
     }
   });
@@ -43,7 +43,7 @@ function CreateClub() {
     const [day, time] = e.target.name.split(".");
     setSchedule({
       ...schedule,
-      [day]: { ...schedule[day], [time]: e.target.value }
+      [day]: { ...schedule[day], [time]: parseInt(e.target.value) }
     });
   }
 
@@ -88,44 +88,41 @@ function CreateClub() {
       }}
     >
       <form onSubmit={handleSubmit}>
-        <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="name">Name</Label>
-          <Input
+        <div>
+          <MaterialInput
             aria-label="enter name"
-            required="required"
+            required
             autoComplete="off"
-            id="name"
-            name="name"
             type="text"
-            placeholder="Club's name"
+            id="name"
+            name="Name"
+            placeholder=" "
             value={fields.name}
             onChange={handleChange}
           />
         </div>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="address">Address</Label>
-          <Input
+          <MaterialInput
             aria-label="enter address"
-            required="required"
+            required
             autoComplete="off"
-            id="address"
-            name="address"
             type="text"
-            placeholder="Club's address"
+            id="address"
+            name="Address"
+            placeholder=" "
             value={fields.address}
             onChange={handleChange}
           />
         </div>
         <div css={{ marginTop: "2em" }}>
-          <Label htmlFor="district">District</Label>
-          <Input
+          <MaterialInput
             aria-label="enter district"
-            required="required"
+            required
             autoComplete="off"
-            id="district"
-            name="district"
             type="text"
-            placeholder="Club's district"
+            id="district"
+            name="District"
+            placeholder=" "
             value={fields.district}
             onChange={handleChange}
           />
@@ -146,13 +143,13 @@ function CreateClub() {
           <Label>Schedule</Label>
 
           <div css={{ display: "flex", justifyContent: "space-between" }}>
-            <Label htmlFor="monday-friday.init" css={{ fontSize: "12px" }}>
+            <Label htmlFor="monday-friday.start" css={{ fontSize: "12px" }}>
               Monday - Friday
             </Label>
             <div>
               <input
-                id="monday-friday.init"
-                name="monday-friday.init"
+                id="monday-friday.start"
+                name="monday-friday.start"
                 type="time"
                 step="3600"
                 onChange={handleChangeSchedule}
@@ -176,8 +173,8 @@ function CreateClub() {
             </Label>
             <div>
               <input
-                id="saturday.init"
-                name="saturday.init"
+                id="saturday.start"
+                name="saturday.start"
                 type="time"
                 step="3600"
                 onChange={handleChangeSchedule}
@@ -198,8 +195,8 @@ function CreateClub() {
             </Label>
             <div>
               <input
-                id="sunday.init"
-                name="sunday.init"
+                id="sunday.start"
+                name="sunday.start"
                 type="time"
                 step="3600"
                 onChange={handleChangeSchedule}

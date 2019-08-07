@@ -5,8 +5,38 @@ import dateFns from "date-fns";
 import { SecondaryButton } from "./ui";
 import { useSetNotify } from "../actions/action-hooks";
 import { formatHour } from "../utils";
+import { ChevronLeft, ChevronRight } from "./icons";
+
+function ArrowButton({ styles, ...props }) {
+  return (
+    <button
+      {...props}
+      css={{
+        border: "none",
+        color: "#fff",
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 24,
+        outline: "none",
+        background: "#0ca8ad",
+        borderRadius: "5px",
+        padding: "5px",
+        cursor: "pointer",
+        ...styles,
+        ":hover": {
+          background: "#0c8286"
+        },
+        ":focus": {
+          boxShadow: "0 0 0 0.2rem rgba(44,62,80,.25)"
+        }
+      }}
+    />
+  );
+}
 
 function Calendar({
+  title,
   start,
   end,
   loading,
@@ -85,90 +115,160 @@ function Calendar({
   }
 
   const buttons = {
-    maxWidth: "100px",
-    marginRight: "5px"
+    width: "100px",
+    marginRight: "5px",
+    padding: ".5rem 0",
+    backgroundColor: "#0ca8ad",
+    border: "1px solid #0ca8ad",
+    "@media screen and (max-width: 750px)": {
+      margin: "auto"
+    },
+    ":hover": {
+      color: "#0ca8ad"
+    }
   };
 
   return (
-    <div>
+    <>
       <div
         css={{
-          textAlign: "center"
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap"
         }}
       >
-        <SecondaryButton onClick={back} css={buttons}>
-          Back
-        </SecondaryButton>
-        <SecondaryButton onClick={next} css={buttons}>
-          Next
-        </SecondaryButton>
-        <SecondaryButton onClick={today} css={buttons}>
-          Today
-        </SecondaryButton>
+        <div
+          css={{
+            display: "flex",
+            minWidth: "130px",
+            "@media screen and (max-width: 750px)": {
+              margin: "10px auto"
+            }
+          }}
+        >
+          <div
+            css={{
+              marginRight: "10px",
+              borderRadius: "5px",
+              background: "#0ca8ad"
+            }}
+          >
+            <ArrowButton onClick={back} title="Move to the previous week">
+              <ChevronLeft />
+            </ArrowButton>
+            <ArrowButton onClick={next} title="Move to the next week">
+              <ChevronRight />
+            </ArrowButton>
+          </div>
+          <SecondaryButton onClick={today} css={buttons}>
+            Today
+          </SecondaryButton>
+        </div>
+        <h2
+          css={{
+            textAlign: "center",
+            fontSize: "30px",
+            letterSpacing: "1px",
+            color: "#718096",
+            margin: "0",
+            "@media screen and (max-width: 750px)": {
+              margin: "10px 0",
+              order: "-1",
+              width: "100%"
+            }
+          }}
+        >
+          {title}
+        </h2>
         <SecondaryButton onClick={onContinue} css={buttons}>
           Continue
         </SecondaryButton>
       </div>
-      {/* header */}
-      <div>{loading && "cargando..."}</div>
       <div
         css={{
-          display: "flex",
+          fontSize: "14px",
           marginTop: "2em",
-          textAlign: "center",
-          position: "sticky",
-          top: "66px",
-          zIndex: "123",
-          background: "white",
-          "& > div": {
-            flex: "1",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderColor: "rgba(0, 0, 0, .1)",
-            textAlign: "center",
-            paddingTop: "1rem",
-            paddingBottom: "1rem"
+          "@media screen and (max-width: 750px)": {
+            overflow: "auto",
+            minWidth: "280px",
+            maxHeight: "400px"
           }
         }}
       >
-        <div />
-        {dates.map(dat => (
-          <div key={dat}>
-            <div>{dateFns.format(dat, "ddd")}</div>
-            <div>{dateFns.format(dat, "DD/MM")}</div>
-          </div>
-        ))}
-      </div>
-      {/* body */}
-      {hours.map((hour, index) => (
+        <div>{loading && "cargando..."}</div>
         <div
-          key={index}
           css={{
             display: "flex",
-            div: {
+            textAlign: "center",
+            position: "sticky",
+            top: "66px",
+            "@media screen and (max-width: 750px)": {
+              top: "0"
+            },
+            zIndex: "123",
+            background: "white",
+            "& > div:first": {
+              width: "50px"
+            },
+            "& > div": {
               flex: "1",
               borderWidth: "1px",
               borderStyle: "solid",
               borderColor: "rgba(0, 0, 0, .1)",
               textAlign: "center",
-              paddingTop: "1rem",
-              paddingBottom: "1rem"
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              minWidth: "75px"
             }
           }}
         >
-          <div>{formatHour(hour)}</div>
-          {dates.map(date => (
-            <div
-              key={date}
-              onClick={() => onSel(date, hour)}
-              css={{ background: active(date, hour) ? "#5ecfb5" : "inherit" }}
-            >
-              {compare(date, hour)}
-            </div>
+          <div
+            css={{
+              minWidth: "75px",
+              position: "sticky",
+              left: "0"
+            }}
+          />
+          {dates.map(dat => (
+            <div key={dat}>{dateFns.format(dat, "ddd DD/MM")}</div>
           ))}
         </div>
-      ))}
-    </div>
+        {/* body */}
+        {hours.map((hour, index) => (
+          <div
+            key={index}
+            css={{
+              display: "flex",
+              div: {
+                flex: "1",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderColor: "rgba(0, 0, 0, .1)",
+                textAlign: "center",
+                paddingTop: "1rem",
+                paddingBottom: "1rem",
+                minWidth: "75px",
+                position: "sticky",
+                left: "0"
+              }
+            }}
+          >
+            <div>{formatHour(hour)}</div>
+            {dates.map(date => (
+              <div
+                key={date}
+                onClick={() => onSel(date, hour)}
+                css={{ background: active(date, hour) ? "#5ecfb5" : "inherit" }}
+              >
+                {compare(date, hour)}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

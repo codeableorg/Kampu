@@ -14,7 +14,7 @@ function SportfieldInfo({ sportField }) {
         margin: "1em",
         textDecoration: "none",
         "@media screen and (max-width: 760px)": {
-          margin: "1em 0"
+          margin: "1em"
         }
       }}
     >

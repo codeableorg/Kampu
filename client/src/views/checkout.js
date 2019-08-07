@@ -21,15 +21,13 @@ function Checkout() {
 
   React.useEffect(() => {
     if (!Object.keys(cart).length) {
-      navigate("/");
+      navigate(user.role === "regular" ? "/" : "/owner");
+    } else {
+      getSportField(cart.SportField).then(data => {
+        setSportField(data);
+        setLoading(false);
+      });
     }
-  }, []);
-
-  React.useEffect(() => {
-    getSportField(cart.SportField).then(data => {
-      setSportField(data);
-      setLoading(false);
-    });
   }, []);
 
   React.useEffect(() => {
@@ -43,7 +41,6 @@ function Checkout() {
       });
     }
   }, [sportField]);
-
   function format(hour) {
     return ("0" + hour.toString() + ":00").slice(-5);
   }
