@@ -63,21 +63,17 @@ function SportField({ id }) {
   }
 
   return (
-    <>
-      <h2 css={{ textAlign: "center", fontSize: "30px", letterSpacing: "1px" }}>
-        Schedule
-      </h2>
-      <Calendar
-        onSelected={handleChange}
-        events={events}
-        start={club ? parseInt(club.schedule["monday-friday"].start) : 0}
-        end={club ? parseInt(club.schedule["monday-friday"].end) : 0}
-        getData={getData}
-        loading={loading}
-        selected={selected}
-        onContinue={onContinue}
-      />
-    </>
+    <Calendar
+      title="Schedule"
+      onSelected={handleChange}
+      events={events}
+      start={club ? parseInt(club.schedule["monday-friday"].start) : 0}
+      end={club ? parseInt(club.schedule["monday-friday"].end) : 0}
+      getData={getData}
+      loading={loading}
+      selected={selected}
+      onContinue={onContinue}
+    />
   );
 }
 
