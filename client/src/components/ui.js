@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
 import "./ui.css";
+import bg from "../assets/bg.jpg";
 
 const styleInput = {
   background: "none",
@@ -348,11 +349,17 @@ const styleFormUser = {
   width: "100%",
   zIndex: "1000",
   backgroundColor: "rgba(13, 13, 13, 0.85)",
-  backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
+  backgroundImage: `url(${bg})`,
   backgroundBlendMode: "overlay",
   backgroundPosition: "center",
   left: "0",
-  alignItems: "center"
+  alignItems: "center",
+  img: {
+    textAlign: "center",
+    margin: "auto",
+    display: "block",
+    maxWidth: "300px"
+  }
 };
 
 export {
