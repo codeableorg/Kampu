@@ -8,7 +8,7 @@ function OwnerCreateButton() {
 
   const styleButtonContainer = {
     position: "fixed",
-    bottom: "3.5em",
+    bottom: "1.5em",
     right: "1em",
     color: "#fff",
     backgroundColor: "#50cbb7",
@@ -18,15 +18,17 @@ function OwnerCreateButton() {
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "50%",
-
-    transition: "all 0.2s ease"
+    transition: "all 0.2s ease",
+    "@media screen and (max-width: 760px)": {
+      bottom: "4.5em"
+    }
   };
 
   const styleIcon = {
     background: "none",
     color: "inherit",
     border: "none",
-    padding: "0",
+    padding: "2px",
     font: "inherit",
     cursor: "pointer",
     outline: "inherit",
@@ -73,7 +75,8 @@ function OwnerCreateButton() {
     margin: 0,
     width: "100%",
     "&:hover": {
-      background: "#a6a6a6"
+      background: "#4dc4b1",
+      borderRadius: "10px"
     }
   };
 

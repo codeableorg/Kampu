@@ -1,30 +1,43 @@
 /** @jsx jsx */
+import React from "react";
 import { jsx } from "@emotion/core";
 import { Title } from "../components/ui";
 
-function OwnerClubCircle({ id, active, name, activeClub, setActiveClub }) {
+function OwnerClubCircle({
+  id,
+  active,
+  name,
+  activeClub,
+  setActiveClub,
+  image
+}) {
   const styleCircle = {
-    backgroundColor: "#bababa",
     width: "80px",
     height: "80px",
     borderRadius: "50%",
     margin: "0 1em",
-    display: "flex",
     cursor: "pointer",
-    border: "solid #ffffff00 0.5em",
-    flex: "0 0 80px",
-    textAlign: "center"
+    boxSizing: "border-box",
+    background: `url(${image}) no-repeat center center`,
+    backgroundSize: "cover",
+    transition: "all 0.3s"
   };
 
   const styleActive = {
     ...styleCircle,
-    border: "solid #272727 0.5em"
+    border: "solid #9adda8e0 0.5em"
   };
 
   const styleName = {
     fontWeight: "normal",
-    margin: "auto",
-    alignSelf: "center"
+    textAlign: "center",
+    width: "100px",
+    margin: "1em auto",
+    alignSelf: "center",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis"
   };
 
   function handleClick() {
@@ -32,10 +45,8 @@ function OwnerClubCircle({ id, active, name, activeClub, setActiveClub }) {
   }
 
   return (
-    <div
-      css={activeClub === id ? styleActive : styleCircle}
-      onClick={handleClick}
-    >
+    <div onClick={handleClick}>
+      <div css={activeClub === id ? styleActive : styleCircle} />
       <Title css={styleName}>{name}</Title>
     </div>
   );

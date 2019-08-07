@@ -4,9 +4,10 @@ import { jsx } from "@emotion/core";
 import { Link, navigate } from "@reach/router";
 import { login } from "../services/user";
 import { useSetUser, useSetNotify } from "../actions/action-hooks";
-import { Input, Card, Button } from "../components/ui";
+import { Card, Button, MaterialInput, styleFormUser } from "../components/ui";
+import Soccer from "../assets/soccer.svg";
 
-function Login() {
+function Login({ user }) {
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
@@ -33,66 +34,60 @@ function Login() {
   }
 
   React.useEffect(() => {
+    if (user.name) {
+      navigate(user.role === "regular" ? "/" : "/owner");
+    }
+  }, [user]);
+
+  React.useEffect(() => {
     setError(null);
   }, [inputs]);
 
+  if (user.name) return null;
+
   return (
-    <div
-      css={{
-        display: "flex",
-        justifyContent: "center",
-        height: "100vh",
-        position: "fixed",
-        top: "0",
-        width: "100%",
-        zIndex: "1000",
-        backgroundColor: "rgba(13, 13, 13, 0.85)",
-        backgroundImage: "url(https://i.imgur.com/3hVK2yO.jpg)",
-        backgroundBlendMode: "overlay",
-        backgroundPosition: "center",
-        left: "0",
-        alignItems: "center"
-      }}
-    >
+    <div css={styleFormUser}>
       <Card
         css={{
           width: "50%",
           maxWidth: "450px",
-          "@media screen and (max-width: 480px)": {
+          "@media screen and (max-width: 740px)": {
             width: "100%",
             minWidth: "initial"
+          },
+          "@media screen and (max-width: 480px)": {
+            margin: "1em"
           }
         }}
       >
         <form onSubmit={handleSubmit}>
-          <h2 css={{ textAlign: "center", fontWeight: "400" }}>
-            Welcome to Kampu
-          </h2>
-          <Input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            value={inputs.email}
-            placeholder="Email"
-            required
+          <h2
             css={{
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
+              fontSize: "30px",
+              color: "#07bcc1",
+              margin: "0px"
             }}
+          >
+            Kampu
+          </h2>
+          <p css={{ fontSize: "14px", color: "#718096" }}>
+            Reserve the sport field for you next game
+          </p>
+          <img src={Soccer} css={{ width: "100%" }} alt="" />
+          <MaterialInput
+            type="email"
+            name="Email"
+            onChange={handleChange}
+            placeholder=" "
+            value={inputs.email}
+            required
           />
-          <Input
+          <MaterialInput
             type="password"
-            name="password"
+            name="Password"
             onChange={handleChange}
             value={inputs.password}
-            placeholder="Enter your password"
-            css={{
-              marginTop: "1em",
-              "@media screen and (max-width: 480px)": {
-                fontSize: ".8rem"
-              }
-            }}
+            placeholder=" "
           />
           <Button
             type="submit"
@@ -112,12 +107,15 @@ function Login() {
 
         <Link
           to="/signup"
-          style={{
-            color: "#000",
+          css={{
+            color: "#718096",
             fontSize: "14px",
             textDecoration: "none",
             display: "flex",
-            justifyContent: "flex-end"
+            justifyContent: "flex-end",
+            ":hover": {
+              color: "#1a202c"
+            }
           }}
         >
           Go to Signup

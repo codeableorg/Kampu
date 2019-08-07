@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { Title, styleScroll } from "../components/ui";
+import { Title } from "../components/ui";
 import OwnerSportFieldCard from "../components/owner-sportfield-card";
 import OwnerClubCircle from "../components/owner-club-circle";
 import OwnerCreateButton from "../components/owner-create-button";
@@ -32,8 +32,7 @@ function OwnerHome() {
     display: "flex",
     alignItems: "center",
     overflowX: "auto",
-    padding: "1em 0",
-    ...styleScroll
+    padding: "1em 0"
   };
 
   React.useEffect(() => {
@@ -76,6 +75,7 @@ function OwnerHome() {
                 name={club.name}
                 activeClub={activeClub}
                 setActiveClub={setActiveClub}
+                image={club.image[0]}
               />
             );
           })}
