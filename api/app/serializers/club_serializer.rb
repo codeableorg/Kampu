@@ -7,7 +7,7 @@ class ClubSerializer < ActiveModel::Serializer
     # rails_blob_path(object.image, only_path: true) if object.image.attached?
     if self.object.image.attached?
       object.image.map do |img|
-        url_for(img)
+        img.service_url
       end
     end
   end
